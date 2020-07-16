@@ -1,0 +1,23 @@
+apiVersion: sources.knative.dev/v1alpha1
+kind: KafkaSource
+metadata:
+  name: kafka-source
+  namespace: default
+  annotations:
+    autoscaling.knative.dev/class: keda.autoscaling.knative.dev
+    autoscaling.knative.dev/minScale: "0" 
+    autoscaling.knative.dev/maxScale: "5" 
+    keda.autoscaling.knative.dev/pollingInterval: "3" 
+    keda.autoscaling.knative.dev/cooldownPeriod: "10" 
+    keda.autoscaling.knative.dev/kafkaLagThreshold: "2"
+spec:
+  consumerGroup: knative-group
+  bootstrapServers: 
+    - my-cluster-kafka-bootstrap.openshift-operators:9092 
+  topics: 
+    - test
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display
