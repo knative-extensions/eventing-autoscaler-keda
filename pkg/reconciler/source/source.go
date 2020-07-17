@@ -55,8 +55,6 @@ type Reconciler struct {
 
 func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 
-	logging.FromContext(ctx).Info("RECONCILE START")
-
 	// Convert the namespace/name string into a distinct namespace and name
 	namespace, name, err := cache.SplitMetaNamespaceKey(key)
 	if err != nil {
@@ -99,11 +97,8 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		return nil
 	}
 
-	logging.FromContext(ctx).Info("RECONCILE PRED RETURN, KIND: " + r.gvk.Kind)
-
 	switch r.gvk.Kind {
 	case "KafkaSource":
-		logging.FromContext(ctx).Info("RECONCILE Kafka Source")
 		var kafkaSource = &kafkav1beta1.KafkaSource{}
 		// TODO move scheme register up
 		kafkav1beta1.AddToScheme(scheme.Scheme)
@@ -113,7 +108,6 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		}
 		return r.reconcileKafkaSource(ctx, kafkaSource)
 	case "AwsSqsSource":
-		logging.FromContext(ctx).Info("RECONCILE AWS SQS Source")
 		var awsSqsSource = &awssqsv1alpha1.AwsSqsSource{}
 		// TODO move scheme register up
 		awssqsv1alpha1.AddToScheme(scheme.Scheme)
