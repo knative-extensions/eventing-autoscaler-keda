@@ -6,6 +6,13 @@
 
 >Warning: Still under development. Not meant for production deployment.
 
+
+|               |                                                                                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ |
+| STATUS        | Experimental                                                                                                       |
+| Sponsoring WG | [Eventing Sources](https://github.com/knative/community/blob/master/working-groups/WORKING-GROUPS.md#eventing-sources) |
+
+
 ## Design
 To enable KEDA Autoscaling of Knative Event Sources (and other components in the future) there is a separate controller implemented, ie. no hard dependency in Knative.
 This contoller si watching for `CustomResourcesDefinitions` resources in the cluster, if there is installed a new CRD which is supported by this controller a new dynamic controller watching these resources is created. 
