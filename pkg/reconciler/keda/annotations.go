@@ -24,18 +24,18 @@ const (
 	// scaler that a particular resource has opted into.
 	AutoscalingClassAnnotation = Autoscaling + "/class"
 
-	// AutoscalingMinScaleAnnotation is the annotation to specify the minimum number of pods to scale to.
+	// AutoscalingMinScaleAnnotation is the annotation to specify the minimum number of replicas to scale down to.
 	AutoscalingMinScaleAnnotation = Autoscaling + "/minScale"
-	// AutoscalingMaxScaleAnnotation is the annotation to specify the maximum number of pods to scale to.
+	// AutoscalingMaxScaleAnnotation is the annotation to specify the maximum number of replicas to scale out to.
 	AutoscalingMaxScaleAnnotation = Autoscaling + "/maxScale"
 
 	// KEDA is Keda autoscaler.
 	KEDA = "keda.autoscaling.knative.dev"
 
-	// KedaAutoscalingPollingIntervalAnnotation is the annotation that refers to the interval in seconds Keda
+	// KedaAutoscalingPollingIntervalAnnotation is the annotation that refers to the interval in seconds KEDA
 	// uses to poll metrics in order to inform its scaling decisions.
 	KedaAutoscalingPollingIntervalAnnotation = KEDA + "/pollingInterval"
-	// KedaAutoscalingCooldownPeriodAnnotation is the annotation that refers to the period Keda waits until it
+	// KedaAutoscalingCooldownPeriodAnnotation is the annotation that refers to the period KEDA waits until it
 	// scales a Deployment down.
 	KedaAutoscalingCooldownPeriodAnnotation = KEDA + "/cooldownPeriod"
 

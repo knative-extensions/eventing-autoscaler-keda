@@ -6,7 +6,34 @@
 ## Design
 To enable KEDA Autoscaling of Knative Event Sources (and other components in the future) there is a separate controller implemented, ie. no hard dependency in Knative.
 This contoller si watching for `CustomResourcesDefinitions` resources in the cluster, if there is installed a new CRD which is supported by this controller a new dynamic controller watching these resources is created. 
+
 Currently there is support for **Kafka Source** and **AWS SQS Source**.
+
+## Annotations
+User can enable and configure autoscaling on a particular Source by a set of annotations. 
+
+```yaml
+metadata:
+  annotations:
+    autoscaling.knative.dev/class: keda.autoscaling.knative.dev
+    autoscaling.knative.dev/minScale: "0" 
+    autoscaling.knative.dev/maxScale: "5" 
+    keda.autoscaling.knative.dev/pollingInterval: "30" 
+    keda.autoscaling.knative.dev/cooldownPeriod: "30" 
+
+    # Kafka Source
+    keda.autoscaling.knative.dev/kafkaLagThreshold: "10"
+    # AWS SQS Source
+    keda.autoscaling.knative.dev/awsSqsQueueLength: "5"
+```
+
+- `autoscaling.knative.dev/class: keda.autoscaling.knative.dev` -  needs to be specified on a Source to enable KEDA autoscaling
+- `autoscaling.knative.dev/minScale` - minimum number of replicas to scale down to. Default: `0`
+- `autoscaling.knative.dev/maxScale` - maximum number of replicas to scale out to. Default: `50`
+- `keda.autoscaling.knative.dev/pollingInterval` - interval in seconds KEDA uses to poll metrics. Default: `30`
+- `keda.autoscaling.knative.dev/cooldownPeriod` - period of time in seconds KEDA waits until it scales down. Default: `300`
+- `keda.autoscaling.knative.dev/kafkaLagThreshold` - only for Kafka Source, refers to the stream is lagging on the current consumer group. Default: `10`
+- `keda.autoscaling.knative.dev/awsSqsQueueLength` - only for AWS SQS Source, refers to the target value for ApproximateNumberOfMessages in the SQS Queue. Default: `5`
 
 
 ## Technical details & limitations
@@ -46,6 +73,10 @@ NAME                          READY   STATUS    RESTARTS   AGE
 controller-76fb8d6756-5f4vm   1/1     Running   0          21m
 ```
 
+
+
+
+
 ## Example of Kafka Source autoscaled by KEDA
 
 1. Set up Kafka Cluster, eg. use [Strimzi operator](https://strimzi.io/)
@@ -66,9 +97,9 @@ metadata:
     autoscaling.knative.dev/class: keda.autoscaling.knative.dev
     autoscaling.knative.dev/minScale: "0" 
     autoscaling.knative.dev/maxScale: "5" 
-    keda.autoscaling.knative.dev/pollingInterval: "3" 
-    keda.autoscaling.knative.dev/cooldownPeriod: "10" 
-    keda.autoscaling.knative.dev/kafkaLagThreshold: "2"
+    keda.autoscaling.knative.dev/pollingInterval: "30" 
+    keda.autoscaling.knative.dev/cooldownPeriod: "30" 
+    keda.autoscaling.knative.dev/kafkaLagThreshold: "10"
 spec:
   consumerGroup: knative-group
   bootstrapServers: 

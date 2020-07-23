@@ -31,7 +31,7 @@ const (
 	defaultPollingInterval = 30
 	defaultCooldownPeriod  = 300
 	defaultMinReplicaCount = 0
-	defaultMaxReplicaCount = 100
+	defaultMaxReplicaCount = 50
 )
 
 var (
