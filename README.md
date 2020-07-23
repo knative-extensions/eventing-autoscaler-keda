@@ -26,6 +26,7 @@ metadata:
 
     # Kafka Source
     keda.autoscaling.knative.dev/kafkaLagThreshold: "10"
+
     # AWS SQS Source
     keda.autoscaling.knative.dev/awsSqsQueueLength: "5"
 ```
