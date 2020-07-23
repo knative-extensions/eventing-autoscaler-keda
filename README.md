@@ -1,5 +1,8 @@
 # Experimental KEDA support for Knative Event Sources Autoscaling
 
+<p style="font-size: 25px" align="center">
+<a href="https://github.com/zroubalik/autoscaler-keda/actions"><img src="https://github.com/zroubalik/autoscaler-keda/workflows/master%20build/badge.svg" alt="master build"></a></p>
+
 
 >Warning: Still under development. Not meant for production deployment.
 
