@@ -21,7 +21,6 @@ DATE        = $(shell date -u +"%Y.%m.%d.%H.%M.%S")
 ##################################################
 GO_BUILD_VARS= GO111MODULE=on CGO_ENABLED=$(CGO) GOOS=$(TARGET_OS) GOARCH=$(ARCH)
 
-
 .PHONY: gofmt
 gofmt:
 	go fmt ./...
@@ -32,4 +31,6 @@ build: gofmt
 	mkdir -p ./build
 	$(GO_BUILD_VARS) go build -mod vendor -o build/autoscaler-keda cmd/controller/main.go 
 
-
+.PHONY: build-image
+build-image: build
+	docker build -t $(IMAGE) ./
