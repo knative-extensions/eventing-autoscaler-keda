@@ -18,10 +18,13 @@ require (
 	knative.dev/test-infra v0.0.0-20200713185018-6b52776d44a4
 )
 
+// WORKAROUND until k8s v1.18+ is not present in knative/eventing
 replace knative.dev/eventing => github.com/zroubalik/eventing v0.15.1-0.20200714134632-e7996ac5d4c3
 
+// WORKAROUND until k8s v1.18+ is not present in knative/pkg
 replace knative.dev/pkg => github.com/zroubalik/pkg v0.0.0-20200714090639-88ee0a9b8a22
 
+// WORKAROUND until KEDA v2 is not released
 replace github.com/kedacore/keda => github.com/kedacore/keda v1.4.2-0.20200617120630-97df7e08e24b
 
 replace k8s.io/client-go => k8s.io/client-go v0.18.6
