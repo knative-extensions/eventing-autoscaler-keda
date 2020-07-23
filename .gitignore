@@ -12,3 +12,6 @@ bazel-*
 
 # Ignore build output
 build
+
+# Ignore third_party directory
+third_party
