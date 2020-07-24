@@ -16,9 +16,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: controller
-  namespace: autoscaler-keda
+  namespace: eventing-autoscaler-keda
   labels:
-    autoscaler-keda.knative.dev/release: devel
+    eventing-autoscaler-keda.knative.dev/release: devel
 spec:
   replicas: 1
   selector:
@@ -30,12 +30,12 @@ spec:
         sidecar.istio.io/inject: "false"
       labels:
         app: controller
-        autoscaler-keda.knative.dev/release: devel
+        eventing-autoscaler-keda.knative.dev/release: devel
     spec:
       serviceAccountName: controller
       containers:
       - name: controller
-        image: ko://github.com/zroubalik/autoscaler-keda/cmd/controller
+        image: ko://knative.dev/eventing-autoscaler-keda/cmd/controller
         resources:
           requests:
             cpu: 100m
@@ -59,7 +59,7 @@ spec:
         - name: CONFIG_OBSERVABILITY_NAME
           value: config-observability
         - name: METRICS_DOMAIN
-          value: knative.dev/autoscaler-keda
+          value: knative.dev/eventing-autoscaler-keda
       volumes:
         - name: config-logging
           configMap:

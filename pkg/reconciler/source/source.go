@@ -36,9 +36,9 @@ import (
 
 	kedav1aplha1 "github.com/kedacore/keda/pkg/apis/keda/v1alpha1"
 	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
-	"github.com/zroubalik/autoscaler-keda/pkg/reconciler/awssqs"
-	"github.com/zroubalik/autoscaler-keda/pkg/reconciler/kafka"
-	"github.com/zroubalik/autoscaler-keda/pkg/reconciler/keda"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/awssqs"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/kafka"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 
 	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"

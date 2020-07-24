@@ -22,8 +22,8 @@ import (
 	context "context"
 
 	externalversions "github.com/kedacore/keda/pkg/generated/informers/externalversions"
-	fake "github.com/zroubalik/autoscaler-keda/pkg/client/injection/keda/client/fake"
-	factory "github.com/zroubalik/autoscaler-keda/pkg/client/injection/keda/informers/factory"
+	fake "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client/fake"
+	factory "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/factory"
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
 )

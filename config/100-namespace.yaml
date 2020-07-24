@@ -15,7 +15,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: autoscaler-keda
+  name: eventing-autoscaler-keda
   labels:
     #istio-injection: enabled
-    autoscaler-keda.knative.dev/release: devel
+    eventing-autoscaler-keda.knative.dev/release: devel

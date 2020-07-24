@@ -18,7 +18,7 @@ package main
 
 import (
 	// The set of controllers this controller process runs.
-	"github.com/zroubalik/autoscaler-keda/pkg/reconciler/crd"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/crd"
 
 	// This defines the shared main for injected controllers.
 	"knative.dev/pkg/injection/sharedmain"

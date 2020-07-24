@@ -15,22 +15,22 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: autoscaler-keda-admin
+  name: eventing-autoscaler-keda-admin
   labels:
-    autoscaler-keda.knative.dev/release: devel
+    eventing-autoscaler-keda.knative.dev/release: devel
 aggregationRule:
   clusterRoleSelectors:
   - matchLabels:
-      autoscaler-keda.knative.dev/controller: "true"
+      eventing-autoscaler-keda.knative.dev/controller: "true"
 rules: [] # Rules are automatically filled in by the controller manager.
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: autoscaler-keda-core
+  name: eventing-autoscaler-keda-core
   labels:
-    autoscaler-keda.knative.dev/release: devel
-    autoscaler-keda.knative.dev/controller: "true"
+    eventing-autoscaler-keda.knative.dev/release: devel
+    eventing-autoscaler-keda.knative.dev/controller: "true"
     duck.knative.dev/source: "true"
 rules:
   - apiGroups: 

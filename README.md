@@ -1,17 +1,15 @@
 # Experimental KEDA support for Knative Event Sources Autoscaling
 
-<p style="font-size: 25px" align="center">
-<a href="https://github.com/zroubalik/autoscaler-keda/actions"><img src="https://github.com/zroubalik/autoscaler-keda/workflows/master%20build/badge.svg" alt="master build"></a></p>
+[![Build status](https://github.com/knative-sandbox/eventing-autoscaler-keda//workflows/master%20build/badge.svg)](https://github.com/knative-sandbox/eventing-autoscaler-keda/actions)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+
+| |                                                                                                                      | 
+| ------------- | ------------------------------------------------------------------------------------------------------------------ | 
+| **STATUS**        | Experimental             |  
+| **Sponsoring WG** | [Eventing Sources](https://github.com/knative/community/blob/master/working-groups/WORKING-GROUPS.md#eventing-sources) | 
 
 
 >Warning: Still under development. Not meant for production deployment.
-
-
-|               |                                                                                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------------------------ |
-| STATUS        | Experimental                                                                                                       |
-| Sponsoring WG | [Eventing Sources](https://github.com/knative/community/blob/master/working-groups/WORKING-GROUPS.md#eventing-sources) |
-
 
 ## Design
 To enable KEDA Autoscaling of Knative Event Sources (and other components in the future) there is a separate controller implemented, ie. no hard dependency in Knative.
@@ -69,17 +67,17 @@ keda-metrics-apiserver-7cf7765dc8-k9lnc   1/1     Running   0          5m2s
 keda-operator-55658855fc-rc9rb            1/1     Running   0          5m3s
 ```
 
-### Install `autoscaler-keda` Controller
+### Install `eventing-autoscaler-keda` Controller
 
 ```bash
 export KO_DOCKER_REPO=...
 ko apply -f /config
 ```
 
-Confirm there is 1 pod running in `autoscaler-keda` namespace:
+Confirm there is 1 pod running in `eventing-autoscaler-keda` namespace:
 
 ```bash
-$ kubectl get pods -n autoscaler-keda
+$ kubectl get pods -n eventing-autoscaler-keda
 NAME                          READY   STATUS    RESTARTS   AGE
 controller-76fb8d6756-5f4vm   1/1     Running   0          21m
 ```

@@ -22,9 +22,9 @@ import (
 	context "context"
 
 	fake "github.com/kedacore/keda/pkg/generated/clientset/versioned/fake"
-	client "github.com/zroubalik/autoscaler-keda/pkg/client/injection/keda/client"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	rest "k8s.io/client-go/rest"
+	client "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
 	injection "knative.dev/pkg/injection"
 	logging "knative.dev/pkg/logging"
 )

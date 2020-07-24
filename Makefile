@@ -3,9 +3,9 @@
 ##################################################
 VERSION		   ?= master
 IMAGE_REGISTRY ?= docker.io
-IMAGE_REPO     ?= zroubalik
+IMAGE_REPO     ?= REPOSITORY_NAME
 
-IMAGE = $(IMAGE_REGISTRY)/$(IMAGE_REPO)/autoscaler-keda:$(VERSION)
+IMAGE = $(IMAGE_REGISTRY)/$(IMAGE_REPO)/eventing-autoscaler-keda:$(VERSION)
 
 ARCH       ?=amd64
 CGO        ?=0
@@ -29,7 +29,7 @@ gofmt:
 build: gofmt
 	rm -rf ./build/*
 	mkdir -p ./build
-	$(GO_BUILD_VARS) go build -mod vendor -o build/autoscaler-keda cmd/controller/main.go 
+	$(GO_BUILD_VARS) go build -mod vendor -o build/eveting-autoscaler-keda cmd/controller/main.go 
 
 .PHONY: build-image
 build-image: build

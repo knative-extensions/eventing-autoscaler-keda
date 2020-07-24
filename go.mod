@@ -1,4 +1,4 @@
-module github.com/zroubalik/autoscaler-keda
+module knative.dev/eventing-autoscaler-keda
 
 go 1.14
 
