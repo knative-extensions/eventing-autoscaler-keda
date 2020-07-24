@@ -9,7 +9,7 @@
 
 |               |                                                                                                                    |
 | ------------- | ------------------------------------------------------------------------------------------------------------------ |
-| STATUS        | Experimental                                                                                                       |
+| **STATUS**        | **Experimental**                                                                                                       |
 | Sponsoring WG | [Eventing Sources](https://github.com/knative/community/blob/master/working-groups/WORKING-GROUPS.md#eventing-sources) |
 
 
