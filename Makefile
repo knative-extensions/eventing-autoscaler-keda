@@ -29,7 +29,7 @@ gofmt:
 build: gofmt
 	rm -rf ./build/*
 	mkdir -p ./build
-	$(GO_BUILD_VARS) go build -mod vendor -o build/eveting-autoscaler-keda cmd/controller/main.go 
+	$(GO_BUILD_VARS) go build -mod vendor -o build/eventing-autoscaler-keda cmd/controller/main.go 
 
 .PHONY: build-image
 build-image: build
