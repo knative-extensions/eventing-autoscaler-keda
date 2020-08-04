@@ -22,7 +22,7 @@ import (
 	context "context"
 
 	v1alpha1 "github.com/kedacore/keda/pkg/generated/informers/externalversions/keda/v1alpha1"
-	factory "github.com/zroubalik/autoscaler-keda/pkg/client/injection/keda/informers/factory"
+	factory "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/factory"
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
 	logging "knative.dev/pkg/logging"

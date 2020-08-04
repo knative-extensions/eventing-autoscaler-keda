@@ -21,8 +21,8 @@ package fake
 import (
 	context "context"
 
-	fake "github.com/zroubalik/autoscaler-keda/pkg/client/injection/keda/informers/factory/fake"
-	triggerauthentication "github.com/zroubalik/autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/triggerauthentication"
+	fake "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/factory/fake"
+	triggerauthentication "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/triggerauthentication"
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
 )

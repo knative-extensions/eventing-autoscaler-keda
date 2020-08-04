@@ -22,7 +22,7 @@ import (
 	"strings"
 
 	kedav1aplha1 "github.com/kedacore/keda/pkg/apis/keda/v1alpha1"
-	"github.com/zroubalik/autoscaler-keda/pkg/reconciler/keda"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
 	eventingutils "knative.dev/eventing/pkg/utils"
 )

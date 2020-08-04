@@ -15,14 +15,14 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: autoscaler-keda-controller-admin
+  name: eventing-autoscaler-keda-controller-admin
   labels:
-    autoscaler-keda.knative.dev/release: devel
+    eventing-autoscaler-keda.knative.dev/release: devel
 subjects:
   - kind: ServiceAccount
     name: controller
-    namespace: autoscaler-keda
+    namespace: eventing-autoscaler-keda
 roleRef:
   kind: ClusterRole
-  name: autoscaler-keda-admin
+  name: eventing-autoscaler-keda-admin
   apiGroup: rbac.authorization.k8s.io

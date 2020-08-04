@@ -31,8 +31,8 @@ import (
 	pkgreconciler "knative.dev/pkg/reconciler"
 
 	//scaledobjectinformer "github.com/kedacore/keda/pkg/generated/informers/externalversions/keda/v1alpha1/scaledobject"
-	kedaclient "github.com/zroubalik/autoscaler-keda/pkg/client/injection/keda/client"
-	kedaresources "github.com/zroubalik/autoscaler-keda/pkg/reconciler/keda"
+	kedaclient "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
+	kedaresources "knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	sourceinformer "knative.dev/pkg/client/injection/ducks/duck/v1/source"
 	kubeclient "knative.dev/pkg/client/injection/kube/client"
 	"knative.dev/pkg/injection/clients/dynamicclient"

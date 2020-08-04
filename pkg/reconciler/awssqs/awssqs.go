@@ -23,12 +23,12 @@ import (
 	"strings"
 
 	kedav1aplha1 "github.com/kedacore/keda/pkg/apis/keda/v1alpha1"
-	"github.com/zroubalik/autoscaler-keda/pkg/reconciler/keda"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/kubernetes"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
 )
 
