@@ -1,22 +1,29 @@
-# cloud.google.com/go v0.60.0
+# cloud.google.com/go v0.62.0
 cloud.google.com/go/compute/metadata
 cloud.google.com/go/container/apiv1
 cloud.google.com/go/monitoring/apiv3
 cloud.google.com/go/trace/apiv2
-# contrib.go.opencensus.io/exporter/ocagent v0.6.0
+# contrib.go.opencensus.io/exporter/ocagent v0.7.1-0.20200615190824-f8c219d2d895
 contrib.go.opencensus.io/exporter/ocagent
-# contrib.go.opencensus.io/exporter/prometheus v0.1.0
+# contrib.go.opencensus.io/exporter/prometheus v0.2.1-0.20200609204449-6bcf6f8577f0
 contrib.go.opencensus.io/exporter/prometheus
-# contrib.go.opencensus.io/exporter/stackdriver v0.13.1
+# contrib.go.opencensus.io/exporter/stackdriver v0.13.2
 contrib.go.opencensus.io/exporter/stackdriver
 contrib.go.opencensus.io/exporter/stackdriver/monitoredresource
 contrib.go.opencensus.io/exporter/stackdriver/monitoredresource/aws
 contrib.go.opencensus.io/exporter/stackdriver/monitoredresource/gcp
+# github.com/BurntSushi/toml v0.3.1
+github.com/BurntSushi/toml
 # github.com/PuerkitoBio/purell v1.1.1
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
 github.com/PuerkitoBio/urlesc
-# github.com/aws/aws-sdk-go v1.32.3
+# github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
+github.com/alecthomas/template
+github.com/alecthomas/template/parse
+# github.com/alecthomas/units v0.0.0-20190924025748-f65c72e2690d
+github.com/alecthomas/units
+# github.com/aws/aws-sdk-go v1.34.6
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/awserr
 github.com/aws/aws-sdk-go/aws/awsutil
@@ -72,15 +79,17 @@ github.com/emicklei/go-restful
 github.com/emicklei/go-restful/log
 # github.com/evanphx/json-patch v4.5.0+incompatible
 github.com/evanphx/json-patch
+# github.com/go-logr/logr v0.1.0
+github.com/go-logr/logr
 # github.com/go-openapi/jsonpointer v0.19.3
 github.com/go-openapi/jsonpointer
 # github.com/go-openapi/jsonreference v0.19.3
 github.com/go-openapi/jsonreference
-# github.com/go-openapi/spec v0.19.7
+# github.com/go-openapi/spec v0.19.6
 github.com/go-openapi/spec
 # github.com/go-openapi/swag v0.19.7
 github.com/go-openapi/swag
-# github.com/gobuffalo/envy v1.7.1
+# github.com/gobuffalo/envy v1.6.5
 github.com/gobuffalo/envy
 # github.com/gogo/protobuf v1.3.1
 github.com/gogo/protobuf/proto
@@ -99,7 +108,7 @@ github.com/golang/protobuf/ptypes/empty
 github.com/golang/protobuf/ptypes/struct
 github.com/golang/protobuf/ptypes/timestamp
 github.com/golang/protobuf/ptypes/wrappers
-# github.com/google/go-cmp v0.5.0
+# github.com/google/go-cmp v0.5.1
 github.com/google/go-cmp/cmp
 github.com/google/go-cmp/cmp/internal/diff
 github.com/google/go-cmp/cmp/internal/flags
@@ -119,29 +128,28 @@ github.com/google/licenseclassifier/stringclassifier/searchset/tokenizer
 github.com/google/uuid
 # github.com/googleapis/gax-go/v2 v2.0.5
 github.com/googleapis/gax-go/v2
-# github.com/googleapis/gnostic v0.4.0
+# github.com/googleapis/gnostic v0.3.1
 github.com/googleapis/gnostic/OpenAPIv2
 github.com/googleapis/gnostic/compiler
 github.com/googleapis/gnostic/extensions
-# github.com/grpc-ecosystem/grpc-gateway v1.12.2
+# github.com/grpc-ecosystem/grpc-gateway v1.14.6
 github.com/grpc-ecosystem/grpc-gateway/internal
 github.com/grpc-ecosystem/grpc-gateway/runtime
 github.com/grpc-ecosystem/grpc-gateway/utilities
 # github.com/hashicorp/golang-lru v0.5.4
 github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
-# github.com/imdario/mergo v0.3.9
+# github.com/imdario/mergo v0.3.11
 github.com/imdario/mergo
 # github.com/jmespath/go-jmespath v0.3.0
 github.com/jmespath/go-jmespath
 # github.com/joho/godotenv v1.3.0
 github.com/joho/godotenv
-# github.com/json-iterator/go v1.1.9
+# github.com/json-iterator/go v1.1.10
 github.com/json-iterator/go
-# github.com/kedacore/keda v1.4.2-0.20200617120630-97df7e08e24b => github.com/kedacore/keda v1.4.2-0.20200617120630-97df7e08e24b
+# github.com/kedacore/keda v1.4.2-0.20200617120630-97df7e08e24b => github.com/kedacore/keda v1.5.1-0.20200824075503-b6c60a088a7a
 ## explicit
-github.com/kedacore/keda/pkg/apis/duck
-github.com/kedacore/keda/pkg/apis/keda/v1alpha1
+github.com/kedacore/keda/api/v1alpha1
 github.com/kedacore/keda/pkg/generated/clientset/versioned
 github.com/kedacore/keda/pkg/generated/clientset/versioned/fake
 github.com/kedacore/keda/pkg/generated/clientset/versioned/scheme
@@ -154,6 +162,8 @@ github.com/kedacore/keda/pkg/generated/informers/externalversions/keda/v1alpha1
 github.com/kedacore/keda/pkg/generated/listers/keda/v1alpha1
 # github.com/kelseyhightower/envconfig v1.4.0
 github.com/kelseyhightower/envconfig
+# github.com/konsorten/go-windows-terminal-sequences v1.0.3
+github.com/konsorten/go-windows-terminal-sequences
 # github.com/mailru/easyjson v0.7.1-0.20191009090205-6c0755d89d1e
 github.com/mailru/easyjson/buffer
 github.com/mailru/easyjson/jlexer
@@ -168,26 +178,28 @@ github.com/modern-go/concurrent
 github.com/modern-go/reflect2
 # github.com/pkg/errors v0.9.1
 github.com/pkg/errors
-# github.com/prometheus/client_golang v1.5.1
+# github.com/prometheus/client_golang v1.7.1
 github.com/prometheus/client_golang/prometheus
 github.com/prometheus/client_golang/prometheus/internal
 github.com/prometheus/client_golang/prometheus/promhttp
 # github.com/prometheus/client_model v0.2.0
 github.com/prometheus/client_model/go
-# github.com/prometheus/common v0.9.1
+# github.com/prometheus/common v0.10.0
 github.com/prometheus/common/expfmt
 github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg
+github.com/prometheus/common/log
 github.com/prometheus/common/model
-# github.com/prometheus/procfs v0.0.11
+# github.com/prometheus/procfs v0.1.3
 github.com/prometheus/procfs
 github.com/prometheus/procfs/internal/fs
 github.com/prometheus/procfs/internal/util
-# github.com/rogpeppe/go-internal v1.5.2
-github.com/rogpeppe/go-internal/modfile
-github.com/rogpeppe/go-internal/module
-github.com/rogpeppe/go-internal/semver
+# github.com/prometheus/statsd_exporter v0.15.0
+github.com/prometheus/statsd_exporter/pkg/mapper
+github.com/prometheus/statsd_exporter/pkg/mapper/fsm
 # github.com/sergi/go-diff v1.1.0
 github.com/sergi/go-diff/diffmatchpatch
+# github.com/sirupsen/logrus v1.6.0
+github.com/sirupsen/logrus
 # github.com/spf13/pflag v1.0.5
 github.com/spf13/pflag
 # go.opencensus.io v0.22.4
@@ -212,6 +224,11 @@ go.opencensus.io/trace/propagation
 go.opencensus.io/trace/tracestate
 # go.uber.org/atomic v1.6.0
 go.uber.org/atomic
+# go.uber.org/automaxprocs v1.3.0
+go.uber.org/automaxprocs
+go.uber.org/automaxprocs/internal/cgroups
+go.uber.org/automaxprocs/internal/runtime
+go.uber.org/automaxprocs/maxprocs
 # go.uber.org/multierr v1.5.0
 go.uber.org/multierr
 # go.uber.org/zap v1.15.0
@@ -222,8 +239,11 @@ go.uber.org/zap/internal/bufferpool
 go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 go.uber.org/zap/zapcore
-# golang.org/x/crypto v0.0.0-20200709230013-948cd5f35899
+# golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
 golang.org/x/crypto/ssh/terminal
+# golang.org/x/lint v0.0.0-20200302205851-738671d3881b
+golang.org/x/lint
+golang.org/x/lint/golint
 # golang.org/x/mod v0.3.0
 golang.org/x/mod/module
 golang.org/x/mod/semver
@@ -246,21 +266,36 @@ golang.org/x/oauth2/jwt
 # golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208
 golang.org/x/sync/errgroup
 golang.org/x/sync/semaphore
-# golang.org/x/sys v0.0.0-20200625212154-ddb9806d33ae
+# golang.org/x/sys v0.0.0-20200802091954-4b90ce9b60b3
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
 golang.org/x/sys/windows
+golang.org/x/sys/windows/registry
+golang.org/x/sys/windows/svc/eventlog
 # golang.org/x/text v0.3.3
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
 golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 golang.org/x/text/width
-# golang.org/x/time v0.0.0-20200416051211-89c76fbcd5d1
+# golang.org/x/time v0.0.0-20200630173020-3af7569d3a1e
 golang.org/x/time/rate
-# golang.org/x/tools v0.0.0-20200710042808-f1c4188a97a1
+# golang.org/x/tools v0.0.0-20200731060945-b5fad4ed8dd6
+golang.org/x/tools/go/analysis
+golang.org/x/tools/go/analysis/passes/inspect
 golang.org/x/tools/go/ast/astutil
+golang.org/x/tools/go/ast/inspector
+golang.org/x/tools/go/buildutil
+golang.org/x/tools/go/gcexportdata
+golang.org/x/tools/go/internal/cgo
+golang.org/x/tools/go/internal/gcimporter
+golang.org/x/tools/go/internal/packagesdriver
+golang.org/x/tools/go/loader
+golang.org/x/tools/go/packages
+golang.org/x/tools/go/types/objectpath
+golang.org/x/tools/go/types/typeutil
 golang.org/x/tools/imports
+golang.org/x/tools/internal/analysisinternal
 golang.org/x/tools/internal/event
 golang.org/x/tools/internal/event/core
 golang.org/x/tools/internal/event/keys
@@ -269,6 +304,8 @@ golang.org/x/tools/internal/fastwalk
 golang.org/x/tools/internal/gocommand
 golang.org/x/tools/internal/gopathwalk
 golang.org/x/tools/internal/imports
+golang.org/x/tools/internal/packagesinternal
+golang.org/x/tools/internal/typesinternal
 # golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
 golang.org/x/xerrors
 golang.org/x/xerrors/internal
@@ -293,7 +330,7 @@ google.golang.org/appengine/internal/socket
 google.golang.org/appengine/internal/urlfetch
 google.golang.org/appengine/socket
 google.golang.org/appengine/urlfetch
-# google.golang.org/genproto v0.0.0-20200710124503-20a17af7bd0e
+# google.golang.org/genproto v0.0.0-20200731012542-8145dea6a485
 google.golang.org/genproto/googleapis/api
 google.golang.org/genproto/googleapis/api/annotations
 google.golang.org/genproto/googleapis/api/distribution
@@ -307,7 +344,7 @@ google.golang.org/genproto/googleapis/monitoring/v3
 google.golang.org/genproto/googleapis/rpc/status
 google.golang.org/genproto/googleapis/type/calendarperiod
 google.golang.org/genproto/protobuf/field_mask
-# google.golang.org/grpc v1.30.0
+# google.golang.org/grpc v1.31.0
 google.golang.org/grpc
 google.golang.org/grpc/attributes
 google.golang.org/grpc/backoff
@@ -340,6 +377,7 @@ google.golang.org/grpc/internal/balancerload
 google.golang.org/grpc/internal/binarylog
 google.golang.org/grpc/internal/buffer
 google.golang.org/grpc/internal/channelz
+google.golang.org/grpc/internal/credentials
 google.golang.org/grpc/internal/envconfig
 google.golang.org/grpc/internal/grpclog
 google.golang.org/grpc/internal/grpcrand
@@ -397,11 +435,43 @@ google.golang.org/protobuf/types/known/fieldmaskpb
 google.golang.org/protobuf/types/known/structpb
 google.golang.org/protobuf/types/known/timestamppb
 google.golang.org/protobuf/types/known/wrapperspb
+# gopkg.in/alecthomas/kingpin.v2 v2.2.6
+gopkg.in/alecthomas/kingpin.v2
 # gopkg.in/inf.v0 v0.9.1
 gopkg.in/inf.v0
 # gopkg.in/yaml.v2 v2.3.0
 gopkg.in/yaml.v2
-# k8s.io/api v0.18.6
+# honnef.co/go/tools v0.0.1-2020.1.4
+honnef.co/go/tools/arg
+honnef.co/go/tools/cmd/staticcheck
+honnef.co/go/tools/code
+honnef.co/go/tools/config
+honnef.co/go/tools/deprecated
+honnef.co/go/tools/edit
+honnef.co/go/tools/facts
+honnef.co/go/tools/functions
+honnef.co/go/tools/go/types/typeutil
+honnef.co/go/tools/internal/cache
+honnef.co/go/tools/internal/passes/buildir
+honnef.co/go/tools/internal/renameio
+honnef.co/go/tools/internal/robustio
+honnef.co/go/tools/internal/sharedcheck
+honnef.co/go/tools/ir
+honnef.co/go/tools/ir/irutil
+honnef.co/go/tools/lint
+honnef.co/go/tools/lint/lintdsl
+honnef.co/go/tools/lint/lintutil
+honnef.co/go/tools/lint/lintutil/format
+honnef.co/go/tools/loader
+honnef.co/go/tools/pattern
+honnef.co/go/tools/printf
+honnef.co/go/tools/report
+honnef.co/go/tools/simple
+honnef.co/go/tools/staticcheck
+honnef.co/go/tools/stylecheck
+honnef.co/go/tools/unused
+honnef.co/go/tools/version
+# k8s.io/api v0.18.8
 ## explicit
 k8s.io/api/admission/v1
 k8s.io/api/admissionregistration/v1
@@ -444,7 +514,7 @@ k8s.io/api/settings/v1alpha1
 k8s.io/api/storage/v1
 k8s.io/api/storage/v1alpha1
 k8s.io/api/storage/v1beta1
-# k8s.io/apiextensions-apiserver v0.18.6
+# k8s.io/apiextensions-apiserver v0.18.8
 ## explicit
 k8s.io/apiextensions-apiserver/pkg/apis/apiextensions
 k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1
@@ -460,7 +530,7 @@ k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/apiextensio
 k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/internalinterfaces
 k8s.io/apiextensions-apiserver/pkg/client/listers/apiextensions/v1
 k8s.io/apiextensions-apiserver/pkg/client/listers/apiextensions/v1beta1
-# k8s.io/apimachinery v0.18.6
+# k8s.io/apimachinery v0.18.8
 ## explicit
 k8s.io/apimachinery/pkg/api/equality
 k8s.io/apimachinery/pkg/api/errors
@@ -508,7 +578,7 @@ k8s.io/apimachinery/pkg/version
 k8s.io/apimachinery/pkg/watch
 k8s.io/apimachinery/third_party/forked/golang/json
 k8s.io/apimachinery/third_party/forked/golang/reflect
-# k8s.io/client-go v12.0.0+incompatible => k8s.io/client-go v0.18.6
+# k8s.io/client-go v12.0.0+incompatible => k8s.io/client-go v0.18.8
 ## explicit
 k8s.io/client-go/discovery
 k8s.io/client-go/discovery/fake
@@ -677,7 +747,7 @@ k8s.io/client-go/util/homedir
 k8s.io/client-go/util/keyutil
 k8s.io/client-go/util/retry
 k8s.io/client-go/util/workqueue
-# k8s.io/code-generator v0.18.6
+# k8s.io/code-generator v0.18.8
 ## explicit
 k8s.io/code-generator
 k8s.io/code-generator/cmd/client-gen
@@ -725,6 +795,8 @@ k8s.io/gengo/parser
 k8s.io/gengo/types
 # k8s.io/klog v1.0.0
 k8s.io/klog
+# k8s.io/klog/v2 v2.0.0
+k8s.io/klog/v2
 # k8s.io/kube-openapi v0.0.0-20200410145947-bcb3869e6f29
 ## explicit
 k8s.io/kube-openapi/cmd/openapi-gen
@@ -734,12 +806,12 @@ k8s.io/kube-openapi/pkg/generators
 k8s.io/kube-openapi/pkg/generators/rules
 k8s.io/kube-openapi/pkg/util/proto
 k8s.io/kube-openapi/pkg/util/sets
-# k8s.io/utils v0.0.0-20200324210504-a9aa75ae1b89
+# k8s.io/utils v0.0.0-20200603063816-c1c6865ac451
 k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.16.1 => github.com/zroubalik/eventing v0.15.1-0.20200714134632-e7996ac5d4c3
+# knative.dev/eventing v0.16.1 => github.com/zroubalik/eventing v0.15.1-0.20200824120738-2b97ca8b85d0
 ## explicit
 knative.dev/eventing/pkg/apis/duck
 knative.dev/eventing/pkg/apis/sources
@@ -751,7 +823,7 @@ knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1
 knative.dev/eventing-contrib/kafka/source/pkg/apis/bindings
 knative.dev/eventing-contrib/kafka/source/pkg/apis/bindings/v1beta1
 knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1
-# knative.dev/pkg v0.0.0-20200702222342-ea4d6e985ba0 => github.com/zroubalik/pkg v0.0.0-20200714090639-88ee0a9b8a22
+# knative.dev/pkg v0.0.0-20200820181214-50386ad39634 => github.com/zroubalik/pkg v0.0.0-20200824111853-cf31d44b1119
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -776,6 +848,7 @@ knative.dev/pkg/codegen/cmd/injection-gen/generators
 knative.dev/pkg/configmap
 knative.dev/pkg/controller
 knative.dev/pkg/hack
+knative.dev/pkg/hash
 knative.dev/pkg/injection
 knative.dev/pkg/injection/clients/dynamicclient
 knative.dev/pkg/injection/clients/namespacedkube/informers/core/v1/secret
@@ -789,6 +862,7 @@ knative.dev/pkg/logging/logkey
 knative.dev/pkg/metrics
 knative.dev/pkg/metrics/metricskey
 knative.dev/pkg/network
+knative.dev/pkg/network/handlers
 knative.dev/pkg/profiling
 knative.dev/pkg/ptr
 knative.dev/pkg/reconciler
@@ -803,16 +877,16 @@ knative.dev/pkg/webhook/configmaps
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/test-infra v0.0.0-20200713185018-6b52776d44a4
+# knative.dev/test-infra v0.0.0-20200820231346-543fe3e80c03
 ## explicit
 knative.dev/test-infra/scripts
-# sigs.k8s.io/controller-runtime v0.6.0
+# sigs.k8s.io/controller-runtime v0.6.2
 sigs.k8s.io/controller-runtime/pkg/scheme
-# sigs.k8s.io/structured-merge-diff/v3 v3.0.0
+# sigs.k8s.io/structured-merge-diff/v3 v3.0.1-0.20200706213357-43c19bbb7fba
 sigs.k8s.io/structured-merge-diff/v3/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
-# knative.dev/eventing => github.com/zroubalik/eventing v0.15.1-0.20200714134632-e7996ac5d4c3
-# knative.dev/pkg => github.com/zroubalik/pkg v0.0.0-20200714090639-88ee0a9b8a22
-# github.com/kedacore/keda => github.com/kedacore/keda v1.4.2-0.20200617120630-97df7e08e24b
-# k8s.io/client-go => k8s.io/client-go v0.18.6
+# knative.dev/eventing => github.com/zroubalik/eventing v0.15.1-0.20200824120738-2b97ca8b85d0
+# knative.dev/pkg => github.com/zroubalik/pkg v0.0.0-20200824111853-cf31d44b1119
+# github.com/kedacore/keda => github.com/kedacore/keda v1.5.1-0.20200824075503-b6c60a088a7a
+# k8s.io/client-go => k8s.io/client-go v0.18.8
