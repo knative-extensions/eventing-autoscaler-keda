@@ -36,6 +36,15 @@ KNATIVE_CODEGEN_PKG=${KNATIVE_CODEGEN_PKG:-$(cd ${REPO_ROOT}; ls -d -1 ./vendor/
 #                  k8s.io/kubernetes. The output-base is needed for the generators to output into the vendor dir
 #                  instead of the $GOPATH directly. For normal projects this can be dropped.
 
+# KEDA uses Kubebuilder
+# Kubebuilder project layout has API under 'api/v1alpha1', ie. 'github.com/kedacore/keda/api/v1alpha1'
+# client-go codegen expects group name (keda) in the path, ie. 'github.com/kedacore/keda/api/keda/v1alpha1'
+# Because there's no way how to modify any of these settings, to enable client codegen,
+# we need to hack things a little bit (in vendor move temporarily api directory in 'api/keda/v1alpha1')
+rm -rf ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda
+mkdir ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda
+mv ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/v1alpha1 ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1
+
 # Knative Injection
 chmod +x ${KNATIVE_CODEGEN_PKG}/hack/generate-knative.sh
 OUTPUT_PKG="knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda" \
@@ -43,9 +52,13 @@ VERSIONED_CLIENTSET_PKG="github.com/kedacore/keda/pkg/generated/clientset/versio
 EXTERNAL_INFORMER_PKG="github.com/kedacore/keda/pkg/generated/informers/externalversions" \
   ${KNATIVE_CODEGEN_PKG}/hack/generate-knative.sh "injection" \
     github.com/kedacore/keda \
-    github.com/kedacore/keda/pkg/apis \
+    github.com/kedacore/keda/api \
     "keda:v1alpha1" \
     --go-header-file ${REPO_ROOT}/hack/boilerplate/boilerplate.go.txt \
+
+# Move back api directory, which was moved temporarily for codegen
+mv ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1 ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/v1alpha1
+rm -rf ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda
 
 # Make sure our dependencies are up-to-date
 ${REPO_ROOT}/hack/update-deps.sh

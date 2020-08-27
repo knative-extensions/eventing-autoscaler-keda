@@ -21,10 +21,11 @@ import (
 	"strconv"
 	"strings"
 
-	kedav1aplha1 "github.com/kedacore/keda/pkg/apis/keda/v1alpha1"
-	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
+	kedav1aplha1 "github.com/kedacore/keda/api/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
 	eventingutils "knative.dev/eventing/pkg/utils"
+
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 )
 
 const (

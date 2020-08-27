@@ -137,6 +137,6 @@ func AsStructuredWatcher(ctx context.Context, wf structuredWatcher, obj runtime.
 			}
 		}()
 
-		return NewProxyWatcher(structuredCh), nil
+		return watch.NewProxyWatcher(structuredCh), nil
 	}
 }

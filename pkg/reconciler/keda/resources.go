@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strconv"
 
-	kedav1aplha1 "github.com/kedacore/keda/pkg/apis/keda/v1alpha1"
+	kedav1aplha1 "github.com/kedacore/keda/api/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"

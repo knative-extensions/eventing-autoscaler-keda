@@ -20,6 +20,8 @@ import (
 	"context"
 	"fmt"
 
+	kedav1aplha1 "github.com/kedacore/keda/api/v1alpha1"
+	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
 	"go.uber.org/zap"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/equality"
@@ -30,18 +32,15 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/tools/cache"
+	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
+	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
 	"knative.dev/eventing/pkg/logging"
 	duckv1 "knative.dev/pkg/apis/duck/v1"
 	pkgreconciler "knative.dev/pkg/reconciler"
 
-	kedav1aplha1 "github.com/kedacore/keda/pkg/apis/keda/v1alpha1"
-	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/awssqs"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/kafka"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
-
-	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
-	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
 )
 
 type Reconciler struct {
