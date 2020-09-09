@@ -44,8 +44,8 @@ KNATIVE_CODEGEN_PKG=${KNATIVE_CODEGEN_PKG:-$(cd ${REPO_ROOT}; ls -d -1 ./vendor/
 rm -rf ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda
 mkdir ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda
 mv ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/v1alpha1 ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1
-cp ${REPO_ROOT}/hack/keda-doc.go ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1/doc.go
-cp ${REPO_ROOT}/hack/keda-register.go ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1/register.go
+cp ${REPO_ROOT}/hack/keda-doc.go.fake ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1/doc.go
+cp ${REPO_ROOT}/hack/keda-register.go.fake ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1/register.go
 
 # Groups
 chmod +x ${CODEGEN_PKG}/generate-groups.sh
