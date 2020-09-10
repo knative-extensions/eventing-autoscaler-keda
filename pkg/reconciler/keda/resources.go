@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strconv"
 
-	kedav1aplha1 "github.com/kedacore/keda/api/v1alpha1"
+	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
@@ -38,7 +38,7 @@ var (
 	KedaSchemeGroupVersion = schema.GroupVersion{Group: "keda.sh", Version: "v1alpha1"}
 )
 
-func GenerateScaledObject(obj metav1.Object, gvk schema.GroupVersionKind, scaleTargetName string, triggers []kedav1aplha1.ScaleTriggers) (*kedav1aplha1.ScaledObject, error) {
+func GenerateScaledObject(obj metav1.Object, gvk schema.GroupVersionKind, scaleTargetName string, triggers []kedav1alpha1.ScaleTriggers) (*kedav1alpha1.ScaledObject, error) {
 
 	cooldownPeriod, err := GetInt32ValueFromMap(obj.GetAnnotations(), KedaAutoscalingCooldownPeriodAnnotation, defaultCooldownPeriod)
 	if err != nil {
@@ -57,7 +57,7 @@ func GenerateScaledObject(obj metav1.Object, gvk schema.GroupVersionKind, scaleT
 		return nil, err
 	}
 
-	return &kedav1aplha1.ScaledObject{
+	return &kedav1alpha1.ScaledObject{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      generateScaledObjectName(obj),
 			Namespace: obj.GetNamespace(),
@@ -65,12 +65,12 @@ func GenerateScaledObject(obj metav1.Object, gvk schema.GroupVersionKind, scaleT
 				*metav1.NewControllerRef(obj, gvk),
 			},
 		},
-		Spec: kedav1aplha1.ScaledObjectSpec{
+		Spec: kedav1alpha1.ScaledObjectSpec{
 			PollingInterval: pollingInterval,
 			CooldownPeriod:  cooldownPeriod,
 			MinReplicaCount: minReplicaCount,
 			MaxReplicaCount: maxReplicaCount,
-			ScaleTargetRef: &kedav1aplha1.ScaleTarget{
+			ScaleTargetRef: &kedav1alpha1.ScaleTarget{
 				Name: scaleTargetName,
 			},
 			Triggers: triggers,

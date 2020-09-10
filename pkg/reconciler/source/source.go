@@ -20,7 +20,7 @@ import (
 	"context"
 	"fmt"
 
-	kedav1aplha1 "github.com/kedacore/keda/api/v1alpha1"
+	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
 	"go.uber.org/zap"
 	corev1 "k8s.io/api/core/v1"
@@ -150,7 +150,7 @@ func (r *Reconciler) reconcileAwsSqsSource(ctx context.Context, src *awssqsv1alp
 	return r.reconcileScaledObject(ctx, scaledObject, src)
 }
 
-func (r *Reconciler) reconcileScaledObject(ctx context.Context, expectedScaledObject *kedav1aplha1.ScaledObject, obj metav1.Object) error {
+func (r *Reconciler) reconcileScaledObject(ctx context.Context, expectedScaledObject *kedav1alpha1.ScaledObject, obj metav1.Object) error {
 	scaledObject, err := r.kedaClient.KedaV1alpha1().ScaledObjects(expectedScaledObject.Namespace).Get(ctx, expectedScaledObject.Name, metav1.GetOptions{})
 	if apierrors.IsNotFound(err) {
 		scaledObject, err = r.kedaClient.KedaV1alpha1().ScaledObjects(expectedScaledObject.Namespace).Create(ctx, expectedScaledObject, metav1.CreateOptions{})
