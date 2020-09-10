@@ -44,18 +44,6 @@ KNATIVE_CODEGEN_PKG=${KNATIVE_CODEGEN_PKG:-$(cd ${REPO_ROOT}; ls -d -1 ./vendor/
 rm -rf ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda
 mkdir ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda
 mv ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/v1alpha1 ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1
-cp ${REPO_ROOT}/hack/keda-doc.go ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1/doc.go
-cp ${REPO_ROOT}/hack/keda-register.gopatch ${REPO_ROOT}/vendor/github.com/kedacore/keda/api/keda/v1alpha1/register.go
-
-# Groups
-chmod +x ${CODEGEN_PKG}/generate-groups.sh
-${CODEGEN_PKG}/generate-groups.sh "client,informer,lister" \
-  knative.dev/eventing-autoscaler-keda/pkg/client github.com/kedacore/keda/api \
-  "keda:v1alpha1" \
-  --go-header-file ${REPO_ROOT}/hack/boilerplate/boilerplate.go.txt
-
-find ./pkg -type f -name '*.go' -exec sed -i '' -e 's@github.com/kedacore/keda/api/keda/v1alpha1@github.com/kedacore/keda/api/v1alpha1@g' {} +
-
 
 # Knative Injection
 chmod +x ${KNATIVE_CODEGEN_PKG}/hack/generate-knative.sh
