@@ -34,8 +34,8 @@ import (
 	"k8s.io/client-go/tools/cache"
 	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
-	"knative.dev/eventing/pkg/logging"
 	duckv1 "knative.dev/pkg/apis/duck/v1"
+	"knative.dev/pkg/logging"
 	pkgreconciler "knative.dev/pkg/reconciler"
 
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/awssqs"
@@ -57,19 +57,19 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 	// Convert the namespace/name string into a distinct namespace and name
 	namespace, name, err := cache.SplitMetaNamespaceKey(key)
 	if err != nil {
-		logging.FromContext(ctx).Error("invalid resource key")
+		logging.FromContext(ctx).Errorw("invalid resource key")
 		return nil
 	}
 
 	// Get the Source resource with this namespace/name
 	runtimeObj, err := r.sourceLister.ByNamespace(namespace).Get(name)
 	if err != nil {
-		logging.FromContext(ctx).Error("not able to get runtime object")
+		logging.FromContext(ctx).Errorw("not able to get runtime object")
 		return nil
 	}
 	if apierrors.IsNotFound(err) {
 		// The resource may no longer exist, in which case we stop processing.
-		logging.FromContext(ctx).Error("Source in work queue no longer exists")
+		logging.FromContext(ctx).Errorw("Source in work queue no longer exists")
 		return nil
 	} else if err != nil {
 		return err
@@ -79,20 +79,20 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 
 	var ok bool
 	if _, ok = runtimeObj.(*duckv1.Source); !ok {
-		logging.FromContext(ctx).Error("runtime object is not convertible to Source duck type")
+		logging.FromContext(ctx).Errorw("runtime object is not convertible to Source duck type")
 		// Avoid re-enqueuing.
 		return nil
 	}
 
 	if runtimeObj.GetObjectKind().GroupVersionKind() != r.gvk {
-		logging.FromContext(ctx).Error("runtime object is GVK doesn't match GVK specified for Reconciler")
+		logging.FromContext(ctx).Errorw("runtime object is GVK doesn't match GVK specified for Reconciler")
 		// Avoid re-enqueuing.
 		return nil
 	}
 
 	unstructuredSource, err := r.sourceInterface.Namespace(namespace).Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
-		logging.FromContext(ctx).Error("Failed to get Unstructured Source:", zap.Error(err))
+		logging.FromContext(ctx).Errorw("Failed to get Unstructured Source:", zap.Error(err))
 		return nil
 	}
 
@@ -102,7 +102,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		// TODO move scheme register up
 		kafkav1beta1.AddToScheme(scheme.Scheme)
 		if err := scheme.Scheme.Convert(unstructuredSource, kafkaSource, nil); err != nil {
-			logging.FromContext(ctx).Error("Failed to convert Unstructured Source to KafkaSource", zap.Error(err))
+			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to KafkaSource", zap.Error(err))
 			return err
 		}
 		return r.reconcileKafkaSource(ctx, kafkaSource)
@@ -111,7 +111,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		// TODO move scheme register up
 		awssqsv1alpha1.AddToScheme(scheme.Scheme)
 		if err := scheme.Scheme.Convert(unstructuredSource, awsSqsSource, nil); err != nil {
-			logging.FromContext(ctx).Error("Failed to convert Unstructured Source to AwsSqsSource", zap.Error(err))
+			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to AwsSqsSource", zap.Error(err))
 			return err
 		}
 		return r.reconcileAwsSqsSource(ctx, awsSqsSource)
@@ -159,7 +159,7 @@ func (r *Reconciler) reconcileScaledObject(ctx context.Context, expectedScaledOb
 		}
 		return scaleObjectCreated(scaledObject.Namespace, scaledObject.Name)
 	} else if err != nil {
-		logging.FromContext(ctx).Error("Unable to get an existing ScaledObject", zap.Error(err))
+		logging.FromContext(ctx).Errorw("Unable to get an existing ScaledObject", zap.Error(err))
 		return err
 	} else if !metav1.IsControlledBy(scaledObject, obj) {
 		return fmt.Errorf("ScaledObject %q is not owned by %q", scaledObject.Name, obj)
@@ -170,7 +170,7 @@ func (r *Reconciler) reconcileScaledObject(ctx context.Context, expectedScaledOb
 		}
 		return scaleObjectUpdated(scaledObject.Namespace, scaledObject.Name)
 	} else {
-		logging.FromContext(ctx).Debug("Reusing existing ScaledObject", zap.Any("ScaledObject", scaledObject))
+		logging.FromContext(ctx).Debugw("Reusing existing ScaledObject", zap.Any("ScaledObject", scaledObject))
 	}
 
 	return nil

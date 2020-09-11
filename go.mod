@@ -12,14 +12,11 @@ require (
 	k8s.io/client-go v12.0.0+incompatible
 	k8s.io/code-generator v0.18.8
 	k8s.io/kube-openapi v0.0.0-20200410145947-bcb3869e6f29
-	knative.dev/eventing v0.16.1
-	knative.dev/eventing-contrib v0.16.0
+	knative.dev/eventing v0.17.1-0.20200911213100-a44dbdbbcec5
+	knative.dev/eventing-contrib v0.17.1-0.20200911205701-201452e2ee30
 	knative.dev/pkg v0.0.0-20200911145400-2d4efecc6bc1
-	knative.dev/test-infra v0.0.0-20200909211651-72eb6ae3c773
+	knative.dev/test-infra v0.0.0-20200910231400-cfba2288403d
 )
-
-// WORKAROUND until k8s v1.18+ is not present in knative/eventing
-replace knative.dev/eventing => github.com/zroubalik/eventing v0.15.1-0.20200824120738-2b97ca8b85d0
 
 // WORKAROUND until KEDA v2 is not released
 replace github.com/kedacore/keda => github.com/kedacore/keda v1.5.1-0.20200824075503-b6c60a088a7a
