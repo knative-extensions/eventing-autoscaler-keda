@@ -89,7 +89,7 @@ github.com/go-openapi/jsonreference
 github.com/go-openapi/spec
 # github.com/go-openapi/swag v0.19.7
 github.com/go-openapi/swag
-# github.com/gobuffalo/envy v1.6.5
+# github.com/gobuffalo/envy v1.7.1
 github.com/gobuffalo/envy
 # github.com/gogo/protobuf v1.3.1
 github.com/gogo/protobuf/proto
@@ -128,7 +128,7 @@ github.com/google/licenseclassifier/stringclassifier/searchset/tokenizer
 github.com/google/uuid
 # github.com/googleapis/gax-go/v2 v2.0.5
 github.com/googleapis/gax-go/v2
-# github.com/googleapis/gnostic v0.3.1
+# github.com/googleapis/gnostic v0.4.0
 github.com/googleapis/gnostic/OpenAPIv2
 github.com/googleapis/gnostic/compiler
 github.com/googleapis/gnostic/extensions
@@ -196,6 +196,10 @@ github.com/prometheus/procfs/internal/util
 # github.com/prometheus/statsd_exporter v0.15.0
 github.com/prometheus/statsd_exporter/pkg/mapper
 github.com/prometheus/statsd_exporter/pkg/mapper/fsm
+# github.com/rogpeppe/go-internal v1.5.2
+github.com/rogpeppe/go-internal/modfile
+github.com/rogpeppe/go-internal/module
+github.com/rogpeppe/go-internal/semver
 # github.com/sergi/go-diff v1.1.0
 github.com/sergi/go-diff/diffmatchpatch
 # github.com/sirupsen/logrus v1.6.0
@@ -823,7 +827,7 @@ knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1
 knative.dev/eventing-contrib/kafka/source/pkg/apis/bindings
 knative.dev/eventing-contrib/kafka/source/pkg/apis/bindings/v1beta1
 knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1
-# knative.dev/pkg v0.0.0-20200820181214-50386ad39634 => github.com/zroubalik/pkg v0.0.0-20200824111853-cf31d44b1119
+# knative.dev/pkg v0.0.0-20200911145400-2d4efecc6bc1
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -877,7 +881,7 @@ knative.dev/pkg/webhook/configmaps
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/test-infra v0.0.0-20200820231346-543fe3e80c03
+# knative.dev/test-infra v0.0.0-20200909211651-72eb6ae3c773
 ## explicit
 knative.dev/test-infra/scripts
 # sigs.k8s.io/controller-runtime v0.6.2
@@ -887,6 +891,5 @@ sigs.k8s.io/structured-merge-diff/v3/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
 # knative.dev/eventing => github.com/zroubalik/eventing v0.15.1-0.20200824120738-2b97ca8b85d0
-# knative.dev/pkg => github.com/zroubalik/pkg v0.0.0-20200824111853-cf31d44b1119
 # github.com/kedacore/keda => github.com/kedacore/keda v1.5.1-0.20200824075503-b6c60a088a7a
 # k8s.io/client-go => k8s.io/client-go v0.18.8

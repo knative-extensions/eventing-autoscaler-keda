@@ -14,15 +14,12 @@ require (
 	k8s.io/kube-openapi v0.0.0-20200410145947-bcb3869e6f29
 	knative.dev/eventing v0.16.1
 	knative.dev/eventing-contrib v0.16.0
-	knative.dev/pkg v0.0.0-20200820181214-50386ad39634
-	knative.dev/test-infra v0.0.0-20200820231346-543fe3e80c03
+	knative.dev/pkg v0.0.0-20200911145400-2d4efecc6bc1
+	knative.dev/test-infra v0.0.0-20200909211651-72eb6ae3c773
 )
 
 // WORKAROUND until k8s v1.18+ is not present in knative/eventing
 replace knative.dev/eventing => github.com/zroubalik/eventing v0.15.1-0.20200824120738-2b97ca8b85d0
-
-// WORKAROUND until k8s v1.18+ is not present in knative/pkg
-replace knative.dev/pkg => github.com/zroubalik/pkg v0.0.0-20200824111853-cf31d44b1119
 
 // WORKAROUND until KEDA v2 is not released
 replace github.com/kedacore/keda => github.com/kedacore/keda v1.5.1-0.20200824075503-b6c60a088a7a

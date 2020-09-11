@@ -57,7 +57,7 @@ func NewController(crd string, gvr schema.GroupVersionResource, gvk schema.Group
 
 		var err error
 		for i := 0; i < 10; i++ {
-			sourceInformer, sourceLister, err = sourceduckInformer.Get(gvr)
+			sourceInformer, sourceLister, err = sourceduckInformer.Get(ctx, gvr)
 			if err == nil {
 				break
 			} else if apierrors.IsNotFound(err) {
