@@ -21,7 +21,7 @@ import (
 	"strconv"
 	"strings"
 
-	kedav1aplha1 "github.com/kedacore/keda/api/v1alpha1"
+	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
 	eventingutils "knative.dev/eventing/pkg/utils"
 
@@ -36,8 +36,8 @@ func GenerateScaleTargetName(src *kafkav1beta1.KafkaSource) string {
 	return eventingutils.GenerateFixedName(src, fmt.Sprintf("kafkasource-%s", src.Name))
 }
 
-func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource) ([]kedav1aplha1.ScaleTriggers, error) {
-	triggers := []kedav1aplha1.ScaleTriggers{}
+func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource) ([]kedav1alpha1.ScaleTriggers, error) {
+	triggers := []kedav1alpha1.ScaleTriggers{}
 	bootstrapServers := strings.Join(src.Spec.BootstrapServers[:], ",")
 	consumerGroup := src.Spec.ConsumerGroup
 
@@ -54,7 +54,7 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource) ([]kedav1aplha1.ScaleT
 			"lagThreshold":     strconv.Itoa(int(*lagThreshold)),
 		}
 
-		trigger := kedav1aplha1.ScaleTriggers{
+		trigger := kedav1alpha1.ScaleTriggers{
 			Type:     "kafka",
 			Metadata: triggerMetadata,
 		}

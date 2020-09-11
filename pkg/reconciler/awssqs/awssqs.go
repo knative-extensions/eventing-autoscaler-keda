@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	kedav1aplha1 "github.com/kedacore/keda/api/v1alpha1"
+	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
@@ -54,7 +54,7 @@ func GenerateScaleTargetName(ctx context.Context, kubeClient kubernetes.Interfac
 	return "", apierrors.NewNotFound(schema.GroupResource{}, "")
 }
 
-func GenerateScaleTriggers(src *awssqsv1alpha1.AwsSqsSource) ([]kedav1aplha1.ScaleTriggers, error) {
+func GenerateScaleTriggers(src *awssqsv1alpha1.AwsSqsSource) ([]kedav1alpha1.ScaleTriggers, error) {
 	queueLength, err := keda.GetInt32ValueFromMap(src.Annotations, keda.KedaAutoscalingAwsSqsQueueLength, defaultAwsSqsQueueLength)
 	if err != nil {
 		return nil, err
@@ -70,7 +70,7 @@ func GenerateScaleTriggers(src *awssqsv1alpha1.AwsSqsSource) ([]kedav1aplha1.Sca
 		"awsRegion":   awsRegion,
 	}
 
-	return []kedav1aplha1.ScaleTriggers{
+	return []kedav1alpha1.ScaleTriggers{
 		{
 			Type:     "aws-sqs-queue",
 			Metadata: triggerMetadata,
