@@ -26,19 +26,20 @@ import (
 
 	"go.uber.org/zap"
 	corev1 "k8s.io/api/core/v1"
+	v1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/discovery"
 	"k8s.io/client-go/kubernetes"
-	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
-	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/source"
+
+	crdreconciler "knative.dev/pkg/client/injection/apiextensions/reconciler/apiextensions/v1/customresourcedefinition"
 	"knative.dev/pkg/configmap"
 	"knative.dev/pkg/controller"
 	"knative.dev/pkg/logging"
 	"knative.dev/pkg/reconciler"
 	pkgreconciler "knative.dev/pkg/reconciler"
 
-	v1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
-	crdreconciler "knative.dev/pkg/client/injection/apiextensions/reconciler/apiextensions/v1/customresourcedefinition"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/source"
 )
 
 // newReconciledNormal makes a new reconciler event with event type Normal, and
@@ -89,22 +90,20 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, crd *v1.CustomResourceDe
 
 	gvr, gvk, err := r.resolveGroupVersions(ctx, crd)
 	if err != nil {
-		logging.FromContext(ctx).Error("Error while resolving GVR and GVK", zap.String("CRD", crd.Name), zap.Error(err))
+		logging.FromContext(ctx).Errorw("Error while resolving GVR and GVK", zap.String("CRD", crd.Name), zap.Error(err))
 		return err
 	}
 
 	// check if KEDA autoscaling is supported for this CRD
 	if !keda.SupportedCRD(*gvk) {
-		logging.FromContext(ctx).Info("GVKKK", gvk)
 		return crdReconcileIgnored(crd.Namespace, crd.Name)
 	}
 
 	// check if KEDA is installed
 	if err := discovery.ServerSupportsVersion(r.kubeClient.Discovery(), keda.KedaSchemeGroupVersion); err != nil {
 		if strings.Contains(err.Error(), "server does not support API version") {
-			logging.FromContext(ctx).Error("KEDA not installed, failed to check API version", zap.Any("GroupVersion", keda.KedaSchemeGroupVersion))
-			// FIXME disabled for now
-			//	return nil
+			logging.FromContext(ctx).Errorw("KEDA not installed, failed to check API version", zap.Any("GroupVersion", keda.KedaSchemeGroupVersion))
+			return nil
 		}
 	}
 
@@ -114,18 +113,18 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, crd *v1.CustomResourceDe
 		// This is a best effort to try to clean them up.
 		// Note that without a finalizer there is no guarantee we will be called.
 
-		logging.FromContext(ctx).Info("Let's delete controller from Reconcile Loop", gvr, gvk, zap.String("CRD", crd.Name))
+		logging.FromContext(ctx).Infow("Let's delete controller from Reconcile Loop", gvr, gvk, zap.String("CRD", crd.Name))
 		r.deleteController(ctx, gvr)
 		return nil
 	}
 
 	err = r.reconcileController(ctx, crd, gvr, gvk)
 	if err != nil {
-		logging.FromContext(ctx).Error("Error while reconciling controller", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()), zap.Error(err))
+		logging.FromContext(ctx).Errorw("Error while reconciling controller", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()), zap.Error(err))
 		return err
 	}
 
-	logging.FromContext(ctx).Info("Reconciled GVR and GVK", gvr, gvk, zap.String("CRD", crd.Name))
+	logging.FromContext(ctx).Infow("Reconciled GVR and GVK", gvr, gvk, zap.String("CRD", crd.Name))
 
 	return newReconciledNormal(crd.Namespace, crd.Name)
 }
@@ -180,7 +179,7 @@ func (r *Reconciler) deleteController(ctx context.Context, gvr *schema.GroupVers
 		// Now that we grabbed the write lock, check that nobody deleted it already.
 		rc, found := r.controllers[*gvr]
 		if found {
-			logging.FromContext(ctx).Info("Stopping Source Duck Controller", zap.String("GVR", gvr.String()))
+			logging.FromContext(ctx).Infow("Stopping Source Duck Controller", zap.String("GVR", gvr.String()))
 			rc.cancel()
 			delete(r.controllers, *gvr)
 		}
@@ -207,7 +206,7 @@ func (r *Reconciler) reconcileController(ctx context.Context, crd *v1.CustomReso
 	// Source Duck controller constructor
 	sdc := source.NewController(crd.Name, *gvr, *gvk)
 	if sdc == nil {
-		logging.FromContext(ctx).Error("Source Duck Controller is nil.", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()))
+		logging.FromContext(ctx).Errorw("Source Duck Controller is nil.", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()))
 		return nil
 	}
 
@@ -222,11 +221,11 @@ func (r *Reconciler) reconcileController(ctx context.Context, crd *v1.CustomReso
 	}
 	r.controllers[*gvr] = rc
 
-	logging.FromContext(ctx).Info("Starting Source Duck Controller", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()))
+	logging.FromContext(ctx).Infow("Starting Source Duck Controller", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()))
 	go func(c *controller.Impl) {
 		if c != nil {
 			if err := c.Run(controller.DefaultThreadsPerController, sdctx.Done()); err != nil {
-				logging.FromContext(ctx).Error("Unable to start Source Duck Controller", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()))
+				logging.FromContext(ctx).Errorw("Unable to start Source Duck Controller", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()))
 			}
 		}
 	}(rc.controller)

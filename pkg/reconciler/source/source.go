@@ -164,6 +164,7 @@ func (r *Reconciler) reconcileScaledObject(ctx context.Context, expectedScaledOb
 	} else if !metav1.IsControlledBy(scaledObject, obj) {
 		return fmt.Errorf("ScaledObject %q is not owned by %q", scaledObject.Name, obj)
 	} else if !equality.Semantic.DeepDerivative(scaledObject.Spec, expectedScaledObject.Spec) {
+		logging.FromContext(ctx).Debug(fmt.Sprintf("ScaledObject changed, found: %#v expected: %#v", scaledObject.Spec, expectedScaledObject.Spec))
 		scaledObject.Spec = expectedScaledObject.Spec
 		if _, err = r.kedaClient.KedaV1alpha1().ScaledObjects(expectedScaledObject.Namespace).Update(ctx, scaledObject, metav1.UpdateOptions{}); err != nil {
 			return err

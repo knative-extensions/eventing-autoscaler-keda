@@ -23,7 +23,7 @@ github.com/alecthomas/template
 github.com/alecthomas/template/parse
 # github.com/alecthomas/units v0.0.0-20190924025748-f65c72e2690d
 github.com/alecthomas/units
-# github.com/aws/aws-sdk-go v1.34.6
+# github.com/aws/aws-sdk-go v1.34.18
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/awserr
 github.com/aws/aws-sdk-go/aws/awsutil
@@ -147,7 +147,7 @@ github.com/jmespath/go-jmespath
 github.com/joho/godotenv
 # github.com/json-iterator/go v1.1.10
 github.com/json-iterator/go
-# github.com/kedacore/keda v1.4.2-0.20200617120630-97df7e08e24b => github.com/kedacore/keda v1.5.1-0.20200824075503-b6c60a088a7a
+# github.com/kedacore/keda v1.5.1-0.20200914094616-3a99b77cc330
 ## explicit
 github.com/kedacore/keda/api/v1alpha1
 github.com/kedacore/keda/pkg/generated/clientset/versioned
@@ -270,7 +270,7 @@ golang.org/x/oauth2/jwt
 # golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208
 golang.org/x/sync/errgroup
 golang.org/x/sync/semaphore
-# golang.org/x/sys v0.0.0-20200802091954-4b90ce9b60b3
+# golang.org/x/sys v0.0.0-20200905004654-be1d3432aa8f
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
 golang.org/x/sys/windows
@@ -827,7 +827,7 @@ knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1
 knative.dev/eventing-contrib/kafka/source/pkg/apis/bindings
 knative.dev/eventing-contrib/kafka/source/pkg/apis/bindings/v1beta1
 knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1
-# knative.dev/pkg v0.0.0-20200911145400-2d4efecc6bc1
+# knative.dev/pkg v0.0.0-20200911235400-de640e81d149
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -881,7 +881,7 @@ knative.dev/pkg/webhook/configmaps
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/test-infra v0.0.0-20200910231400-cfba2288403d
+# knative.dev/test-infra v0.0.0-20200911201000-3f90e7c8f2fa
 ## explicit
 knative.dev/test-infra/scripts
 # sigs.k8s.io/controller-runtime v0.6.2
@@ -890,5 +890,4 @@ sigs.k8s.io/controller-runtime/pkg/scheme
 sigs.k8s.io/structured-merge-diff/v3/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
-# github.com/kedacore/keda => github.com/kedacore/keda v1.5.1-0.20200824075503-b6c60a088a7a
 # k8s.io/client-go => k8s.io/client-go v0.18.8
