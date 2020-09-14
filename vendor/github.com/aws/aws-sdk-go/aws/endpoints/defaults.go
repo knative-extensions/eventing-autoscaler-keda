@@ -292,6 +292,7 @@ var awsPartition = partition{
 				Protocols: []string{"https"},
 			},
 			Endpoints: endpoints{
+				"af-south-1":     endpoint{},
 				"ap-east-1":      endpoint{},
 				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{},
@@ -301,6 +302,7 @@ var awsPartition = partition{
 				"ca-central-1":   endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-north-1":     endpoint{},
+				"eu-south-1":     endpoint{},
 				"eu-west-1":      endpoint{},
 				"eu-west-2":      endpoint{},
 				"eu-west-3":      endpoint{},
@@ -347,6 +349,7 @@ var awsPartition = partition{
 				Protocols: []string{"https"},
 			},
 			Endpoints: endpoints{
+				"ap-east-1":      endpoint{},
 				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{},
 				"ap-south-1":     endpoint{},
@@ -358,6 +361,7 @@ var awsPartition = partition{
 				"eu-west-1":      endpoint{},
 				"eu-west-2":      endpoint{},
 				"eu-west-3":      endpoint{},
+				"me-south-1":     endpoint{},
 				"sa-east-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
@@ -649,6 +653,26 @@ var awsPartition = partition{
 				"eu-west-2":      endpoint{},
 				"eu-west-3":      endpoint{},
 				"me-south-1":     endpoint{},
+				"sa-east-1":      endpoint{},
+				"us-east-1":      endpoint{},
+				"us-east-2":      endpoint{},
+				"us-west-1":      endpoint{},
+				"us-west-2":      endpoint{},
+			},
+		},
+		"appflow": service{
+
+			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{},
+				"ap-northeast-2": endpoint{},
+				"ap-south-1":     endpoint{},
+				"ap-southeast-1": endpoint{},
+				"ap-southeast-2": endpoint{},
+				"ca-central-1":   endpoint{},
+				"eu-central-1":   endpoint{},
+				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
+				"eu-west-3":      endpoint{},
 				"sa-east-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
@@ -1749,6 +1773,8 @@ var awsPartition = partition{
 				"ap-northeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
 				"eu-central-1":   endpoint{},
+				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-west-2":      endpoint{},
 			},
@@ -2808,6 +2834,7 @@ var awsPartition = partition{
 				"eu-west-1":      endpoint{},
 				"eu-west-2":      endpoint{},
 				"eu-west-3":      endpoint{},
+				"sa-east-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
 				"us-west-1":      endpoint{},
@@ -3062,6 +3089,21 @@ var awsPartition = partition{
 				},
 			},
 		},
+		"identitystore": service{
+
+			Endpoints: endpoints{
+				"ap-southeast-1": endpoint{},
+				"ap-southeast-2": endpoint{},
+				"ca-central-1":   endpoint{},
+				"eu-central-1":   endpoint{},
+				"eu-north-1":     endpoint{},
+				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
+				"us-east-1":      endpoint{},
+				"us-east-2":      endpoint{},
+				"us-west-2":      endpoint{},
+			},
+		},
 		"importexport": service{
 			PartitionEndpoint: "aws-global",
 			IsRegionalized:    boxedFalse,
@@ -3287,6 +3329,7 @@ var awsPartition = partition{
 				"ca-central-1":   endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-north-1":     endpoint{},
+				"eu-south-1":     endpoint{},
 				"eu-west-1":      endpoint{},
 				"eu-west-2":      endpoint{},
 				"eu-west-3":      endpoint{},
@@ -3679,6 +3722,7 @@ var awsPartition = partition{
 				"ap-northeast-2": endpoint{},
 				"ap-southeast-1": endpoint{},
 				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
 				"us-east-1":      endpoint{},
 			},
 		},
@@ -3865,6 +3909,8 @@ var awsPartition = partition{
 				"ap-northeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
 				"eu-central-1":   endpoint{},
+				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-west-2":      endpoint{},
 			},
@@ -4293,6 +4339,7 @@ var awsPartition = partition{
 				},
 			},
 			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{},
 				"ap-south-1":     endpoint{},
 				"ap-southeast-2": endpoint{},
@@ -5316,6 +5363,7 @@ var awsPartition = partition{
 				Protocols: []string{"https"},
 			},
 			Endpoints: endpoints{
+				"af-south-1":     endpoint{},
 				"ap-east-1":      endpoint{},
 				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{},
@@ -5325,6 +5373,7 @@ var awsPartition = partition{
 				"ca-central-1":   endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-north-1":     endpoint{},
+				"eu-south-1":     endpoint{},
 				"eu-west-1":      endpoint{},
 				"eu-west-2":      endpoint{},
 				"eu-west-3":      endpoint{},
@@ -5424,6 +5473,7 @@ var awsPartition = partition{
 		"snowball": service{
 
 			Endpoints: endpoints{
+				"ap-east-1":      endpoint{},
 				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{},
 				"ap-south-1":     endpoint{},
@@ -5431,6 +5481,7 @@ var awsPartition = partition{
 				"ap-southeast-2": endpoint{},
 				"ca-central-1":   endpoint{},
 				"eu-central-1":   endpoint{},
+				"eu-north-1":     endpoint{},
 				"eu-west-1":      endpoint{},
 				"eu-west-2":      endpoint{},
 				"eu-west-3":      endpoint{},
@@ -6168,6 +6219,12 @@ var awsPartition = partition{
 		"waf-regional": service{
 
 			Endpoints: endpoints{
+				"af-south-1": endpoint{
+					Hostname: "waf-regional.af-south-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "af-south-1",
+					},
+				},
 				"ap-east-1": endpoint{
 					Hostname: "waf-regional.ap-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
@@ -6222,6 +6279,12 @@ var awsPartition = partition{
 						Region: "eu-north-1",
 					},
 				},
+				"eu-south-1": endpoint{
+					Hostname: "waf-regional.eu-south-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "eu-south-1",
+					},
+				},
 				"eu-west-1": endpoint{
 					Hostname: "waf-regional.eu-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
@@ -6238,6 +6301,12 @@ var awsPartition = partition{
 					Hostname: "waf-regional.eu-west-3.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "eu-west-3",
+					},
+				},
+				"fips-af-south-1": endpoint{
+					Hostname: "waf-regional-fips.af-south-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "af-south-1",
 					},
 				},
 				"fips-ap-east-1": endpoint{
@@ -6292,6 +6361,12 @@ var awsPartition = partition{
 					Hostname: "waf-regional-fips.eu-north-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "eu-north-1",
+					},
+				},
+				"fips-eu-south-1": endpoint{
+					Hostname: "waf-regional-fips.eu-south-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "eu-south-1",
 					},
 				},
 				"fips-eu-west-1": endpoint{
@@ -7854,13 +7929,13 @@ var awsusgovPartition = partition{
 
 			Endpoints: endpoints{
 				"fips-us-gov-east-1": endpoint{
-					Hostname: "elasticloadbalancing-fips.us-gov-east-1.amazonaws.com",
+					Hostname: "elasticloadbalancing.us-gov-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-east-1",
 					},
 				},
 				"fips-us-gov-west-1": endpoint{
-					Hostname: "elasticloadbalancing-fips.us-gov-west-1.amazonaws.com",
+					Hostname: "elasticloadbalancing.us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-west-1",
 					},
@@ -8070,12 +8145,14 @@ var awsusgovPartition = partition{
 				},
 			},
 			Endpoints: endpoints{
+				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{},
 			},
 		},
 		"iotsecuredtunneling": service{
 
 			Endpoints: endpoints{
+				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{},
 			},
 		},
@@ -8089,20 +8166,18 @@ var awsusgovPartition = partition{
 		"kinesis": service{
 
 			Endpoints: endpoints{
-				"fips-us-gov-east-1": endpoint{
-					Hostname: "kinesis-fips.us-gov-east-1.amazonaws.com",
+				"us-gov-east-1": endpoint{
+					Hostname: "kinesis.us-gov-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-east-1",
 					},
 				},
-				"fips-us-gov-west-1": endpoint{
-					Hostname: "kinesis-fips.us-gov-west-1.amazonaws.com",
+				"us-gov-west-1": endpoint{
+					Hostname: "kinesis.us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-west-1",
 					},
 				},
-				"us-gov-east-1": endpoint{},
-				"us-gov-west-1": endpoint{},
 			},
 		},
 		"kinesisanalytics": service{

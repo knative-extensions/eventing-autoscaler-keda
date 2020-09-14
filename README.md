@@ -55,7 +55,7 @@ This controller requires k8s.io client version >= 0.18, therefore it is using cu
 It is needed to install KEDA v2, which is using different namespace for it's CRDs (`keda.k8s.io` -> `keda.sh`).
 
 Currently there is development (Alpha) version of KEDA v2, to install it follow instructions on:
-https://github.com/kedacore/keda/tree/v2#how-can-i-try-keda-v2-alpha-version
+https://github.com/kedacore/keda#how-can-i-try-keda-v2-beta-version
 
 
 Confirm there are 2 pods running in `keda` namespace:
@@ -126,7 +126,6 @@ spec:
 
 ```bash
 $ kubectl get scaledobjects
-oc get so 
 NAME                                      SCALETARGETKIND      SCALETARGETNAME                                                 TRIGGERS   AUTHENTICATION   READY   ACTIVE   AGE
 so-f87369e5-c320-4f44-b23a-8c535a523e3a   apps/v1.Deployment   kafkasource-kafka-source-f87369e5-c320-4f44-b23a-8c535a523e3a   kafka                       True    False     6m5s
 ```

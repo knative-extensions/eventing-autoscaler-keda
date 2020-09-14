@@ -24,6 +24,7 @@ import (
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/tools/cache"
+
 	sourceinformer "knative.dev/pkg/client/injection/ducks/duck/v1/source"
 	kubeclient "knative.dev/pkg/client/injection/kube/client"
 	"knative.dev/pkg/configmap"
@@ -34,7 +35,7 @@ import (
 	pkgreconciler "knative.dev/pkg/reconciler"
 
 	kedaclient "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
-	//scaledobjectinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/scaledobject"
+	//	scaledobjectinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/scaledobject"
 	kedaresources "knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 )
 
@@ -61,16 +62,15 @@ func NewController(crd string, gvr schema.GroupVersionResource, gvk schema.Group
 			if err == nil {
 				break
 			} else if apierrors.IsNotFound(err) {
-				logger.Info("Not found -> waiting", zap.String("GVR", gvr.String()), zap.Error(err))
+				logger.Debug("SourceDuckInformer not found -> waiting", zap.String("GVR", gvr.String()), zap.Error(err))
 				time.Sleep(1 * time.Second)
 			} else {
 				logger.Errorw("Error getting source informer", zap.String("GVR", gvr.String()), zap.Error(err))
-				// TODO disable for now
-				//	return nil
+				return nil
 			}
 		}
 
-		//scaledobjectInformer := scaledobjectinformer.Get(ctx)
+		//	scaledobjectInformer := scaledobjectinformer.Get(ctx)
 
 		r := &Reconciler{
 			kubeClient:      kubeclient.Get(ctx),
@@ -83,9 +83,6 @@ func NewController(crd string, gvr schema.GroupVersionResource, gvk schema.Group
 		impl := controller.NewImpl(r, logger, ReconcilerName)
 
 		logger.Info("Setting up event handlers")
-		// TODO set up proper handlers
-		//sourceInformer.AddEventHandler(controller.HandleAll(impl.Enqueue))
-
 		sourceInformer.AddEventHandler(cache.FilteringResourceEventHandler{
 			FilterFunc: pkgreconciler.AnnotationFilterFunc(kedaresources.AutoscalingClassAnnotation, kedaresources.KEDA, false),
 			Handler:    controller.HandleAll(impl.Enqueue),
@@ -93,9 +90,9 @@ func NewController(crd string, gvr schema.GroupVersionResource, gvk schema.Group
 
 		// FIXME don't handle updates on ScaledObject.Status field
 		// scaledobjectInformer.Informer().AddEventHandler(cache.FilteringResourceEventHandler{
-		// 		FilterFunc: controller.FilterControllerGVK(gvk),
-		// 		Handler:    controller.HandleAll(impl.EnqueueControllerOf),
-		// 	})
+		// 	FilterFunc: controller.FilterControllerGVK(gvk),
+		// 	Handler:    controller.HandleAll(impl.EnqueueControllerOf),
+		// })
 
 		return impl
 	}
