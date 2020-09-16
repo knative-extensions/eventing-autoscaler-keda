@@ -48,6 +48,7 @@ func MakeDispatcherScaledObject(ctx context.Context, t *v1.Trigger) *kedav1alpha
 	thirty := int32(30)
 
 	queueName := fmt.Sprintf("%s/%s", t.Namespace, t.Name)
+	deploymentName := fmt.Sprintf("%s-dispatcher", t.Name)
 	triggerAuthenticationName := fmt.Sprintf("%s-trigger-auth", t.Spec.Broker)
 
 	return &kedav1alpha1.ScaledObject{
@@ -61,7 +62,7 @@ func MakeDispatcherScaledObject(ctx context.Context, t *v1.Trigger) *kedav1alpha
 		},
 		Spec: kedav1alpha1.ScaledObjectSpec{
 			ScaleTargetRef: &kedav1alpha1.ScaleTarget{
-				Name:       t.Name,
+				Name:       deploymentName,
 				APIVersion: "apps/v1",
 				Kind:       "Deployment",
 			},
