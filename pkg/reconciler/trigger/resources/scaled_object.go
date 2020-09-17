@@ -47,7 +47,7 @@ func MakeDispatcherScaledObject(ctx context.Context, t *v1.Trigger) *kedav1alpha
 	five := int32(5)
 	thirty := int32(30)
 
-	queueName := fmt.Sprintf("%s/%s", t.Namespace, t.Name)
+	queueName := fmt.Sprintf("%s-%s", t.Namespace, t.Name)
 	deploymentName := fmt.Sprintf("%s-dispatcher", t.Name)
 	triggerAuthenticationName := fmt.Sprintf("%s-trigger-auth", t.Spec.Broker)
 
