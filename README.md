@@ -19,7 +19,7 @@ Currently there is support for **Kafka Source** and **AWS SQS Source**. We also
 have experimental support for **RabbitMQ Broker**.
 
 ## Annotations
-User can enable and configure autoscaling on a particular Source or Broker by a set of annotations. 
+User can enable and configure autoscaling on a particular Source or Broker by a set of annotations.
 
 ```yaml
 metadata:
@@ -126,7 +126,7 @@ so-f87369e5-c320-4f44-b23a-8c535a523e3a   apps/v1.Deployment   kafkasource-kafka
 
 ## Example of RabbitMQ Broker autoscaled by KEDA
 
-1. Install Knative Serving and Eventing 
+1. Install Knative Serving and Eventing
 
 2. Install [RabbitMQ Broker](https://github.com/knative-sandbox/eventing-rabbitmq/tree/master/broker)
 
