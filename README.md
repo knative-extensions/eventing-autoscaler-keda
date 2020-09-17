@@ -46,10 +46,6 @@ metadata:
 - `keda.autoscaling.knative.dev/awsSqsQueueLength` - only for AWS SQS Source, refers to the target value for ApproximateNumberOfMessages in the SQS Queue. Default: `5`
 - `keda.autoscaling.knative.dev/rabbitMQQueueLength` - only for AWS SQS Source, refers to the target value for number of messages in a RabbitMQ brokers trigger queue: `1`
 
-
-## Technical details & limitations
-This controller requires k8s.io client version >= 0.18, therefore it is using custom fork of [knative/pkg](https://github.com/zroubalik/pkg/tree/k8s18) and [knative/eventing](https://github.com/zroubalik/eventing/tree/k8s18).
-
 ## HOW TO
 
 ### Install KEDA v2
