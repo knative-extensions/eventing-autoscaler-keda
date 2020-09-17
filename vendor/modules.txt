@@ -164,7 +164,6 @@ github.com/kedacore/keda/pkg/generated/informers/externalversions/keda
 github.com/kedacore/keda/pkg/generated/informers/externalversions/keda/v1alpha1
 github.com/kedacore/keda/pkg/generated/listers/keda/v1alpha1
 # github.com/kelseyhightower/envconfig v1.4.0
-## explicit
 github.com/kelseyhightower/envconfig
 # github.com/konsorten/go-windows-terminal-sequences v1.0.3
 github.com/konsorten/go-windows-terminal-sequences

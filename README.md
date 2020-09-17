@@ -15,10 +15,11 @@
 To enable KEDA Autoscaling of Knative Event Sources (and other components in the future) there is a separate controller implemented, ie. no hard dependency in Knative.
 This contoller si watching for `CustomResourcesDefinitions` resources in the cluster, if there is installed a new CRD which is supported by this controller a new dynamic controller watching these resources is created. 
 
-Currently there is support for **Kafka Source** and **AWS SQS Source**.
+Currently there is support for **Kafka Source** and **AWS SQS Source**. We also
+have experimental support for **RabbitMQ Broker**.
 
 ## Annotations
-User can enable and configure autoscaling on a particular Source by a set of annotations. 
+User can enable and configure autoscaling on a particular Source or Broker by a set of annotations. 
 
 ```yaml
 metadata:
@@ -43,6 +44,7 @@ metadata:
 - `keda.autoscaling.knative.dev/cooldownPeriod` - period of time in seconds KEDA waits until it scales down. Default: `300`
 - `keda.autoscaling.knative.dev/kafkaLagThreshold` - only for Kafka Source, refers to the stream is lagging on the current consumer group. Default: `10`
 - `keda.autoscaling.knative.dev/awsSqsQueueLength` - only for AWS SQS Source, refers to the target value for ApproximateNumberOfMessages in the SQS Queue. Default: `5`
+- `keda.autoscaling.knative.dev/rabbitMQQueueLength` - only for AWS SQS Source, refers to the target value for number of messages in a RabbitMQ brokers trigger queue: `1`
 
 
 ## Technical details & limitations
@@ -81,10 +83,6 @@ $ kubectl get pods -n eventing-autoscaler-keda
 NAME                          READY   STATUS    RESTARTS   AGE
 controller-76fb8d6756-5f4vm   1/1     Running   0          21m
 ```
-
-
-
-
 
 ## Example of Kafka Source autoscaled by KEDA
 
@@ -128,4 +126,30 @@ spec:
 $ kubectl get scaledobjects
 NAME                                      SCALETARGETKIND      SCALETARGETNAME                                                 TRIGGERS   AUTHENTICATION   READY   ACTIVE   AGE
 so-f87369e5-c320-4f44-b23a-8c535a523e3a   apps/v1.Deployment   kafkasource-kafka-source-f87369e5-c320-4f44-b23a-8c535a523e3a   kafka                       True    False     6m5s
+```
+
+## Example of RabbitMQ Broker autoscaled by KEDA
+
+1. Install Knative Serving and Eventing 
+
+2. Install [RabbitMQ Broker](https://github.com/knative-sandbox/eventing-rabbitmq/tree/master/broker)
+
+3. Install a Broker / Trigger and sources as directed in the above guide.
+
+4. Enable the autoscaler by applying the KEDA patch:
+
+```shell
+kubectl patch broker default --type merge --patch '{"metadata": {"annotations": {"autoscaling.knative.dev/class": "keda.autoscaling.knative.dev"}}}'
+
+```
+
+5. Check that the scaled resources were created and are ready
+
+```shell
+vaikas-a01:eventing-autoscaler-keda vaikas$ kubectl get triggerauthentications
+NAME                   PODIDENTITY   SECRET                  ENV
+default-trigger-auth                 default-broker-rabbit
+vaikas-a01:eventing-autoscaler-keda vaikas$ kubectl get scaledobjects
+NAME           SCALETARGETKIND      SCALETARGETNAME           TRIGGERS   AUTHENTICATION         READY   ACTIVE   AGE
+ping-trigger   apps/v1.Deployment   ping-trigger-dispatcher   rabbitmq   default-trigger-auth   True    True     14m
 ```

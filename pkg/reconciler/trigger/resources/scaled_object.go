@@ -22,6 +22,7 @@ import (
 
 	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	"knative.dev/eventing/pkg/apis/eventing"
 	v1 "knative.dev/eventing/pkg/apis/eventing/v1"
 	"knative.dev/pkg/kmeta"
@@ -40,13 +41,40 @@ func dispatcherLabels(brokerName string) map[string]string {
 	}
 }
 
-func MakeDispatcherScaledObject(ctx context.Context, t *v1.Trigger) *kedav1alpha1.ScaledObject {
-	// TODO: plumb the Broker in here and get the values from there that we need to use.
-	zero := int32(0)
-	one := int32(1)
-	five := int32(5)
-	thirty := int32(30)
+// Consider refactoring this so that we can reuse more of the pkg/reconciler/keda/resources
+const (
+	defaultPollingInterval = 30
+	defaultCooldownPeriod  = 300
+	defaultMinReplicaCount = 0
+	defaultMaxReplicaCount = 50
+	defaultQueueLength     = "1"
+)
 
+func MakeDispatcherScaledObject(ctx context.Context, b *v1.Broker, t *v1.Trigger) (*kedav1alpha1.ScaledObject, error) {
+	cooldownPeriod, err := keda.GetInt32ValueFromMap(b.GetAnnotations(), keda.KedaAutoscalingCooldownPeriodAnnotation, defaultCooldownPeriod)
+	if err != nil {
+		return nil, err
+	}
+	pollingInterval, err := keda.GetInt32ValueFromMap(b.GetAnnotations(), keda.KedaAutoscalingPollingIntervalAnnotation, defaultPollingInterval)
+	if err != nil {
+		return nil, err
+	}
+	minReplicaCount, err := keda.GetInt32ValueFromMap(b.GetAnnotations(), keda.AutoscalingMinScaleAnnotation, defaultMinReplicaCount)
+	if err != nil {
+		return nil, err
+	}
+	maxReplicaCount, err := keda.GetInt32ValueFromMap(b.GetAnnotations(), keda.AutoscalingMaxScaleAnnotation, defaultMaxReplicaCount)
+	if err != nil {
+		return nil, err
+	}
+
+	queueLength := b.GetAnnotations()[keda.KedaAutoscalingRabbitMQQueueLength]
+	if queueLength == "" {
+		queueLength = defaultQueueLength
+	}
+
+	// TODO(vaikas): https://github.com/knative-sandbox/eventing-rabbitmq/issues/61
+	// queueName := fmt.Sprintf("%s/%s", t.Namespace, t.Name)
 	queueName := fmt.Sprintf("%s-%s", t.Namespace, t.Name)
 	deploymentName := fmt.Sprintf("%s-dispatcher", t.Name)
 	triggerAuthenticationName := fmt.Sprintf("%s-trigger-auth", t.Spec.Broker)
@@ -66,17 +94,17 @@ func MakeDispatcherScaledObject(ctx context.Context, t *v1.Trigger) *kedav1alpha
 				APIVersion: "apps/v1",
 				Kind:       "Deployment",
 			},
-			PollingInterval: &five,   // seconds
-			CooldownPeriod:  &thirty, // seconds
-			MinReplicaCount: &zero,
-			MaxReplicaCount: &one, // for now
+			PollingInterval: pollingInterval,
+			CooldownPeriod:  cooldownPeriod,
+			MinReplicaCount: minReplicaCount,
+			MaxReplicaCount: maxReplicaCount,
 			Triggers: []kedav1alpha1.ScaleTriggers{
 				{
 					Type: "rabbitmq",
 					Metadata: map[string]string{
 						"queueName":   queueName,
 						"host":        brokerURLSecretKey,
-						"queueLength": "1",
+						"queueLength": queueLength,
 					},
 					AuthenticationRef: &kedav1alpha1.ScaledObjectAuthRef{
 						Name: triggerAuthenticationName,
@@ -84,5 +112,5 @@ func MakeDispatcherScaledObject(ctx context.Context, t *v1.Trigger) *kedav1alpha
 				},
 			},
 		},
-	}
+	}, nil
 }

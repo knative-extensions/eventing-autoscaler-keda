@@ -44,4 +44,8 @@ const (
 
 	// KedaAutoscalingAwsSqsQueueLength is the annotation that refers to the target value for ApproximateNumberOfMessages in the SQS Queue
 	KedaAutoscalingAwsSqsQueueLength = KEDA + "/awsSqsQueueLength"
+
+	// KedaAutoscalingRabbitMQQueueLength is the annotation that refers to the target value for number of messages in a RabbitMQ brokers
+	// trigger queue.
+	KedaAutoscalingRabbitMQQueueLength = KEDA + "/rabbitMQQueueLength"
 )
