@@ -80,6 +80,8 @@ rules:
     - eventing.knative.dev
     resources:
     - "eventtypes"
+    - "brokers"
+    - "triggers"
     verbs:
     - "*"
   - apiGroups:

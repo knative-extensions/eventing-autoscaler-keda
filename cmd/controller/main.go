@@ -20,6 +20,10 @@ import (
 	// The set of controllers this controller process runs.
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/crd"
 
+	// For Brokers
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/broker"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/trigger"
+
 	// This defines the shared main for injected controllers.
 	"knative.dev/pkg/injection/sharedmain"
 )
@@ -27,5 +31,7 @@ import (
 func main() {
 	sharedmain.Main("controller",
 		crd.NewController,
+		broker.NewController,
+		trigger.NewController,
 	)
 }
