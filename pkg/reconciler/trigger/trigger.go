@@ -28,6 +28,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"knative.dev/pkg/logging"
 
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/trigger/resources"
 	"knative.dev/eventing/pkg/apis/eventing"
 	v1 "knative.dev/eventing/pkg/apis/eventing/v1"
@@ -93,9 +94,7 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, t *v1.Trigger) pkgreconc
 		return nil
 	}
 
-	// TODO: Check if there are any KEDA annotations before proceeding...
-	// If they get updated / deleted, need to clean up.
-	return r.reconcileScaledObject(ctx, t)
+	return r.reconcileScaledObject(ctx, broker, t)
 }
 
 func (r *Reconciler) FinalizeKind(ctx context.Context, t *v1.Trigger) pkgreconciler.Event {
@@ -103,15 +102,37 @@ func (r *Reconciler) FinalizeKind(ctx context.Context, t *v1.Trigger) pkgreconci
 	return nil
 }
 
-func (r *Reconciler) reconcileScaledObject(ctx context.Context, trigger *v1.Trigger) error {
-	so := resources.MakeDispatcherScaledObject(ctx, trigger)
+func (r *Reconciler) reconcileScaledObject(ctx context.Context, broker *v1.Broker, trigger *v1.Trigger) error {
+	// Check the annotation to see if the Brokers Triggers should even be scaled.
+	doAutoscale := broker.GetAnnotations()[keda.AutoscalingClassAnnotation] == keda.KEDA
+
+	so, err := resources.MakeDispatcherScaledObject(ctx, broker, trigger)
+	if err != nil {
+		logging.FromContext(ctx).Errorw("Failed to create scaled object resource", zap.Error(err))
+		return err
+	}
 
 	current, err := r.scaledObjectLister.ScaledObjects(so.Namespace).Get(so.Name)
 	if apierrs.IsNotFound(err) {
+		if !doAutoscale {
+			// Ok, not there, not wanted, we're good...
+			return nil
+		}
+		logging.FromContext(ctx).Infof("Creating ScaledObject %s/%s", so.Namespace, so.Name)
 		_, err = r.kedaClientset.KedaV1alpha1().ScaledObjects(so.Namespace).Create(ctx, so, metav1.CreateOptions{})
 		return err
 	}
 	if err != nil {
+		return err
+	}
+
+	// It's there, should it be?
+	if !doAutoscale {
+		logging.FromContext(ctx).Infof("Deleting ScaledObject %s/%s", so.Namespace, so.Name)
+		err = r.kedaClientset.KedaV1alpha1().ScaledObjects(so.Namespace).Delete(ctx, so.Name, metav1.DeleteOptions{})
+		if err != nil {
+			logging.FromContext(ctx).Errorw("Failed to delete ScaledObject", zap.Error(err))
+		}
 		return err
 	}
 	if !equality.Semantic.DeepDerivative(so.Spec, current.Spec) {

@@ -26,12 +26,12 @@ import (
 	"k8s.io/apimachinery/pkg/api/equality"
 	apierrs "k8s.io/apimachinery/pkg/api/errors"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/broker/resources"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	"knative.dev/pkg/logging"
 
 	v1 "knative.dev/eventing/pkg/apis/eventing/v1"
 	brokerreconciler "knative.dev/eventing/pkg/client/injection/reconciler/eventing/v1/broker"
 
-	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
 	kedalisters "github.com/kedacore/keda/pkg/generated/listers/keda/v1alpha1"
 
@@ -67,7 +67,7 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, b *v1.Broker) pkgreconci
 
 	// Just reconciles a Broker and KEDA TriggerAuthentication to be used by ScaledObjects
 	// that are then managed by ../trigger/
-	_, err := r.reconcileScaleTriggerAuthentication(ctx, b)
+	err := r.reconcileScaleTriggerAuthentication(ctx, b)
 	if err != nil {
 		logging.FromContext(ctx).Errorw("Problem creating TriggerAuthentication", zap.Error(err))
 		return err
@@ -80,32 +80,41 @@ func (r *Reconciler) FinalizeKind(ctx context.Context, b *v1.Broker) pkgreconcil
 	return nil
 }
 
-func (r *Reconciler) reconcileScaleTriggerAuthentication(ctx context.Context, b *v1.Broker) (*kedav1alpha1.TriggerAuthentication, error) {
+func (r *Reconciler) reconcileScaleTriggerAuthentication(ctx context.Context, b *v1.Broker) error {
 	namespace := b.Namespace
+	// Check the annotation to see if the Brokers Triggers should even be scaled.
+	doAutoscale := b.GetAnnotations()[keda.AutoscalingClassAnnotation] == keda.KEDA
+
 	triggerAuthentication := resources.MakeTriggerAuthentication(b, secretName(b.Name), brokerURLSecretKey)
 
 	current, err := r.triggerAuthenticationLister.TriggerAuthentications(namespace).Get(triggerAuthentication.Name)
 	if apierrs.IsNotFound(err) {
-		logging.FromContext(ctx).Errorw("Creating TriggerAuthentication", zap.Any("triggerauthentication", triggerAuthentication))
-
-		_, err = r.kedaClientset.KedaV1alpha1().TriggerAuthentications(namespace).Create(ctx, triggerAuthentication, metav1.CreateOptions{})
-		if err != nil {
-			return nil, err
+		if !doAutoscale {
+			// Ok, not there, not wanted, we're good...
+			return nil
 		}
-		return triggerAuthentication, nil
+		logging.FromContext(ctx).Errorw("Creating TriggerAuthentication", zap.Any("triggerauthentication", triggerAuthentication))
+		_, err = r.kedaClientset.KedaV1alpha1().TriggerAuthentications(namespace).Create(ctx, triggerAuthentication, metav1.CreateOptions{})
+		return err
 	}
 	if err != nil {
-		return nil, err
+		return err
+	}
+	// It's there, should it be?
+	if !doAutoscale {
+		logging.FromContext(ctx).Infof("Deleting TriggerAuthentication %s/%s", namespace, triggerAuthentication.Name)
+		err = r.kedaClientset.KedaV1alpha1().TriggerAuthentications(namespace).Delete(ctx, triggerAuthentication.Name, metav1.DeleteOptions{})
+		if err != nil {
+			logging.FromContext(ctx).Errorw("Failed to delete TriggerAuthentication", zap.Error(err))
+		}
+		return err
 	}
 	if !equality.Semantic.DeepDerivative(triggerAuthentication.Spec, triggerAuthentication.Spec) {
 		// Don't modify the informers copy.
 		desired := current.DeepCopy()
 		desired.Spec = triggerAuthentication.Spec
 		_, err = r.kedaClientset.KedaV1alpha1().TriggerAuthentications(namespace).Update(ctx, desired, metav1.UpdateOptions{})
-		if err != nil {
-			return nil, err
-		}
-		return desired, nil
+		return err
 	}
-	return current, nil
+	return nil
 }
