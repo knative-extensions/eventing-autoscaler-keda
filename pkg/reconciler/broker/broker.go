@@ -47,7 +47,6 @@ type Reconciler struct {
 
 // Check that our Reconciler implements Interface
 var _ brokerreconciler.Interface = (*Reconciler)(nil)
-var _ brokerreconciler.Finalizer = (*Reconciler)(nil)
 
 // This has to stay in sync with:
 /// https://github.com/knative-sandbox/eventing-rabbitmq/blob/master/pkg/reconciler/broker/resources/secret.go#L29
@@ -72,11 +71,6 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, b *v1.Broker) pkgreconci
 		logging.FromContext(ctx).Errorw("Problem creating TriggerAuthentication", zap.Error(err))
 		return err
 	}
-	return nil
-}
-
-func (r *Reconciler) FinalizeKind(ctx context.Context, b *v1.Broker) pkgreconciler.Event {
-	// TODO: Remove the TriggerAuthentication...
 	return nil
 }
 

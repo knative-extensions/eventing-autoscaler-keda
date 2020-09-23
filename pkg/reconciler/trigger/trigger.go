@@ -63,7 +63,6 @@ type Reconciler struct {
 
 // Check that our Reconciler implements Interface
 var _ triggerreconciler.Interface = (*Reconciler)(nil)
-var _ triggerreconciler.Finalizer = (*Reconciler)(nil)
 
 // ReconcilerArgs are the arguments needed to create a broker.Reconciler.
 type ReconcilerArgs struct {
@@ -95,11 +94,6 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, t *v1.Trigger) pkgreconc
 	}
 
 	return r.reconcileScaledObject(ctx, broker, t)
-}
-
-func (r *Reconciler) FinalizeKind(ctx context.Context, t *v1.Trigger) pkgreconciler.Event {
-	// nil
-	return nil
 }
 
 func (r *Reconciler) reconcileScaledObject(ctx context.Context, broker *v1.Broker, trigger *v1.Trigger) error {
