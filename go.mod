@@ -14,8 +14,8 @@ require (
 	k8s.io/kube-openapi v0.0.0-20200410145947-bcb3869e6f29
 	knative.dev/eventing v0.17.1-0.20200911213100-a44dbdbbcec5
 	knative.dev/eventing-contrib v0.17.1-0.20200911205701-201452e2ee30
-	knative.dev/pkg v0.0.0-20200911235400-de640e81d149
-	knative.dev/test-infra v0.0.0-20200911201000-3f90e7c8f2fa
+	knative.dev/pkg v0.0.0-20200922164940-4bf40ad82aab
+	knative.dev/test-infra v0.0.0-20200921012245-37f1a12adbd3
 )
 
 replace k8s.io/client-go => k8s.io/client-go v0.18.8
