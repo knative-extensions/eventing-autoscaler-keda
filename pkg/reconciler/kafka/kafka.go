@@ -21,11 +21,11 @@ import (
 	"strconv"
 	"strings"
 
-	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
-	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
-	eventingutils "knative.dev/eventing/pkg/utils"
+	"knative.dev/pkg/kmeta"
 
+	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
+	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
 )
 
 const (
@@ -33,7 +33,7 @@ const (
 )
 
 func GenerateScaleTargetName(src *kafkav1beta1.KafkaSource) string {
-	return eventingutils.GenerateFixedName(src, fmt.Sprintf("kafkasource-%s", src.Name))
+	return kmeta.ChildName(string(src.GetUID()), fmt.Sprintf("kafkasource-%s", src.Name))
 }
 
 func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource) ([]kedav1alpha1.ScaleTriggers, error) {

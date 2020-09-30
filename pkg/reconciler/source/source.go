@@ -20,6 +20,10 @@ import (
 	"context"
 	"fmt"
 
+	"k8s.io/apimachinery/pkg/runtime"
+	"knative.dev/eventing/pkg/utils"
+	"knative.dev/pkg/controller"
+
 	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
 	"go.uber.org/zap"
@@ -153,6 +157,16 @@ func (r *Reconciler) reconcileAwsSqsSource(ctx context.Context, src *awssqsv1alp
 func (r *Reconciler) reconcileScaledObject(ctx context.Context, expectedScaledObject *kedav1alpha1.ScaledObject, obj metav1.Object) error {
 	scaledObject, err := r.kedaClient.KedaV1alpha1().ScaledObjects(expectedScaledObject.Namespace).Get(ctx, expectedScaledObject.Name, metav1.GetOptions{})
 	if apierrors.IsNotFound(err) {
+		// Issue eventing#2842: Adater deployment name uses kmeta.ChildName. If a deployment by the previous name pattern is found, it should
+		// be deleted. This might cause temporary downtime.
+		// only kafka use GenerateFixedName, so we only try kafka.
+		if deprecatedName := utils.GenerateFixedName(obj, fmt.Sprintf("kafkasource-%s", obj.GetName())); deprecatedName != expectedScaledObject.Name {
+			if err := r.kubeClient.AppsV1().Deployments(obj.GetNamespace()).Delete(ctx, deprecatedName, metav1.DeleteOptions{}); err != nil && !apierrors.IsNotFound(err) {
+				return fmt.Errorf("error deleting deprecated named deployment: %v", err)
+			}
+			runtimeObj := obj.(runtime.Object)
+			controller.GetEventRecorder(ctx).Eventf(runtimeObj, corev1.EventTypeNormal, "ScaledObjectDeleted", "Deprecated deployment removed: \"%s/%s\"", obj.GetNamespace(), deprecatedName)
+		}
 		scaledObject, err = r.kedaClient.KedaV1alpha1().ScaledObjects(expectedScaledObject.Namespace).Create(ctx, expectedScaledObject, metav1.CreateOptions{})
 		if err != nil {
 			return scaleObjectDeploymentFailed(scaledObject.Namespace, scaledObject.Name, err)
