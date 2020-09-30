@@ -33,7 +33,7 @@ const (
 )
 
 func GenerateScaleTargetName(src *kafkav1beta1.KafkaSource) string {
-	return kmeta.ChildName(string(src.GetUID()), fmt.Sprintf("kafkasource-%s", src.Name))
+	return kmeta.ChildName(fmt.Sprintf("kafkasource-%s-", src.Name), string(src.GetUID()))
 }
 
 func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource) ([]kedav1alpha1.ScaleTriggers, error) {
