@@ -2268,8 +2268,8 @@ knative.dev/pkg v0.0.0-20200528142800-1c6815d7e4c9/go.mod h1:QgNZTxnwpB/oSpNcfnL
 knative.dev/pkg v0.0.0-20200711004937-22502028e31a/go.mod h1:AqAJV6rYi8IGikDjJ/9ZQd9qKdkXVlesVnVjwx62YB8=
 knative.dev/pkg v0.0.0-20200911145400-2d4efecc6bc1 h1:YO9A5F0xo6sTeJZyrV9/IIeVNfKqNz9udsWsofe9eQk=
 knative.dev/pkg v0.0.0-20200911145400-2d4efecc6bc1/go.mod h1:igZfLQk2QpRo+cxbH4NfsgbdavqsXr1rMr818/xVu3c=
-knative.dev/pkg v0.0.0-20200922164940-4bf40ad82aab h1:4Q+sGqdN4ecLPZnIJcLDdQArEE9oOtRYiU2J6NPCCjU=
-knative.dev/pkg v0.0.0-20200922164940-4bf40ad82aab/go.mod h1:MCyt5KqLaai6ENUitOgRAQsu7Gw7cAIIiXQ2IS+O0NI=
+knative.dev/pkg v0.0.0-20201001022229-7c082ac1c01d h1:7ZjWakTUUrpM1wtjBpAGMan1lNIv2r07sWVF8XrBGuQ=
+knative.dev/pkg v0.0.0-20201001022229-7c082ac1c01d/go.mod h1:ONz9ufOS3IdWdlIUqhd4Dd2aUdG2a29W7Cg0mCS4hcE=
 knative.dev/serving v0.17.1-0.20200911183800-3e7b71d67f00/go.mod h1:AAAGuCEbJjbxvR9CmyxMu/cLFIa9eTRhbOgOaPk+aSk=
 knative.dev/test-infra v0.0.0-20200407185800-1b88cb3b45a5/go.mod h1:xcdUkMJrLlBswIZqL5zCuBFOC22WIPMQoVX1L35i0vQ=
 knative.dev/test-infra v0.0.0-20200505052144-5ea2f705bb55/go.mod h1:WqF1Azka+FxPZ20keR2zCNtiQA1MP9ZB4BH4HuI+SIU=
@@ -2279,8 +2279,8 @@ knative.dev/test-infra v0.0.0-20200707183444-aed09e56ddc7/go.mod h1:RjYAhXnZqeHw
 knative.dev/test-infra v0.0.0-20200909211651-72eb6ae3c773/go.mod h1:Pmg2c7Z7q7BGFUV/GOpU5BlrD3ePJft4MPqx8AYBplc=
 knative.dev/test-infra v0.0.0-20200910231400-cfba2288403d h1:0rvMkMqr6RYsIn4iL/G71FC7B6srbUj59dyuPecuzsI=
 knative.dev/test-infra v0.0.0-20200910231400-cfba2288403d/go.mod h1:Pmg2c7Z7q7BGFUV/GOpU5BlrD3ePJft4MPqx8AYBplc=
-knative.dev/test-infra v0.0.0-20200921012245-37f1a12adbd3 h1:abacWewpeP9QUByQAunuOA8F9hQ6Ryr2P63r38ns5sA=
-knative.dev/test-infra v0.0.0-20200921012245-37f1a12adbd3/go.mod h1:Pmg2c7Z7q7BGFUV/GOpU5BlrD3ePJft4MPqx8AYBplc=
+knative.dev/test-infra v0.0.0-20200930161929-242b7529399e h1:z9UxB9wzoha4KlCnrcJiYv/EOpoDyclRjNf38TFFHcU=
+knative.dev/test-infra v0.0.0-20200930161929-242b7529399e/go.mod h1:Pmg2c7Z7q7BGFUV/GOpU5BlrD3ePJft4MPqx8AYBplc=
 modernc.org/cc v1.0.0/go.mod h1:1Sk4//wdnYJiUIxnW8ddKpaOJCF37yAdqYnkxUpaYxw=
 modernc.org/golex v1.0.0/go.mod h1:b/QX9oBD/LhixY6NDh+IdGv17hgB+51fET1i2kPSmvk=
 modernc.org/mathutil v1.0.0/go.mod h1:wU0vUrJsVWBZ4P6e7xtFJEhFSNsfRLJ8H458uRjg03k=
