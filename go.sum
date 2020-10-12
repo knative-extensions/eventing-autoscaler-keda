@@ -900,8 +900,8 @@ github.com/jstemmer/go-junit-report v0.9.1/go.mod h1:Brl9GWCQeLvo8nXZwPNNblvFj/X
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
 github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51/go.mod h1:CzGEWj7cYgsdH8dAjBGEr58BoE7ScuLd+fwFZ44+/x8=
-github.com/kedacore/keda v1.5.1-0.20200914094616-3a99b77cc330 h1:+FJ7DP1g3oVvzqY8lSfXy6NfucRd2BrjY5kR/MOd/GQ=
-github.com/kedacore/keda v1.5.1-0.20200914094616-3a99b77cc330/go.mod h1:eTPZh8vgBsj2cxyXzHXtVDqZuPPTgXHoAxzfVNP8c/U=
+github.com/kedacore/keda v1.5.1-0.20201012074936-071d5a0732c5 h1:epCfZXJB2Nz1xFuSVybtiOSmDJFgJQtv02UMyABwuVk=
+github.com/kedacore/keda v1.5.1-0.20201012074936-071d5a0732c5/go.mod h1:ArSArVUC9ID8fCiCL/WyP5DkYXjWbHjTKJv4bsb+XyM=
 github.com/kelseyhightower/envconfig v1.3.0/go.mod h1:cccZRl6mQpaq41TPp5QxidR+Sa3axMbJDNb//FQX6Gg=
 github.com/kelseyhightower/envconfig v1.4.0 h1:Im6hONhd3pLkfDFsbRgu68RDNkGF1r3dvMUtDTo2cv8=
 github.com/kelseyhightower/envconfig v1.4.0/go.mod h1:cccZRl6mQpaq41TPp5QxidR+Sa3axMbJDNb//FQX6Gg=
