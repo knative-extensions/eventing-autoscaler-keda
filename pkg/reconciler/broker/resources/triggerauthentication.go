@@ -48,8 +48,6 @@ func MakeTriggerAuthentication(b *eventingv1.Broker, secretName, secretKey strin
 				},
 			},
 			Env: []kedav1alpha1.AuthEnvironment{},
-			// HACK. Without this doesn't work.
-			HashiCorpVault: kedav1alpha1.HashiCorpVault{Secrets: []kedav1alpha1.VaultSecret{}},
 		},
 	}
 }

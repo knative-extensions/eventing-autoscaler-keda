@@ -36,7 +36,9 @@ type ScaledJobSpec struct {
 	// +optional
 	EnvSourceContainerName string `json:"envSourceContainerName,omitempty"`
 	// +optional
-	MaxReplicaCount *int32          `json:"maxReplicaCount,omitempty"`
+	MaxReplicaCount *int32 `json:"maxReplicaCount,omitempty"`
+	// +optional
+	ScalingStrategy ScalingStrategy `json:"scalingStrategy,omitempty"`
 	Triggers        []ScaleTriggers `json:"triggers"`
 }
 
@@ -57,6 +59,26 @@ type ScaledJobList struct {
 	Items           []ScaledJob `json:"items"`
 }
 
+// ScalingStrategy defines the strategy of Scaling
+// +optional
+type ScalingStrategy struct {
+	// +optional
+	Strategy string `json:"strategy,omitempty"`
+	// +optional
+	CustomScalingQueueLengthDeduction *int32 `json:"customScalingQueueLengthDeduction,omitempty"`
+	// +optional
+	CustomScalingRunningJobPercentage string `json:"customScalingRunningJobPercentage,omitempty"`
+}
+
 func init() {
 	SchemeBuilder.Register(&ScaledJob{}, &ScaledJobList{})
+}
+
+// MaxReplicaCount returns MaxReplicaCount
+func (s ScaledJob) MaxReplicaCount() int64 {
+	if s.Spec.MaxReplicaCount != nil {
+		return int64(*s.Spec.MaxReplicaCount)
+	}
+
+	return 100
 }

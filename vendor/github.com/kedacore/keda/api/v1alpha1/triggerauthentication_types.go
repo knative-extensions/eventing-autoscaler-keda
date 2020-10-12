@@ -22,16 +22,16 @@ type TriggerAuthentication struct {
 // TriggerAuthenticationSpec defines the various ways to authenticate
 type TriggerAuthenticationSpec struct {
 	// +optional
-	PodIdentity AuthPodIdentity `json:"podIdentity"`
+	PodIdentity *AuthPodIdentity `json:"podIdentity,omitempty"`
 
 	// +optional
-	SecretTargetRef []AuthSecretTargetRef `json:"secretTargetRef"`
+	SecretTargetRef []AuthSecretTargetRef `json:"secretTargetRef,omitempty"`
 
 	// +optional
-	Env []AuthEnvironment `json:"env"`
+	Env []AuthEnvironment `json:"env,omitempty"`
 
 	// +optional
-	HashiCorpVault HashiCorpVault `json:"hashiCorpVault"`
+	HashiCorpVault *HashiCorpVault `json:"hashiCorpVault,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -50,11 +50,11 @@ type PodIdentityProvider string
 // PodIdentityProvider<IDENTITY_PROVIDER> specifies other available Identity providers
 const (
 	PodIdentityProviderNone    PodIdentityProvider = "none"
-	PodIdentityProviderAzure                       = "azure"
-	PodIdentityProviderGCP                         = "gcp"
-	PodIdentityProviderSpiffe                      = "spiffe"
-	PodIdentityProviderAwsEKS                      = "aws-eks"
-	PodIdentityProviderAwsKiam                     = "aws-kiam"
+	PodIdentityProviderAzure   PodIdentityProvider = "azure"
+	PodIdentityProviderGCP     PodIdentityProvider = "gcp"
+	PodIdentityProviderSpiffe  PodIdentityProvider = "spiffe"
+	PodIdentityProviderAwsEKS  PodIdentityProvider = "aws-eks"
+	PodIdentityProviderAwsKiam PodIdentityProvider = "aws-kiam"
 )
 
 // PodIdentityAnnotationEKS specifies aws role arn for aws-eks Identity Provider
@@ -84,7 +84,7 @@ type AuthEnvironment struct {
 	Name      string `json:"name"`
 
 	// +optional
-	ContainerName string `json:"containerName"`
+	ContainerName string `json:"containerName,omitempty"`
 }
 
 // HashiCorpVault is used to authenticate using Hashicorp Vault
@@ -94,22 +94,22 @@ type HashiCorpVault struct {
 	Secrets        []VaultSecret       `json:"secrets"`
 
 	// +optional
-	Credential Credential `json:"credential"`
+	Credential *Credential `json:"credential,omitempty"`
 
 	// +optional
-	Role string `json:"role"`
+	Role string `json:"role,omitempty"`
 
 	// +optional
-	Mount string `json:"mount"`
+	Mount string `json:"mount,omitempty"`
 }
 
 // Credential defines the Hashicorp Vault credentials depending on the authentication method
 type Credential struct {
 	// +optional
-	Token string `json:"token"`
+	Token string `json:"token,omitempty"`
 
 	// +optional
-	ServiceAccount string `json:"serviceAccount"`
+	ServiceAccount string `json:"serviceAccount,omitempty"`
 }
 
 // VaultAuthentication contains the list of Hashicorp Vault authentication methods
@@ -118,7 +118,7 @@ type VaultAuthentication string
 // Client authenticating to Vault
 const (
 	VaultAuthenticationToken      VaultAuthentication = "token"
-	VaultAuthenticationKubernetes                     = "kubernetes"
+	VaultAuthenticationKubernetes VaultAuthentication = "kubernetes"
 	// VaultAuthenticationAWS                            = "aws"
 )
 
