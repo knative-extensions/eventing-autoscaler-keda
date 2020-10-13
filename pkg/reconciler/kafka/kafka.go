@@ -41,7 +41,7 @@ func GenerateScaleTargetName(src *kafkav1beta1.KafkaSource) string {
 
 func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication *kedav1alpha1.TriggerAuthentication) ([]kedav1alpha1.ScaleTriggers, error) {
 	triggers := []kedav1alpha1.ScaleTriggers{}
-	bootstrapServers := strings.Join(src.Spec.BootstrapServers[:], ",")
+	bootstrapServers := strings.Join(src.Spec.BootstrapServers, ",")
 	consumerGroup := src.Spec.ConsumerGroup
 
 	lagThreshold, err := keda.GetInt32ValueFromMap(src.Annotations, keda.KedaAutoscalingKafkaLagThreshold, defaultKafkaLagThreshold)
