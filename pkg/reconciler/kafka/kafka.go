@@ -22,8 +22,11 @@ import (
 	"strings"
 
 	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
+	corev1 "k8s.io/api/core/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
 	eventingutils "knative.dev/eventing/pkg/utils"
+	"knative.dev/pkg/kmeta"
 
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 )
@@ -36,9 +39,9 @@ func GenerateScaleTargetName(src *kafkav1beta1.KafkaSource) string {
 	return eventingutils.GenerateFixedName(src, fmt.Sprintf("kafkasource-%s", src.Name))
 }
 
-func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource) ([]kedav1alpha1.ScaleTriggers, error) {
+func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication *kedav1alpha1.TriggerAuthentication) ([]kedav1alpha1.ScaleTriggers, error) {
 	triggers := []kedav1alpha1.ScaleTriggers{}
-	bootstrapServers := strings.Join(src.Spec.BootstrapServers[:], ",")
+	bootstrapServers := strings.Join(src.Spec.BootstrapServers, ",")
 	consumerGroup := src.Spec.ConsumerGroup
 
 	lagThreshold, err := keda.GetInt32ValueFromMap(src.Annotations, keda.KedaAutoscalingKafkaLagThreshold, defaultKafkaLagThreshold)
@@ -58,8 +61,84 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource) ([]kedav1alpha1.ScaleT
 			Type:     "kafka",
 			Metadata: triggerMetadata,
 		}
+
+		if triggerAuthentication != nil {
+			trigger.AuthenticationRef.Name = triggerAuthentication.Name
+		}
+
 		triggers = append(triggers, trigger)
 	}
 
 	return triggers, nil
+}
+
+func GenerateTriggerAuthentication(src *kafkav1beta1.KafkaSource) (*kedav1alpha1.TriggerAuthentication, *corev1.Secret) {
+
+	secretTargetRefs := []kedav1alpha1.AuthSecretTargetRef{}
+
+	secret := corev1.Secret{
+		ObjectMeta: metav1.ObjectMeta{
+			Name:      fmt.Sprintf("%s-secret", src.Name),
+			Namespace: src.Namespace,
+			OwnerReferences: []metav1.OwnerReference{
+				*kmeta.NewControllerRef(src),
+			},
+		},
+	}
+
+	if src.Spec.KafkaAuthSpec.Net.SASL.Enable {
+		secret.StringData["sasl"] = "plaintext"
+		sasl := kedav1alpha1.AuthSecretTargetRef{Parameter: "sasl", Name: secret.Name, Key: "sasl"}
+
+		username := kedav1alpha1.AuthSecretTargetRef{
+			Parameter: "username",
+			Name:      src.Spec.KafkaAuthSpec.Net.SASL.User.SecretKeyRef.Name,
+			Key:       src.Spec.KafkaAuthSpec.Net.SASL.User.SecretKeyRef.Key,
+		}
+		password := kedav1alpha1.AuthSecretTargetRef{
+			Parameter: "password",
+			Name:      src.Spec.KafkaAuthSpec.Net.SASL.Password.SecretKeyRef.Name,
+			Key:       src.Spec.KafkaAuthSpec.Net.SASL.Password.SecretKeyRef.Key,
+		}
+
+		secretTargetRefs = append(secretTargetRefs, sasl, username, password)
+	}
+
+	if src.Spec.KafkaAuthSpec.Net.TLS.Enable {
+		secret.StringData["tls"] = "enable"
+		tls := kedav1alpha1.AuthSecretTargetRef{Parameter: "tls", Name: secret.Name, Key: "tls"}
+
+		ca := kedav1alpha1.AuthSecretTargetRef{
+			Parameter: "ca",
+			Name:      src.Spec.KafkaAuthSpec.Net.TLS.CACert.SecretKeyRef.Name,
+			Key:       src.Spec.KafkaAuthSpec.Net.TLS.CACert.SecretKeyRef.Key,
+		}
+
+		cert := kedav1alpha1.AuthSecretTargetRef{
+			Parameter: "cert",
+			Name:      src.Spec.KafkaAuthSpec.Net.TLS.Cert.SecretKeyRef.Name,
+			Key:       src.Spec.KafkaAuthSpec.Net.TLS.Cert.SecretKeyRef.Key,
+		}
+
+		key := kedav1alpha1.AuthSecretTargetRef{
+			Parameter: "key",
+			Name:      src.Spec.KafkaAuthSpec.Net.TLS.Key.SecretKeyRef.Name,
+			Key:       src.Spec.KafkaAuthSpec.Net.TLS.Key.SecretKeyRef.Key,
+		}
+
+		secretTargetRefs = append(secretTargetRefs, tls, ca, cert, key)
+	}
+
+	return &kedav1alpha1.TriggerAuthentication{
+		ObjectMeta: metav1.ObjectMeta{
+			Name:      fmt.Sprintf("%s-trigger-auth", src.Name),
+			Namespace: src.Namespace,
+			OwnerReferences: []metav1.OwnerReference{
+				*kmeta.NewControllerRef(src),
+			},
+		},
+		Spec: kedav1alpha1.TriggerAuthenticationSpec{
+			SecretTargetRef: secretTargetRefs,
+		},
+	}, &secret
 }
