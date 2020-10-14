@@ -15,7 +15,7 @@ require (
 	knative.dev/eventing v0.17.1-0.20200911213100-a44dbdbbcec5
 	knative.dev/eventing-contrib v0.17.1-0.20200911205701-201452e2ee30
 	knative.dev/pkg v0.0.0-20201001022229-7c082ac1c01d
-	knative.dev/test-infra v0.0.0-20200930161929-242b7529399e
+	knative.dev/test-infra v0.0.0-20201014021030-ae3984a33f82
 )
 
 replace k8s.io/client-go => k8s.io/client-go v0.18.8
