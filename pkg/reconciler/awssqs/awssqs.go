@@ -30,7 +30,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
-	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
+	awssqsv1alpha1 "knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1"
 )
 
 const (
