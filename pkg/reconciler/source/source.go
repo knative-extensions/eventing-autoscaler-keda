@@ -32,8 +32,8 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/tools/cache"
-	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
-	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
+	awssqsv1alpha1 "knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1"
+	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
 	duckv1 "knative.dev/pkg/apis/duck/v1"
 	"knative.dev/pkg/logging"
 	pkgreconciler "knative.dev/pkg/reconciler"
@@ -121,13 +121,31 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 }
 
 func (r *Reconciler) reconcileKafkaSource(ctx context.Context, src *kafkav1beta1.KafkaSource) error {
-	triggers, err := kafka.GenerateScaleTriggers(src)
+
+	var triggerAuthentication *kedav1alpha1.TriggerAuthentication
+	var secret *corev1.Secret
+	if src.Spec.KafkaAuthSpec.Net.SASL.Enable || src.Spec.KafkaAuthSpec.Net.TLS.Enable {
+		triggerAuthentication, secret = kafka.GenerateTriggerAuthentication(src)
+	}
+
+	triggers, err := kafka.GenerateScaleTriggers(src, triggerAuthentication)
 	if err != nil {
 		return err
 	}
 	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, kafka.GenerateScaleTargetName(src), triggers)
 	if err != nil {
 		return err
+	}
+
+	if triggerAuthentication != nil && secret != nil {
+		err = r.reconcileSecret(ctx, secret, src)
+		if err != nil {
+			return err
+		}
+		err = r.reconcileTriggerAuthentication(ctx, triggerAuthentication, src)
+		if err != nil {
+			return err
+		}
 	}
 
 	return r.reconcileScaledObject(ctx, scaledObject, src)
@@ -155,7 +173,7 @@ func (r *Reconciler) reconcileScaledObject(ctx context.Context, expectedScaledOb
 	if apierrors.IsNotFound(err) {
 		scaledObject, err = r.kedaClient.KedaV1alpha1().ScaledObjects(expectedScaledObject.Namespace).Create(ctx, expectedScaledObject, metav1.CreateOptions{})
 		if err != nil {
-			return scaleObjectDeploymentFailed(scaledObject.Namespace, scaledObject.Name, err)
+			return scaleObjectDeploymentFailed(expectedScaledObject.Namespace, expectedScaledObject.Name, err)
 		}
 		return scaleObjectCreated(scaledObject.Namespace, scaledObject.Name)
 	} else if err != nil {
@@ -172,6 +190,64 @@ func (r *Reconciler) reconcileScaledObject(ctx context.Context, expectedScaledOb
 		return scaleObjectUpdated(scaledObject.Namespace, scaledObject.Name)
 	} else {
 		logging.FromContext(ctx).Debugw("Reusing existing ScaledObject", zap.Any("ScaledObject", scaledObject))
+	}
+
+	return nil
+}
+
+func (r *Reconciler) reconcileTriggerAuthentication(ctx context.Context, expectedTriggerAuth *kedav1alpha1.TriggerAuthentication, obj metav1.Object) error {
+	triggerAuth, err := r.kedaClient.KedaV1alpha1().TriggerAuthentications(expectedTriggerAuth.Namespace).Get(ctx, expectedTriggerAuth.Name, metav1.GetOptions{})
+	if apierrors.IsNotFound(err) {
+		triggerAuth, err = r.kedaClient.KedaV1alpha1().TriggerAuthentications(expectedTriggerAuth.Namespace).Create(ctx, expectedTriggerAuth, metav1.CreateOptions{})
+		if err != nil {
+			return pkgreconciler.NewEvent(corev1.EventTypeWarning, "TriggerAuthenticationFailed", "TriggerAuthentication deployment failed to: \"%s/%s\", %w",
+				expectedTriggerAuth.Namespace, expectedTriggerAuth.Name, err)
+		}
+		return pkgreconciler.NewEvent(corev1.EventTypeNormal, "TriggerAuthenticationCreated", "TriggerAuthentication created: \"%s/%s\"",
+			triggerAuth.Namespace, triggerAuth.Name)
+	} else if err != nil {
+		logging.FromContext(ctx).Errorw("Unable to get an existing ScaledObject", zap.Error(err))
+		return err
+	} else if !metav1.IsControlledBy(triggerAuth, obj) {
+		return fmt.Errorf("ScaledObject %q is not owned by %q", triggerAuth.Name, obj)
+	} else if !equality.Semantic.DeepDerivative(triggerAuth.Spec, expectedTriggerAuth.Spec) {
+		logging.FromContext(ctx).Debug(fmt.Sprintf("TriggerAuthentication changed, found: %#v expected: %#v", triggerAuth.Spec, expectedTriggerAuth.Spec))
+		triggerAuth.Spec = expectedTriggerAuth.Spec
+		if _, err = r.kedaClient.KedaV1alpha1().TriggerAuthentications(expectedTriggerAuth.Namespace).Update(ctx, triggerAuth, metav1.UpdateOptions{}); err != nil {
+			return err
+		}
+		return pkgreconciler.NewEvent(corev1.EventTypeNormal, "TriggerAuthenticationUpdated", "TriggerAuthentication updated: \"%s/%s\"",
+			triggerAuth.Namespace, triggerAuth.Name)
+	} else {
+		logging.FromContext(ctx).Debugw("Reusing existing TriggerAuthentication", zap.Any("TriggerAuthentication", triggerAuth))
+	}
+
+	return nil
+}
+
+func (r *Reconciler) reconcileSecret(ctx context.Context, expectedSecret *corev1.Secret, obj metav1.Object) error {
+	secret, err := r.kubeClient.CoreV1().Secrets(expectedSecret.Namespace).Get(ctx, expectedSecret.Name, metav1.GetOptions{})
+	if apierrors.IsNotFound(err) {
+		secret, err = r.kubeClient.CoreV1().Secrets(expectedSecret.Namespace).Create(ctx, expectedSecret, metav1.CreateOptions{})
+		if err != nil {
+			return pkgreconciler.NewEvent(corev1.EventTypeWarning, "SecretDeploymentFailed", "Secret deployment failed to: \"%s/%s\", %w",
+				expectedSecret.Namespace, expectedSecret.Name, err)
+		}
+		return pkgreconciler.NewEvent(corev1.EventTypeNormal, "SecretCreated", "Secret created: \"%s/%s\"", secret.Namespace, secret.Name)
+	} else if err != nil {
+		logging.FromContext(ctx).Errorw("Unable to get an existing ScaledObject", zap.Error(err))
+		return err
+	} else if !metav1.IsControlledBy(secret, obj) {
+		return fmt.Errorf("Secret %q is not owned by %q", secret.Name, obj)
+	} else if !equality.Semantic.DeepDerivative(secret.Data, expectedSecret.Data) {
+		logging.FromContext(ctx).Debug(fmt.Sprintf("Secret changed, found: %#v expected: %#v", secret.Data, expectedSecret.Data))
+		secret.Data = expectedSecret.Data
+		if _, err = r.kubeClient.CoreV1().Secrets(expectedSecret.Namespace).Update(ctx, secret, metav1.UpdateOptions{}); err != nil {
+			return err
+		}
+		return pkgreconciler.NewEvent(corev1.EventTypeNormal, "SecretUpdated", "Secret updated: \"%s/%s\"", secret.Namespace, secret.Name)
+	} else {
+		logging.FromContext(ctx).Debugw("Reusing existing Secret", zap.Any("Secret", secret))
 	}
 
 	return nil
