@@ -16,9 +16,11 @@ require (
 	knative.dev/eventing-awssqs v0.18.0
 	knative.dev/eventing-kafka v0.0.0-20201013155530-66f1cde9db30
 	knative.dev/pkg v0.0.0-20201009023821-73da5142da72
-	knative.dev/test-infra v0.0.0-20201008221921-aeca2ff2371a
+	knative.dev/test-infra v0.0.0-20201014021030-ae3984a33f82
 )
 
-replace k8s.io/client-go => k8s.io/client-go v0.18.8
-
-replace k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20200410145947-61e04a5be9a6
+replace (
+	k8s.io/apimachinery => k8s.io/apimachinery v0.18.8
+	k8s.io/client-go => k8s.io/client-go v0.18.8
+	k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20200410145947-61e04a5be9a6
+)
