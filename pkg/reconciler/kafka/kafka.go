@@ -24,7 +24,7 @@ import (
 	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
+	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
 	eventingutils "knative.dev/eventing/pkg/utils"
 	"knative.dev/pkg/kmeta"
 

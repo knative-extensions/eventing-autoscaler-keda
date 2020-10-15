@@ -250,7 +250,7 @@ go.uber.org/zap/internal/bufferpool
 go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 go.uber.org/zap/zapcore
-# golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
+# golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
 golang.org/x/crypto/ssh/terminal
 # golang.org/x/lint v0.0.0-20200302205851-738671d3881b
 golang.org/x/lint
@@ -542,7 +542,7 @@ k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/apiextensio
 k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/internalinterfaces
 k8s.io/apiextensions-apiserver/pkg/client/listers/apiextensions/v1
 k8s.io/apiextensions-apiserver/pkg/client/listers/apiextensions/v1beta1
-# k8s.io/apimachinery v0.18.8
+# k8s.io/apimachinery v0.19.0 => k8s.io/apimachinery v0.18.8
 ## explicit
 k8s.io/apimachinery/pkg/api/apitesting/fuzzer
 k8s.io/apimachinery/pkg/api/equality
@@ -810,7 +810,7 @@ k8s.io/gengo/types
 k8s.io/klog
 # k8s.io/klog/v2 v2.0.0
 k8s.io/klog/v2
-# k8s.io/kube-openapi v0.0.0-20200410145947-bcb3869e6f29
+# k8s.io/kube-openapi v0.0.0-20200805222855-6aeccd4b50c6 => k8s.io/kube-openapi v0.0.0-20200410145947-61e04a5be9a6
 ## explicit
 k8s.io/kube-openapi/cmd/openapi-gen
 k8s.io/kube-openapi/cmd/openapi-gen/args
@@ -824,7 +824,7 @@ k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.17.1-0.20200911213100-a44dbdbbcec5
+# knative.dev/eventing v0.18.1-0.20201009013021-d37dbc88e6fd
 ## explicit
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/configs
@@ -843,6 +843,7 @@ knative.dev/eventing/pkg/apis/messaging/config
 knative.dev/eventing/pkg/apis/messaging/v1
 knative.dev/eventing/pkg/apis/messaging/v1beta1
 knative.dev/eventing/pkg/apis/sources
+knative.dev/eventing/pkg/apis/sources/v1
 knative.dev/eventing/pkg/apis/sources/v1alpha1
 knative.dev/eventing/pkg/apis/sources/v1alpha2
 knative.dev/eventing/pkg/apis/sources/v1beta1
@@ -855,6 +856,7 @@ knative.dev/eventing/pkg/client/clientset/versioned/typed/flows/v1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/flows/v1beta1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/messaging/v1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/messaging/v1beta1
+knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1alpha1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1alpha2
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1beta1
@@ -872,6 +874,7 @@ knative.dev/eventing/pkg/client/informers/externalversions/messaging
 knative.dev/eventing/pkg/client/informers/externalversions/messaging/v1
 knative.dev/eventing/pkg/client/informers/externalversions/messaging/v1beta1
 knative.dev/eventing/pkg/client/informers/externalversions/sources
+knative.dev/eventing/pkg/client/informers/externalversions/sources/v1
 knative.dev/eventing/pkg/client/informers/externalversions/sources/v1alpha1
 knative.dev/eventing/pkg/client/informers/externalversions/sources/v1alpha2
 knative.dev/eventing/pkg/client/informers/externalversions/sources/v1beta1
@@ -888,17 +891,20 @@ knative.dev/eventing/pkg/client/listers/flows/v1
 knative.dev/eventing/pkg/client/listers/flows/v1beta1
 knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/messaging/v1beta1
+knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1alpha1
 knative.dev/eventing/pkg/client/listers/sources/v1alpha2
 knative.dev/eventing/pkg/client/listers/sources/v1beta1
 knative.dev/eventing/pkg/utils
-# knative.dev/eventing-contrib v0.17.1-0.20200911205701-201452e2ee30
+# knative.dev/eventing-awssqs v0.18.0
 ## explicit
-knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1
-knative.dev/eventing-contrib/kafka/source/pkg/apis/bindings
-knative.dev/eventing-contrib/kafka/source/pkg/apis/bindings/v1beta1
-knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1
-# knative.dev/pkg v0.0.0-20201001022229-7c082ac1c01d
+knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
+# knative.dev/eventing-kafka v0.0.0-20201013155530-66f1cde9db30
+## explicit
+knative.dev/eventing-kafka/pkg/apis/bindings
+knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
+knative.dev/eventing-kafka/pkg/apis/sources/v1beta1
+# knative.dev/pkg v0.0.0-20201009023821-73da5142da72
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -962,4 +968,6 @@ sigs.k8s.io/controller-runtime/pkg/scheme
 sigs.k8s.io/structured-merge-diff/v3/value
 # sigs.k8s.io/yaml v1.2.0
 sigs.k8s.io/yaml
+# k8s.io/apimachinery => k8s.io/apimachinery v0.18.8
 # k8s.io/client-go => k8s.io/client-go v0.18.8
+# k8s.io/kube-openapi => k8s.io/kube-openapi v0.0.0-20200410145947-61e04a5be9a6

@@ -23,8 +23,8 @@ import (
 	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
-	awssqsv1alpha1 "knative.dev/eventing-contrib/awssqs/pkg/apis/sources/v1alpha1"
-	kafkav1beta1 "knative.dev/eventing-contrib/kafka/source/pkg/apis/sources/v1beta1"
+	awssqsv1alpha1 "knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1"
+	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
 )
 
 const (
