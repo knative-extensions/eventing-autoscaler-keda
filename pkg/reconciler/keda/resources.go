@@ -38,7 +38,7 @@ var (
 	KedaSchemeGroupVersion = schema.GroupVersion{Group: "keda.sh", Version: "v1alpha1"}
 )
 
-func GenerateScaledObject(obj metav1.Object, gvk schema.GroupVersionKind, scaleTargetName string, triggers []kedav1alpha1.ScaleTriggers) (*kedav1alpha1.ScaledObject, error) {
+func GenerateScaledObject(obj metav1.Object, gvk schema.GroupVersionKind, scaleTarget *kedav1alpha1.ScaleTarget, triggers []kedav1alpha1.ScaleTriggers) (*kedav1alpha1.ScaledObject, error) {
 
 	cooldownPeriod, err := GetInt32ValueFromMap(obj.GetAnnotations(), KedaAutoscalingCooldownPeriodAnnotation, defaultCooldownPeriod)
 	if err != nil {
@@ -70,10 +70,8 @@ func GenerateScaledObject(obj metav1.Object, gvk schema.GroupVersionKind, scaleT
 			CooldownPeriod:  cooldownPeriod,
 			MinReplicaCount: minReplicaCount,
 			MaxReplicaCount: maxReplicaCount,
-			ScaleTargetRef: &kedav1alpha1.ScaleTarget{
-				Name: scaleTargetName,
-			},
-			Triggers: triggers,
+			ScaleTargetRef:  scaleTarget,
+			Triggers:        triggers,
 		},
 	}, nil
 }

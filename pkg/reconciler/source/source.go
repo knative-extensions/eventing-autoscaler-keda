@@ -132,7 +132,7 @@ func (r *Reconciler) reconcileKafkaSource(ctx context.Context, src *kafkav1beta1
 	if err != nil {
 		return err
 	}
-	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, kafka.GenerateScaleTargetName(src), triggers)
+	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, kafka.GenerateScaleTarget(src), triggers)
 	if err != nil {
 		return err
 	}
@@ -152,7 +152,7 @@ func (r *Reconciler) reconcileKafkaSource(ctx context.Context, src *kafkav1beta1
 }
 
 func (r *Reconciler) reconcileAwsSqsSource(ctx context.Context, src *awssqsv1alpha1.AwsSqsSource) error {
-	scaletarget, err := awssqs.GenerateScaleTargetName(ctx, r.kubeClient, src)
+	scaletarget, err := awssqs.GenerateScaleTarget(ctx, r.kubeClient, src)
 	if err != nil {
 		return err
 	}
