@@ -18,11 +18,9 @@ package trigger
 
 import (
 	"context"
-	"fmt"
 
 	"go.uber.org/zap"
 
-	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/equality"
 	apierrs "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -46,12 +44,6 @@ const (
 	triggerReconciled = "TriggerReconciled"
 )
 
-// This has to stay in sync with:
-// https://github.com/knative-sandbox/eventing-rabbitmq/blob/master/pkg/reconciler/broker/resources/secret.go#L49
-func secretName(brokerName string) string {
-	return fmt.Sprintf("%s-broker-rabbit", brokerName)
-}
-
 type Reconciler struct {
 	kedaClientset kedaclientset.Interface
 
@@ -68,10 +60,6 @@ var _ triggerreconciler.Interface = (*Reconciler)(nil)
 type ReconcilerArgs struct {
 	DispatcherImage              string
 	DispatcherServiceAccountName string
-}
-
-func newReconciledNormal(namespace, name string) pkgreconciler.Event {
-	return pkgreconciler.NewEvent(corev1.EventTypeNormal, triggerReconciled, "Trigger reconciled: \"%s/%s\"", namespace, name)
 }
 
 func (r *Reconciler) ReconcileKind(ctx context.Context, t *v1.Trigger) pkgreconciler.Event {
