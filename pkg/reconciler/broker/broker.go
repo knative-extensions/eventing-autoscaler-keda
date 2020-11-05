@@ -21,21 +21,19 @@ import (
 	"fmt"
 
 	"go.uber.org/zap"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-
 	"k8s.io/apimachinery/pkg/api/equality"
 	apierrs "k8s.io/apimachinery/pkg/api/errors"
-	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/broker/resources"
-	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
-	"knative.dev/pkg/logging"
-
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	v1 "knative.dev/eventing/pkg/apis/eventing/v1"
 	brokerreconciler "knative.dev/eventing/pkg/client/injection/reconciler/eventing/v1/broker"
-
-	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
-	kedalisters "github.com/kedacore/keda/pkg/generated/listers/keda/v1alpha1"
-
+	"knative.dev/pkg/logging"
 	pkgreconciler "knative.dev/pkg/reconciler"
+
+	kedaclientset "github.com/kedacore/keda/v2/pkg/generated/clientset/versioned"
+	kedalisters "github.com/kedacore/keda/v2/pkg/generated/listers/keda/v1alpha1"
+
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/broker/resources"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 )
 
 type Reconciler struct {

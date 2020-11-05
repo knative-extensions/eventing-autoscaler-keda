@@ -35,7 +35,7 @@ import (
 	pkgreconciler "knative.dev/pkg/reconciler"
 
 	kedaclient "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
-	//	scaledobjectinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/scaledobject"
+	//scaledobjectinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/scaledobject"
 	kedaresources "knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 )
 

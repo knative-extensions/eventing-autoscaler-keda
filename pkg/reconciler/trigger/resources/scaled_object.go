@@ -20,12 +20,14 @@ import (
 	"context"
 	"fmt"
 
-	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	"knative.dev/eventing/pkg/apis/eventing"
 	v1 "knative.dev/eventing/pkg/apis/eventing/v1"
 	"knative.dev/pkg/kmeta"
+
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
+
+	kedav1alpha1 "github.com/kedacore/keda/v2/api/v1alpha1"
 )
 
 // This has to stay in sync with:

@@ -73,11 +73,9 @@ metadata:
 ### Install KEDA v2
 
 It is needed to install KEDA v2, which is using different namespace for it's
-CRDs (`keda.k8s.io` -> `keda.sh`).
+CRDs (`keda.k8s.io` -> `keda.sh`). KEDA v1 is not supported.
 
-Currently there is development (Alpha) version of KEDA v2, to install it follow
-instructions on:
-https://github.com/kedacore/keda#how-can-i-try-keda-v2-beta-version
+To install KEDA, please follow [installation instructions](https://keda.sh/docs/latest/deploy/).
 
 Confirm there are 2 pods running in `keda` namespace:
 

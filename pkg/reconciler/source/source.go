@@ -20,8 +20,8 @@ import (
 	"context"
 	"fmt"
 
-	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
-	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
+	kedav1alpha1 "github.com/kedacore/keda/v2/api/v1alpha1"
+	kedaclientset "github.com/kedacore/keda/v2/pkg/generated/clientset/versioned"
 	"go.uber.org/zap"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/equality"

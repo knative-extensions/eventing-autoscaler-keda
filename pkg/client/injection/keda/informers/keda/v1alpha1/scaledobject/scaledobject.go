@@ -21,7 +21,7 @@ package scaledobject
 import (
 	context "context"
 
-	v1alpha1 "github.com/kedacore/keda/pkg/generated/informers/externalversions/keda/v1alpha1"
+	v1alpha1 "github.com/kedacore/keda/v2/pkg/generated/informers/externalversions/keda/v1alpha1"
 	factory "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/factory"
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
@@ -46,7 +46,7 @@ func Get(ctx context.Context) v1alpha1.ScaledObjectInformer {
 	untyped := ctx.Value(Key{})
 	if untyped == nil {
 		logging.FromContext(ctx).Panic(
-			"Unable to fetch github.com/kedacore/keda/pkg/generated/informers/externalversions/keda/v1alpha1.ScaledObjectInformer from context.")
+			"Unable to fetch github.com/kedacore/keda/v2/pkg/generated/informers/externalversions/keda/v1alpha1.ScaledObjectInformer from context.")
 	}
 	return untyped.(v1alpha1.ScaledObjectInformer)
 }

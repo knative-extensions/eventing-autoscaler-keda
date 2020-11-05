@@ -21,7 +21,7 @@ package factory
 import (
 	context "context"
 
-	externalversions "github.com/kedacore/keda/pkg/generated/informers/externalversions"
+	externalversions "github.com/kedacore/keda/v2/pkg/generated/informers/externalversions"
 	client "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
@@ -50,7 +50,7 @@ func Get(ctx context.Context) externalversions.SharedInformerFactory {
 	untyped := ctx.Value(Key{})
 	if untyped == nil {
 		logging.FromContext(ctx).Panic(
-			"Unable to fetch github.com/kedacore/keda/pkg/generated/informers/externalversions.SharedInformerFactory from context.")
+			"Unable to fetch github.com/kedacore/keda/v2/pkg/generated/informers/externalversions.SharedInformerFactory from context.")
 	}
 	return untyped.(externalversions.SharedInformerFactory)
 }

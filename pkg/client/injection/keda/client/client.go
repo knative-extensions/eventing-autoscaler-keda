@@ -21,7 +21,7 @@ package client
 import (
 	context "context"
 
-	versioned "github.com/kedacore/keda/pkg/generated/clientset/versioned"
+	versioned "github.com/kedacore/keda/v2/pkg/generated/clientset/versioned"
 	rest "k8s.io/client-go/rest"
 	injection "knative.dev/pkg/injection"
 	logging "knative.dev/pkg/logging"
@@ -43,7 +43,7 @@ func Get(ctx context.Context) versioned.Interface {
 	untyped := ctx.Value(Key{})
 	if untyped == nil {
 		logging.FromContext(ctx).Panic(
-			"Unable to fetch github.com/kedacore/keda/pkg/generated/clientset/versioned.Interface from context.")
+			"Unable to fetch github.com/kedacore/keda/v2/pkg/generated/clientset/versioned.Interface from context.")
 	}
 	return untyped.(versioned.Interface)
 }
