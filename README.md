@@ -19,7 +19,7 @@ in the cluster, if there is installed a new CRD which is supported by this
 controller a new dynamic controller watching these resources is created.
 
 Currently there is support for **Kafka Source** and **AWS SQS Source**. We also
-have experimental support for **RabbitMQ Broker**.
+have experimental support for **RabbitMQ Broker** and **Redis Stream Source**.
 
 ## Annotations
 
@@ -40,6 +40,9 @@ metadata:
 
     # AWS SQS Source
     keda.autoscaling.knative.dev/awsSqsQueueLength: "5"
+
+    # Redis Stream Source
+    keda.autoscaling.knative.dev/redisStreamPendingEntriesCount: "5"
 ```
 
 - `autoscaling.knative.dev/class: keda.autoscaling.knative.dev` - needs to be
@@ -60,6 +63,10 @@ metadata:
 - `keda.autoscaling.knative.dev/rabbitMQQueueLength` - only for AWS SQS Source,
   refers to the target value for number of messages in a RabbitMQ brokers
   trigger queue: `1`
+- `keda.autoscaling.knative.dev/redisStreamPendingEntriesCount` - only for Redis Stream Source,
+  refers to the target value for number of entries in the Pending Entries List
+	for the specified consumer group in the Redis Stream.
+  Default: `5`
 
 ## HOW TO
 

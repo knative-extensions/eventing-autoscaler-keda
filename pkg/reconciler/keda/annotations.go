@@ -48,4 +48,8 @@ const (
 	// KedaAutoscalingRabbitMQQueueLength is the annotation that refers to the target value for number of messages in a RabbitMQ brokers
 	// trigger queue.
 	KedaAutoscalingRabbitMQQueueLength = KEDA + "/rabbitMQQueueLength"
+
+	// KedaAutoscalingRedisStreamPendingEntriesCount is the annotation that refers to the target value for number of entries in the Pending Entries List
+	// for the specified consumer group in the Redis Stream.
+	KedaAutoscalingRedisStreamPendingEntriesCount = KEDA + "/redisStreamPendingEntriesCount"
 )

@@ -15,6 +15,7 @@ require (
 	knative.dev/eventing v0.18.1-0.20201103171804-c2bfc4496f7e
 	knative.dev/eventing-awssqs v0.0.0-20201030071135-487e66030fae
 	knative.dev/eventing-kafka v0.0.0-20201103101804-55d0e83c4bff
+	knative.dev/eventing-redis v0.0.0-20201103180606-5b1d2921dcf3
 	knative.dev/hack v0.0.0-20201103151104-3d5abc3a0075
 	knative.dev/pkg v0.0.0-20201103163404-5514ab0c1fdf
 )
