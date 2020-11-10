@@ -39,11 +39,6 @@ import (
 	kedalisters "github.com/kedacore/keda/pkg/generated/listers/keda/v1alpha1"
 )
 
-const (
-	// Name of the corev1.Events emitted from the Trigger reconciliation process.
-	triggerReconciled = "TriggerReconciled"
-)
-
 type Reconciler struct {
 	kedaClientset kedaclientset.Interface
 
