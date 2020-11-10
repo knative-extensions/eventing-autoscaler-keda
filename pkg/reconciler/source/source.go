@@ -103,8 +103,6 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		var kafkaSource = &kafkav1beta1.KafkaSource{}
 		// TODO move scheme register up
 		kafkav1beta1.AddToScheme(scheme.Scheme)
-		logging.FromContext(ctx).Info(unstructuredSource)
-		logging.FromContext(ctx).Info(kafkaSource)
 		if err := scheme.Scheme.Convert(unstructuredSource, kafkaSource, nil); err != nil {
 			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to KafkaSource", zap.Error(err))
 			return err
@@ -129,6 +127,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		}
 		return r.reconcileRedisStreamSource(ctx, redisStreamSource)
 	}
+
 	return nil
 }
 
@@ -193,7 +192,7 @@ func (r *Reconciler) reconcileRedisStreamSource(ctx context.Context, src *rediss
 	if err != nil {
 		return err
 	}
-	logging.FromContext(ctx).Info(triggers)
+
 	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, redisstream.GenerateScaleTargetName(src), triggers)
 	if err != nil {
 		return err

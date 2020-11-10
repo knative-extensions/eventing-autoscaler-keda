@@ -3,7 +3,7 @@
 ##################################################
 VERSION		   ?= master
 IMAGE_REGISTRY ?= docker.io
-IMAGE_REPO     ?= avarghese23
+IMAGE_REPO     ?= REPOSITORY_NAME
 
 IMAGE = $(IMAGE_REGISTRY)/$(IMAGE_REPO)/eventing-autoscaler-keda:$(VERSION)
 
