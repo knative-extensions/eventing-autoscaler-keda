@@ -46,7 +46,7 @@ func GenerateScaleTriggers(src *redisstreamv1alpha1.RedisStreamSource, triggerAu
 	triggerMetadata := map[string]string{
 		"address":             src.Spec.Address,
 		"stream":              src.Spec.Stream,
-		"consumerGroup":       src.Spec.Group,
+		"consumerGroup":       src.Spec.Group, //TODO: this is an optional field. ConsumerGroup name is set to the pod name, if one not provided.
 		"pendingEntriesCount": strconv.Itoa(int(*pendingEntriesCount)),
 	}
 
@@ -79,7 +79,7 @@ func GenerateTriggerAuthentication(src *redisstreamv1alpha1.RedisStreamSource) (
 		},
 	}
 
-	//secret.StringData[secretKey] = src.Spec.Options.Password.String()
+	secret.StringData[secretKey] = src.Spec.Options.Password.String()
 
 	password := kedav1alpha1.AuthSecretTargetRef{
 		Parameter: "password",

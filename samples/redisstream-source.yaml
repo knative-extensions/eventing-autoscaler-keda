@@ -2,17 +2,17 @@ apiVersion: sources.knative.dev/v1alpha1
 kind: RedisStreamSource
 metadata:
   name: redisstream-source
-  namespace: default
   annotations:
     autoscaling.knative.dev/class: keda.autoscaling.knative.dev
-    autoscaling.knative.dev/minScale: "0" 
-    autoscaling.knative.dev/maxScale: "5" 
-    keda.autoscaling.knative.dev/pollingInterval: "3" 
-    keda.autoscaling.knative.dev/cooldownPeriod: "10" 
+    autoscaling.knative.dev/minScale: "0"
+    autoscaling.knative.dev/maxScale: "5"
+    keda.autoscaling.knative.dev/pollingInterval: "3"
+    keda.autoscaling.knative.dev/cooldownPeriod: "10"
     keda.autoscaling.knative.dev/redisStreamPendingEntriesCount: "2"
 spec:
   address: "redis.redis.svc.cluster.local:6379"
-  stream: "mystream"
+  stream: mystream
+  group: mygroup
   sink:
     ref:
       apiVersion: v1

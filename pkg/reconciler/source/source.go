@@ -103,6 +103,8 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		var kafkaSource = &kafkav1beta1.KafkaSource{}
 		// TODO move scheme register up
 		kafkav1beta1.AddToScheme(scheme.Scheme)
+		logging.FromContext(ctx).Info(unstructuredSource)
+		logging.FromContext(ctx).Info(kafkaSource)
 		if err := scheme.Scheme.Convert(unstructuredSource, kafkaSource, nil); err != nil {
 			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to KafkaSource", zap.Error(err))
 			return err
@@ -121,7 +123,6 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		var redisStreamSource = &redisstreamv1alpha1.RedisStreamSource{}
 		// TODO move scheme register up
 		redisstreamv1alpha1.AddToScheme(scheme.Scheme)
-		logging.FromContext(ctx).Info(unstructuredSource)
 		if err := scheme.Scheme.Convert(unstructuredSource, redisStreamSource, nil); err != nil {
 			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to RedisStreamSource", zap.Error(err))
 			return err
@@ -184,12 +185,15 @@ func (r *Reconciler) reconcileRedisStreamSource(ctx context.Context, src *rediss
 	var triggerAuthentication *kedav1alpha1.TriggerAuthentication
 	var secret *corev1.Secret
 
-	triggerAuthentication, secret = redisstream.GenerateTriggerAuthentication(src)
+	if (src.Spec.Options != nil && src.Spec.Options.Password != corev1.ObjectReference{}) { //password not empty
+		triggerAuthentication, secret = redisstream.GenerateTriggerAuthentication(src)
+	}
 
 	triggers, err := redisstream.GenerateScaleTriggers(src, triggerAuthentication)
 	if err != nil {
 		return err
 	}
+	logging.FromContext(ctx).Info(triggers)
 	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, redisstream.GenerateScaleTargetName(src), triggers)
 	if err != nil {
 		return err
