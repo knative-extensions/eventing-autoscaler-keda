@@ -101,7 +101,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 	switch r.gvk.Kind {
 	case "KafkaSource":
 		var kafkaSource = &kafkav1beta1.KafkaSource{}
-		// TODO move scheme register up
+
 		kafkav1beta1.AddToScheme(scheme.Scheme)
 		if err := scheme.Scheme.Convert(unstructuredSource, kafkaSource, nil); err != nil {
 			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to KafkaSource", zap.Error(err))
@@ -110,7 +110,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		return r.reconcileKafkaSource(ctx, kafkaSource)
 	case "AwsSqsSource":
 		var awsSqsSource = &awssqsv1alpha1.AwsSqsSource{}
-		// TODO move scheme register up
+
 		awssqsv1alpha1.AddToScheme(scheme.Scheme)
 		if err := scheme.Scheme.Convert(unstructuredSource, awsSqsSource, nil); err != nil {
 			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to AwsSqsSource", zap.Error(err))
@@ -119,7 +119,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		return r.reconcileAwsSqsSource(ctx, awsSqsSource)
 	case "RedisStreamSource":
 		var redisStreamSource = &redisstreamv1alpha1.RedisStreamSource{}
-		// TODO move scheme register up
+
 		redisstreamv1alpha1.AddToScheme(scheme.Scheme)
 		if err := scheme.Scheme.Convert(unstructuredSource, redisStreamSource, nil); err != nil {
 			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to RedisStreamSource", zap.Error(err))
