@@ -57,8 +57,9 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication 
 		}
 
 		trigger := kedav1alpha1.ScaleTriggers{
-			Type:     "kafka",
-			Metadata: triggerMetadata,
+			Type:              "kafka",
+			Metadata:          triggerMetadata,
+			AuthenticationRef: &kedav1alpha1.ScaledObjectAuthRef{},
 		}
 
 		if triggerAuthentication != nil {
@@ -83,6 +84,8 @@ func GenerateTriggerAuthentication(src *kafkav1beta1.KafkaSource) (*kedav1alpha1
 				*kmeta.NewControllerRef(src),
 			},
 		},
+		Data:       make(map[string][]byte),
+		StringData: make(map[string]string),
 	}
 
 	if src.Spec.KafkaAuthSpec.Net.SASL.Enable {
