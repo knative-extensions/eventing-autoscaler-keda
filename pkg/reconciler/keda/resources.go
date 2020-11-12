@@ -25,6 +25,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	awssqsv1alpha1 "knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
+	redisstreamv1alpha1 "knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1"
 )
 
 const (
@@ -100,6 +101,8 @@ func SupportedCRD(gvk schema.GroupVersionKind) bool {
 	case kafkav1beta1.SchemeGroupVersion.WithKind("KafkaSource"):
 		return true
 	case awssqsv1alpha1.SchemeGroupVersion.WithKind("AwsSqsSource"):
+		return true
+	case redisstreamv1alpha1.SchemeGroupVersion.WithKind("RedisStreamSource"):
 		return true
 	}
 	return false

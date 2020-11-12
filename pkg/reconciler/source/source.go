@@ -34,6 +34,7 @@ import (
 	"k8s.io/client-go/tools/cache"
 	awssqsv1alpha1 "knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
+	redisstreamv1alpha1 "knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1"
 	duckv1 "knative.dev/pkg/apis/duck/v1"
 	"knative.dev/pkg/logging"
 	pkgreconciler "knative.dev/pkg/reconciler"
@@ -41,6 +42,7 @@ import (
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/awssqs"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/kafka"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
+	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/redisstream"
 )
 
 type Reconciler struct {
@@ -99,7 +101,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 	switch r.gvk.Kind {
 	case "KafkaSource":
 		var kafkaSource = &kafkav1beta1.KafkaSource{}
-		// TODO move scheme register up
+
 		kafkav1beta1.AddToScheme(scheme.Scheme)
 		if err := scheme.Scheme.Convert(unstructuredSource, kafkaSource, nil); err != nil {
 			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to KafkaSource", zap.Error(err))
@@ -108,13 +110,22 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		return r.reconcileKafkaSource(ctx, kafkaSource)
 	case "AwsSqsSource":
 		var awsSqsSource = &awssqsv1alpha1.AwsSqsSource{}
-		// TODO move scheme register up
+
 		awssqsv1alpha1.AddToScheme(scheme.Scheme)
 		if err := scheme.Scheme.Convert(unstructuredSource, awsSqsSource, nil); err != nil {
 			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to AwsSqsSource", zap.Error(err))
 			return err
 		}
 		return r.reconcileAwsSqsSource(ctx, awsSqsSource)
+	case "RedisStreamSource":
+		var redisStreamSource = &redisstreamv1alpha1.RedisStreamSource{}
+
+		redisstreamv1alpha1.AddToScheme(scheme.Scheme)
+		if err := scheme.Scheme.Convert(unstructuredSource, redisStreamSource, nil); err != nil {
+			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to RedisStreamSource", zap.Error(err))
+			return err
+		}
+		return r.reconcileRedisStreamSource(ctx, redisStreamSource)
 	}
 
 	return nil
@@ -163,6 +174,39 @@ func (r *Reconciler) reconcileAwsSqsSource(ctx context.Context, src *awssqsv1alp
 	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, scaletarget, triggers)
 	if err != nil {
 		return err
+	}
+
+	return r.reconcileScaledObject(ctx, scaledObject, src)
+}
+
+func (r *Reconciler) reconcileRedisStreamSource(ctx context.Context, src *redisstreamv1alpha1.RedisStreamSource) error {
+
+	var triggerAuthentication *kedav1alpha1.TriggerAuthentication
+	var secret *corev1.Secret
+
+	if (src.Spec.Options != nil && src.Spec.Options.Password != corev1.ObjectReference{}) { //password not empty
+		triggerAuthentication, secret = redisstream.GenerateTriggerAuthentication(src)
+	}
+
+	triggers, err := redisstream.GenerateScaleTriggers(src, triggerAuthentication)
+	if err != nil {
+		return err
+	}
+
+	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, redisstream.GenerateScaleTargetName(src), triggers)
+	if err != nil {
+		return err
+	}
+
+	if triggerAuthentication != nil && secret != nil {
+		err = r.reconcileSecret(ctx, secret, src)
+		if err != nil {
+			return err
+		}
+		err = r.reconcileTriggerAuthentication(ctx, triggerAuthentication, src)
+		if err != nil {
+			return err
+		}
 	}
 
 	return r.reconcileScaledObject(ctx, scaledObject, src)
