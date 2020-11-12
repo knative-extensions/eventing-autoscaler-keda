@@ -34,8 +34,12 @@ const (
 	defaultKafkaLagThreshold = 10
 )
 
-func GenerateScaleTargetName(src *kafkav1beta1.KafkaSource) string {
-	return kmeta.ChildName(fmt.Sprintf("kafkasource-%s-", src.Name), string(src.GetUID()))
+func GenerateScaleTarget(src *kafkav1beta1.KafkaSource) *kedav1alpha1.ScaleTarget {
+	return &kedav1alpha1.ScaleTarget{
+		Name:       src.Name,
+		APIVersion: kafkav1beta1.SchemeGroupVersion.String(),
+		Kind:       "KafkaSource",
+	}
 }
 
 func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication *kedav1alpha1.TriggerAuthentication) ([]kedav1alpha1.ScaleTriggers, error) {

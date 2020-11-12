@@ -37,6 +37,14 @@ const (
 	defaultAwsSqsQueueLength = 5
 )
 
+func GenerateScaleTarget(ctx context.Context, kubeClient kubernetes.Interface, src *awssqsv1alpha1.AwsSqsSource) (*kedav1alpha1.ScaleTarget, error) {
+	name, err := GenerateScaleTargetName(ctx, kubeClient, src)
+	if err != nil {
+		return nil, err
+	}
+	return &kedav1alpha1.ScaleTarget{Name: name}, nil
+}
+
 func GenerateScaleTargetName(ctx context.Context, kubeClient kubernetes.Interface, src *awssqsv1alpha1.AwsSqsSource) (string, error) {
 	dl, err := kubeClient.AppsV1().Deployments(src.Namespace).List(ctx,
 		metav1.ListOptions{
