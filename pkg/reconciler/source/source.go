@@ -193,7 +193,7 @@ func (r *Reconciler) reconcileRedisStreamSource(ctx context.Context, src *rediss
 		return err
 	}
 
-	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, redisstream.GenerateScaleTargetName(src), triggers)
+	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, redisstream.GenerateScaleTarget(src), triggers)
 	if err != nil {
 		return err
 	}

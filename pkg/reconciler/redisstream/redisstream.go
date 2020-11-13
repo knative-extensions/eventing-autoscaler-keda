@@ -33,8 +33,13 @@ const (
 	defaultRedisStreamPendingEntriesCount = 5
 )
 
-func GenerateScaleTargetName(src *redisstreamv1alpha1.RedisStreamSource) string {
-	return kmeta.ChildName(fmt.Sprintf("redisstreamsource-%s-", src.Name), string(src.GetUID()))
+func GenerateScaleTarget(src *redisstreamv1alpha1.RedisStreamSource) *kedav1alpha1.ScaleTarget {
+	name := kmeta.ChildName(fmt.Sprintf("redisstreamsource-%s-", src.Name), string(src.GetUID()))
+	return &kedav1alpha1.ScaleTarget{
+		Name:       name,
+		APIVersion: redisstreamv1alpha1.SchemeGroupVersion.String(),
+		Kind:       "RedisStreamSource",
+	}
 }
 
 func GenerateScaleTriggers(src *redisstreamv1alpha1.RedisStreamSource, triggerAuthentication *kedav1alpha1.TriggerAuthentication) ([]kedav1alpha1.ScaleTriggers, error) {
