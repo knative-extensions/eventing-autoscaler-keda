@@ -150,11 +150,16 @@ func (r *Reconciler) reconcileKafkaSource(ctx context.Context, src *kafkav1beta1
 
 	if triggerAuthentication != nil && secret != nil {
 		err = r.reconcileSecret(ctx, secret, src)
-		if err != nil {
+
+		// if the event was wrapped inside an error, consider the reconciliation as failed
+		if _, isEvent := err.(*pkgreconciler.ReconcilerEvent); !isEvent {
 			return err
 		}
+
 		err = r.reconcileTriggerAuthentication(ctx, triggerAuthentication, src)
-		if err != nil {
+
+		// if the event was wrapped inside an error, consider the reconciliation as failed
+		if _, isEvent := err.(*pkgreconciler.ReconcilerEvent); !isEvent {
 			return err
 		}
 	}
@@ -283,15 +288,14 @@ func (r *Reconciler) reconcileSecret(ctx context.Context, expectedSecret *corev1
 		return err
 	} else if !metav1.IsControlledBy(secret, obj) {
 		return fmt.Errorf("Secret %q is not owned by %q", secret.Name, obj)
-	} else if !equality.Semantic.DeepDerivative(secret.Data, expectedSecret.Data) {
-		logging.FromContext(ctx).Debug(fmt.Sprintf("Secret changed, found: %#v expected: %#v", secret.Data, expectedSecret.Data))
-		secret.Data = expectedSecret.Data
+	} else {
+		// StringData is not populated on read so for now always update the secret
+		logging.FromContext(ctx).Debug("Updating secret")
+		secret.StringData = expectedSecret.StringData
 		if _, err = r.kubeClient.CoreV1().Secrets(expectedSecret.Namespace).Update(ctx, secret, metav1.UpdateOptions{}); err != nil {
 			return err
 		}
 		return pkgreconciler.NewEvent(corev1.EventTypeNormal, "SecretUpdated", "Secret updated: \"%s/%s\"", secret.Namespace, secret.Name)
-	} else {
-		logging.FromContext(ctx).Debugw("Reusing existing Secret", zap.Any("Secret", secret))
 	}
 
 	return nil

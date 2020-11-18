@@ -113,26 +113,35 @@ func GenerateTriggerAuthentication(src *kafkav1beta1.KafkaSource) (*kedav1alpha1
 	if src.Spec.KafkaAuthSpec.Net.TLS.Enable {
 		secret.StringData["tls"] = "enable"
 		tls := kedav1alpha1.AuthSecretTargetRef{Parameter: "tls", Name: secret.Name, Key: "tls"}
+		secretTargetRefs = append(secretTargetRefs, tls)
 
-		ca := kedav1alpha1.AuthSecretTargetRef{
-			Parameter: "ca",
-			Name:      src.Spec.KafkaAuthSpec.Net.TLS.CACert.SecretKeyRef.Name,
-			Key:       src.Spec.KafkaAuthSpec.Net.TLS.CACert.SecretKeyRef.Key,
+		if src.Spec.KafkaAuthSpec.Net.TLS.CACert.SecretKeyRef != nil {
+			ca := kedav1alpha1.AuthSecretTargetRef{
+				Parameter: "ca",
+				Name:      src.Spec.KafkaAuthSpec.Net.TLS.CACert.SecretKeyRef.Name,
+				Key:       src.Spec.KafkaAuthSpec.Net.TLS.CACert.SecretKeyRef.Key,
+			}
+
+			secretTargetRefs = append(secretTargetRefs, ca)
 		}
 
-		cert := kedav1alpha1.AuthSecretTargetRef{
-			Parameter: "cert",
-			Name:      src.Spec.KafkaAuthSpec.Net.TLS.Cert.SecretKeyRef.Name,
-			Key:       src.Spec.KafkaAuthSpec.Net.TLS.Cert.SecretKeyRef.Key,
+		if src.Spec.KafkaAuthSpec.Net.TLS.Cert.SecretKeyRef != nil {
+			cert := kedav1alpha1.AuthSecretTargetRef{
+				Parameter: "cert",
+				Name:      src.Spec.KafkaAuthSpec.Net.TLS.Cert.SecretKeyRef.Name,
+				Key:       src.Spec.KafkaAuthSpec.Net.TLS.Cert.SecretKeyRef.Key,
+			}
+			secretTargetRefs = append(secretTargetRefs, cert)
 		}
 
-		key := kedav1alpha1.AuthSecretTargetRef{
-			Parameter: "key",
-			Name:      src.Spec.KafkaAuthSpec.Net.TLS.Key.SecretKeyRef.Name,
-			Key:       src.Spec.KafkaAuthSpec.Net.TLS.Key.SecretKeyRef.Key,
+		if src.Spec.KafkaAuthSpec.Net.TLS.Key.SecretKeyRef != nil {
+			key := kedav1alpha1.AuthSecretTargetRef{
+				Parameter: "key",
+				Name:      src.Spec.KafkaAuthSpec.Net.TLS.Key.SecretKeyRef.Name,
+				Key:       src.Spec.KafkaAuthSpec.Net.TLS.Key.SecretKeyRef.Key,
+			}
+			secretTargetRefs = append(secretTargetRefs, key)
 		}
-
-		secretTargetRefs = append(secretTargetRefs, tls, ca, cert, key)
 	}
 
 	return &kedav1alpha1.TriggerAuthentication{
