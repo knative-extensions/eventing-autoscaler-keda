@@ -297,8 +297,6 @@ func (r *Reconciler) reconcileSecret(ctx context.Context, expectedSecret *corev1
 		}
 		return pkgreconciler.NewEvent(corev1.EventTypeNormal, "SecretUpdated", "Secret updated: \"%s/%s\"", secret.Namespace, secret.Name)
 	}
-
-	return nil
 }
 
 // scaleObjectCreated makes a new reconciler event with event type Normal, and
