@@ -21,7 +21,7 @@ package fake
 import (
 	context "context"
 
-	externalversions "github.com/kedacore/keda/pkg/generated/informers/externalversions"
+	externalversions "github.com/kedacore/keda/v2/pkg/generated/informers/externalversions"
 	fake "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client/fake"
 	factory "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/factory"
 	controller "knative.dev/pkg/controller"

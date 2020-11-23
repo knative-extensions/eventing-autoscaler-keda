@@ -20,9 +20,7 @@ import (
 	"context"
 
 	"k8s.io/client-go/tools/cache"
-
 	eventingv1 "knative.dev/eventing/pkg/apis/eventing/v1"
-
 	brokerinformer "knative.dev/eventing/pkg/client/injection/informers/eventing/v1/broker"
 	brokerreconciler "knative.dev/eventing/pkg/client/injection/reconciler/eventing/v1/broker"
 	"knative.dev/pkg/configmap"

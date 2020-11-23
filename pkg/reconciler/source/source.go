@@ -20,8 +20,8 @@ import (
 	"context"
 	"fmt"
 
-	kedav1alpha1 "github.com/kedacore/keda/api/v1alpha1"
-	kedaclientset "github.com/kedacore/keda/pkg/generated/clientset/versioned"
+	kedav1alpha1 "github.com/kedacore/keda/v2/api/v1alpha1"
+	kedaclientset "github.com/kedacore/keda/v2/pkg/generated/clientset/versioned"
 	"go.uber.org/zap"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/equality"
@@ -297,8 +297,6 @@ func (r *Reconciler) reconcileSecret(ctx context.Context, expectedSecret *corev1
 		}
 		return pkgreconciler.NewEvent(corev1.EventTypeNormal, "SecretUpdated", "Secret updated: \"%s/%s\"", secret.Namespace, secret.Name)
 	}
-
-	return nil
 }
 
 // scaleObjectCreated makes a new reconciler event with event type Normal, and
