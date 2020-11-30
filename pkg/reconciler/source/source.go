@@ -205,11 +205,16 @@ func (r *Reconciler) reconcileRedisStreamSource(ctx context.Context, src *rediss
 
 	if triggerAuthentication != nil && secret != nil {
 		err = r.reconcileSecret(ctx, secret, src)
-		if err != nil {
+
+		// if the event was wrapped inside an error, consider the reconciliation as failed
+		if _, isEvent := err.(*pkgreconciler.ReconcilerEvent); !isEvent {
 			return err
 		}
+
 		err = r.reconcileTriggerAuthentication(ctx, triggerAuthentication, src)
-		if err != nil {
+
+		// if the event was wrapped inside an error, consider the reconciliation as failed
+		if _, isEvent := err.(*pkgreconciler.ReconcilerEvent); !isEvent {
 			return err
 		}
 	}
@@ -315,4 +320,13 @@ func scaleObjectUpdated(namespace, name string) pkgreconciler.Event {
 // reason ScaleObjectDeploymentFailed.
 func scaleObjectDeploymentFailed(namespace, name string, err error) pkgreconciler.Event {
 	return pkgreconciler.NewEvent(corev1.EventTypeWarning, "ScaleObjectDeploymentFailed", "ScaledObject deployment failed to: \"%s/%s\", %w", namespace, name, err)
+}
+
+func (r *Reconciler) deleteFunc(obj interface{}) {
+	logging.FromContext(context.TODO()).Info("In delete function for Source")
+	if obj == nil {
+		return
+	}
+	logging.FromContext(context.TODO()).Info("Object not nil")
+	//WE DO END UP HERE WHEN A SOURCE CRD IS DELETED!!!!! WHAT CAN WE DO HERE?
 }

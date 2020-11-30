@@ -4,7 +4,7 @@ metadata:
   name: redisstream-source
   annotations:
     autoscaling.knative.dev/class: keda.autoscaling.knative.dev
-    autoscaling.knative.dev/minScale: "0"
+    autoscaling.knative.dev/minScale: "1"
     autoscaling.knative.dev/maxScale: "5"
     keda.autoscaling.knative.dev/pollingInterval: "3"
     keda.autoscaling.knative.dev/cooldownPeriod: "10"

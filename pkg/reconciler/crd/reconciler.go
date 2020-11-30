@@ -27,6 +27,7 @@ import (
 	"go.uber.org/zap"
 	corev1 "k8s.io/api/core/v1"
 	v1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
+	v1beta1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/discovery"
 	"k8s.io/client-go/kubernetes"
@@ -88,7 +89,8 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, crd *v1.CustomResourceDe
 	//  4. Dynamically create a controller for it, if not present already. Such controller is in charge of reconciling
 	//     duckv1.Source resources with that particular GVR
 
-	gvr, gvk, err := r.resolveGroupVersions(ctx, crd)
+	logging.FromContext(r.ogctx).Info("In ReconcileKind for CRD")
+	gvr, gvk, err := r.resolveGroupVersions(crd)
 	if err != nil {
 		logging.FromContext(ctx).Errorw("Error while resolving GVR and GVK", zap.String("CRD", crd.Name), zap.Error(err))
 		return err
@@ -107,17 +109,6 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, crd *v1.CustomResourceDe
 		}
 	}
 
-	if !crd.DeletionTimestamp.IsZero() {
-		// We are intentionally not setting up a finalizer on the CRD.
-		// This might leave unnecessary dynamic controllers running.
-		// This is a best effort to try to clean them up.
-		// Note that without a finalizer there is no guarantee we will be called.
-
-		logging.FromContext(ctx).Infow("Let's delete controller from Reconcile Loop", gvr, gvk, zap.String("CRD", crd.Name))
-		r.deleteController(ctx, gvr)
-		return nil
-	}
-
 	err = r.reconcileController(ctx, crd, gvr, gvk)
 	if err != nil {
 		logging.FromContext(ctx).Errorw("Error while reconciling controller", zap.String("GVR", gvr.String()), zap.String("GVK", gvk.String()), zap.Error(err))
@@ -129,22 +120,61 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, crd *v1.CustomResourceDe
 	return newReconciledNormal(crd.Namespace, crd.Name)
 }
 
-// Optionally, use FinalizeKind to add finalizers. FinalizeKind will be called
-// when the resource is deleted.
-// func (r *Reconciler) FinalizeKind(ctx context.Context, crd *apiextensionsv1beta1.CustomResourceDefinition) reconciler.Event {
+func (r *Reconciler) DeleteFunc(obj interface{}) {
+	logging.FromContext(r.ogctx).Info("In delete function for CRD")
+	if obj == nil {
+		return
+	}
 
-// 	gvr, gvk, err := r.resolveGroupVersions(ctx, crd)
-// 	if err != nil {
-// 		logging.FromContext(ctx).Error("Error while resolving GVR and GVK", zap.String("CRD", crd.Name), zap.Error(err))
-// 		return err
-// 	}
+	crdv1, ok := obj.(*v1.CustomResourceDefinition)
+	if !ok {
+		crdv1beta1, ok := obj.(*v1beta1.CustomResourceDefinition)
+		if !ok {
+			return
+		}
+		gvr, _, err := r.resolveGroupVersionsBeta(crdv1beta1)
+		if err != nil {
+			logging.FromContext(r.ogctx).Errorw("Error in delete function", zap.String("GVR", gvr.String()), zap.Error(err))
+			return
+		}
+		r.deleteController(r.ogctx, gvr)
+	} else {
+		gvr, _, err := r.resolveGroupVersions(crdv1)
+		if err != nil {
+			logging.FromContext(r.ogctx).Errorw("Error in delete function", zap.String("GVR", gvr.String()), zap.Error(err))
+			return
+		}
+		r.deleteController(r.ogctx, gvr)
+	}
+}
 
-// 	logging.FromContext(ctx).Info("Let's delete controller", gvr, gvk, zap.String("CRD", crd.Name))
-// 	r.deleteController(ctx, gvr)
-// 	return nil
-// }
+func (r *Reconciler) resolveGroupVersions(crd *v1.CustomResourceDefinition) (*schema.GroupVersionResource, *schema.GroupVersionKind, error) {
+	var gvr *schema.GroupVersionResource
+	var gvk *schema.GroupVersionKind
+	for _, v := range crd.Spec.Versions {
+		if !v.Served {
+			continue
+		}
+		gvr = &schema.GroupVersionResource{
+			Group:    crd.Spec.Group,
+			Version:  v.Name,
+			Resource: crd.Spec.Names.Plural,
+		}
 
-func (r *Reconciler) resolveGroupVersions(ctx context.Context, crd *v1.CustomResourceDefinition) (*schema.GroupVersionResource, *schema.GroupVersionKind, error) {
+		gvk = &schema.GroupVersionKind{
+			Group:   crd.Spec.Group,
+			Version: v.Name,
+			Kind:    crd.Spec.Names.Kind,
+		}
+
+	}
+	if gvr == nil || gvk == nil {
+		return nil, nil, fmt.Errorf("unable to find GVR or GVK for %s", crd.Name)
+	}
+	return gvr, gvk, nil
+}
+
+func (r *Reconciler) resolveGroupVersionsBeta(crd *v1beta1.CustomResourceDefinition) (*schema.GroupVersionResource, *schema.GroupVersionKind, error) {
 	var gvr *schema.GroupVersionResource
 	var gvk *schema.GroupVersionKind
 	for _, v := range crd.Spec.Versions {
@@ -171,11 +201,14 @@ func (r *Reconciler) resolveGroupVersions(ctx context.Context, crd *v1.CustomRes
 }
 
 func (r *Reconciler) deleteController(ctx context.Context, gvr *schema.GroupVersionResource) {
-	r.lock.RLock()
+	logging.FromContext(r.ogctx).Info("In deleteController for CRD")
+	//r.lock.RLock()
+	//logging.FromContext(ctx).Info("locked")
 	_, found := r.controllers[*gvr]
-	r.lock.RUnlock()
+	//r.lock.RUnlock()
 	if found {
-		r.lock.Lock()
+		//r.lock.Lock()
+		logging.FromContext(ctx).Info("Locked")
 		// Now that we grabbed the write lock, check that nobody deleted it already.
 		rc, found := r.controllers[*gvr]
 		if found {
@@ -183,11 +216,12 @@ func (r *Reconciler) deleteController(ctx context.Context, gvr *schema.GroupVers
 			rc.cancel()
 			delete(r.controllers, *gvr)
 		}
-		r.lock.Unlock()
+		//r.lock.Unlock()
 	}
 }
 
 func (r *Reconciler) reconcileController(ctx context.Context, crd *v1.CustomResourceDefinition, gvr *schema.GroupVersionResource, gvk *schema.GroupVersionKind) error {
+	logging.FromContext(r.ogctx).Info("In reconcileController for CRD")
 	r.lock.RLock()
 	_, found := r.controllers[*gvr]
 	r.lock.RUnlock()

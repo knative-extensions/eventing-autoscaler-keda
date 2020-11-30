@@ -36,6 +36,7 @@ import (
 
 	kedaclient "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
 	//scaledobjectinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/scaledobject"
+
 	kedaresources "knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 )
 
@@ -82,11 +83,14 @@ func NewController(crd string, gvr schema.GroupVersionResource, gvk schema.Group
 		}
 		impl := controller.NewImpl(r, logger, ReconcilerName)
 
-		logger.Info("Setting up event handlers")
+		logger.Info("Setting up source event handlers")
 		sourceInformer.AddEventHandler(cache.FilteringResourceEventHandler{
 			FilterFunc: pkgreconciler.AnnotationFilterFunc(kedaresources.AutoscalingClassAnnotation, kedaresources.KEDA, false),
-			Handler:    controller.HandleAll(impl.Enqueue),
-		})
+			Handler: cache.ResourceEventHandlerFuncs{
+				AddFunc:    impl.Enqueue,
+				UpdateFunc: controller.PassNew(impl.Enqueue),
+				DeleteFunc: r.deleteFunc,
+			}})
 
 		// FIXME don't handle updates on ScaledObject.Status field
 		// scaledobjectInformer.Informer().AddEventHandler(cache.FilteringResourceEventHandler{
