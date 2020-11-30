@@ -63,10 +63,10 @@ metadata:
 - `keda.autoscaling.knative.dev/rabbitMQQueueLength` - only for AWS SQS Source,
   refers to the target value for number of messages in a RabbitMQ brokers
   trigger queue: `1`
-- `keda.autoscaling.knative.dev/redisStreamPendingEntriesCount` - only for Redis Stream Source,
-  refers to the target value for number of entries in the Pending Entries List
-	for the specified consumer group in the Redis Stream.
-  Default: `5`
+- `keda.autoscaling.knative.dev/redisStreamPendingEntriesCount` - only for Redis
+  Stream Source, refers to the target value for number of entries in the Pending
+  Entries List for the specified consumer group in the Redis Stream. Default:
+  `5`
 
 ## HOW TO
 
@@ -75,7 +75,8 @@ metadata:
 It is needed to install KEDA v2, which is using different namespace for it's
 CRDs (`keda.k8s.io` -> `keda.sh`). KEDA v1 is not supported.
 
-To install KEDA, please follow [installation instructions](https://keda.sh/docs/latest/deploy/).
+To install KEDA, please follow
+[installation instructions](https://keda.sh/docs/latest/deploy/).
 
 Confirm there are 2 pods running in `keda` namespace:
 
