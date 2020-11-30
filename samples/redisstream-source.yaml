@@ -13,6 +13,7 @@ spec:
   address: "redis.redis.svc.cluster.local:6379"
   stream: mystream
   group: mygroup
+  consumers: 2
   sink:
     ref:
       apiVersion: v1
