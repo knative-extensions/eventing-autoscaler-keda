@@ -13,9 +13,9 @@ metadata:
 spec:
   consumers: 10
   consumerGroup: knative-group
-  bootstrapServers: 
-    - my-cluster-kafka-bootstrap.kafka:9092 
-  topics: 
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
     - my-topic
   sink:
     ref:
