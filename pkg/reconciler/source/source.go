@@ -205,11 +205,16 @@ func (r *Reconciler) reconcileRedisStreamSource(ctx context.Context, src *rediss
 
 	if triggerAuthentication != nil && secret != nil {
 		err = r.reconcileSecret(ctx, secret, src)
-		if err != nil {
+
+		// if the event was wrapped inside an error, consider the reconciliation as failed
+		if _, isEvent := err.(*pkgreconciler.ReconcilerEvent); !isEvent {
 			return err
 		}
+
 		err = r.reconcileTriggerAuthentication(ctx, triggerAuthentication, src)
-		if err != nil {
+
+		// if the event was wrapped inside an error, consider the reconciliation as failed
+		if _, isEvent := err.(*pkgreconciler.ReconcilerEvent); !isEvent {
 			return err
 		}
 	}

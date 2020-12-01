@@ -1,4 +1,4 @@
-apiVersion: sources.knative.dev/v1alpha1
+apiVersion: sources.knative.dev/v1beta1
 kind: KafkaSource
 metadata:
   name: kafka-source
@@ -11,11 +11,12 @@ metadata:
     keda.autoscaling.knative.dev/cooldownPeriod: "10" 
     keda.autoscaling.knative.dev/kafkaLagThreshold: "2"
 spec:
+  consumers: 10
   consumerGroup: knative-group
-  bootstrapServers: 
-    - my-cluster-kafka-bootstrap.openshift-operators:9092 
-  topics: 
-    - test
+  bootstrapServers:
+    - my-cluster-kafka-bootstrap.kafka:9092
+  topics:
+    - my-topic
   sink:
     ref:
       apiVersion: serving.knative.dev/v1

@@ -35,9 +35,8 @@ const (
 )
 
 func GenerateScaleTarget(src *redisstreamv1alpha1.RedisStreamSource) *kedav1alpha1.ScaleTarget {
-	name := kmeta.ChildName(fmt.Sprintf("redisstreamsource-%s-", src.Name), string(src.GetUID()))
 	return &kedav1alpha1.ScaleTarget{
-		Name:       name,
+		Name:       src.Name,
 		APIVersion: redisstreamv1alpha1.SchemeGroupVersion.String(),
 		Kind:       "RedisStreamSource",
 	}
@@ -57,8 +56,9 @@ func GenerateScaleTriggers(src *redisstreamv1alpha1.RedisStreamSource, triggerAu
 	}
 
 	trigger := kedav1alpha1.ScaleTriggers{
-		Type:     "redis-streams",
-		Metadata: triggerMetadata,
+		Type:              "redis-streams",
+		Metadata:          triggerMetadata,
+		AuthenticationRef: &kedav1alpha1.ScaledObjectAuthRef{},
 	}
 
 	if triggerAuthentication != nil {
