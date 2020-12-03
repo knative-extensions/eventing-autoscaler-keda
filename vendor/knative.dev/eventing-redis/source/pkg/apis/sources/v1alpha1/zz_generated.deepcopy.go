@@ -153,6 +153,11 @@ func (in *RedisStreamSourceSpec) DeepCopyInto(out *RedisStreamSourceSpec) {
 	*out = *in
 	in.SourceSpec.DeepCopyInto(&out.SourceSpec)
 	in.RedisConnection.DeepCopyInto(&out.RedisConnection)
+	if in.Consumers != nil {
+		in, out := &in.Consumers, &out.Consumers
+		*out = new(int32)
+		**out = **in
+	}
 	return
 }
 

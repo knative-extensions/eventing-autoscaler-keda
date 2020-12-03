@@ -797,7 +797,7 @@ k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.19.1-0.20201127155535-ad755bdfccc6
+# knative.dev/eventing v0.19.1-0.20201202221809-1d3519c16565
 ## explicit
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/configs
@@ -875,19 +875,19 @@ knative.dev/eventing/pkg/client/listers/sources/v1beta2
 # knative.dev/eventing-awssqs v0.19.1-0.20201123083558-14e79dc9ff5b
 ## explicit
 knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
-# knative.dev/eventing-kafka v0.19.1-0.20201127112435-e00890307a57
+# knative.dev/eventing-kafka v0.19.1-0.20201203105208-aacd60decd97
 ## explicit
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
 knative.dev/eventing-kafka/pkg/apis/sources/v1beta1
-# knative.dev/eventing-redis v0.19.1-0.20201127145036-2c4f1b10dfcf
+# knative.dev/eventing-redis v0.19.1-0.20201202055153-65ed35c5d20e
 ## explicit
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
-# knative.dev/hack v0.0.0-20201125230335-c46a6498e9ed
+# knative.dev/hack v0.0.0-20201201234937-fddbf732e450
 ## explicit
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20201127013335-0d896b5c87b8
+# knative.dev/pkg v0.0.0-20201203005309-e45bbefd1d63
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
