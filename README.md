@@ -60,7 +60,7 @@ metadata:
 - `keda.autoscaling.knative.dev/awsSqsQueueLength` - only for AWS SQS Source,
   refers to the target value for ApproximateNumberOfMessages in the SQS Queue.
   Default: `5`
-- `keda.autoscaling.knative.dev/rabbitMQQueueLength` - only for AWS SQS Source,
+- `keda.autoscaling.knative.dev/rabbitMQQueueLength` - only for RabbitMQ broker,
   refers to the target value for number of messages in a RabbitMQ brokers
   trigger queue: `1`
 - `keda.autoscaling.knative.dev/redisStreamPendingEntriesCount` - only for Redis
