@@ -70,6 +70,13 @@ type RedisStreamSourceSpec struct {
 	// deleted when this source is deleted.
 	// +optional
 	Group string `json:"group,omitempty"`
+
+	// Number of desired consumers running in the consumer group. Defaults to 1.
+	//
+	// This is a pointer to distinguish between explicit
+	// zero and not specified.
+	// +optional
+	Consumers *int32 `json:"consumers,omitempty"`
 }
 
 // RedisConnection defines the address and options to connect to a Redis instance
@@ -125,6 +132,10 @@ type RedisStreamSourceStatus struct {
 	// * SinkURI - the current active sink URI that has been configured for the
 	//   Source.
 	duckv1.SourceStatus `json:",inline"`
+
+	// Total number of consumers actually running in the consumer group.
+	// +optional
+	Consumers int32 `json:"consumers,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

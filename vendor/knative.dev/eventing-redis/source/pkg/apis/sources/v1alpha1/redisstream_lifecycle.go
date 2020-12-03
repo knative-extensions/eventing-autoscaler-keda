@@ -94,6 +94,9 @@ func (s *RedisStreamSourceStatus) MarkNoSink(reason, messageFormat string, messa
 func (s *RedisStreamSourceStatus) PropagateStatefulSetAvailability(d *appsv1.StatefulSet) {
 	if d.Status.ReadyReplicas == *d.Spec.Replicas {
 		redisStreamCondSet.Manage(s).MarkTrue(RedisStreamConditionDeployed)
+
+		// Propagate the number of consumers
+		s.Consumers = d.Status.Replicas
 	} else {
 		redisStreamCondSet.Manage(s).MarkUnknown(RedisStreamConditionDeployed, "StatefulSetUnavailable", "The StatefulSet '%s' is unavailable.", d.Name)
 	}
