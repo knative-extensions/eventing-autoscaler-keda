@@ -11,6 +11,8 @@ import (
 // +kubebuilder:resource:path=scaledobjects,scope=Namespaced,shortName=so
 // +kubebuilder:printcolumn:name="ScaleTargetKind",type="string",JSONPath=".status.scaleTargetKind"
 // +kubebuilder:printcolumn:name="ScaleTargetName",type="string",JSONPath=".spec.scaleTargetRef.name"
+// +kubebuilder:printcolumn:name="Min",type="integer",JSONPath=".spec.minReplicaCount"
+// +kubebuilder:printcolumn:name="Max",type="integer",JSONPath=".spec.maxReplicaCount"
 // +kubebuilder:printcolumn:name="Triggers",type="string",JSONPath=".spec.triggers[*].type"
 // +kubebuilder:printcolumn:name="Authentication",type="string",JSONPath=".spec.triggers[*].authenticationRef.name"
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=".status.conditions[?(@.type==\"Ready\")].status"
@@ -107,10 +109,13 @@ type ScaledObjectList struct {
 	Items           []ScaledObject `json:"items"`
 }
 
-// ScaledObjectAuthRef points to the TriggerAuthentication object that
+// ScaledObjectAuthRef points to the TriggerAuthentication or ClusterTriggerAuthentication object that
 // is used to authenticate the scaler with the environment
 type ScaledObjectAuthRef struct {
 	Name string `json:"name"`
+	// Kind of the resource being referred to. Defaults to TriggerAuthentication.
+	// +optional
+	Kind string `json:"kind,omitempty"`
 }
 
 func init() {
