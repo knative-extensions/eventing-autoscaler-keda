@@ -10,7 +10,7 @@ require (
 	k8s.io/apimachinery v0.20.2
 	k8s.io/client-go v11.0.1-0.20190805182717-6502b5e7b1b5+incompatible
 	k8s.io/code-generator v0.20.0
-	knative.dev/eventing v0.20.1-0.20210128105531-b75d03a6339f
+	knative.dev/eventing v0.20.1-0.20210128132430-1725902f7e39
 	knative.dev/eventing-awssqs v0.20.1-0.20210128095331-4c73bf15f7c8
 	knative.dev/eventing-kafka v0.19.1-0.20210128073630-1d9c884c16c6
 	knative.dev/eventing-redis v0.20.1-0.20210128103531-83094dc941c0
