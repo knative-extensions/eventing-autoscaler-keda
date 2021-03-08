@@ -799,11 +799,9 @@ k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.21.1-0.20210304075215-ef6d89eff01b
+# knative.dev/eventing v0.21.1-0.20210306204021-6136d09fb405
 ## explicit
 knative.dev/eventing/pkg/apis/config
-knative.dev/eventing/pkg/apis/configs
-knative.dev/eventing/pkg/apis/configs/v1alpha1
 knative.dev/eventing/pkg/apis/duck
 knative.dev/eventing/pkg/apis/duck/v1
 knative.dev/eventing/pkg/apis/duck/v1beta1
@@ -826,7 +824,6 @@ knative.dev/eventing/pkg/apis/sources/v1beta1
 knative.dev/eventing/pkg/apis/sources/v1beta2
 knative.dev/eventing/pkg/client/clientset/versioned
 knative.dev/eventing/pkg/client/clientset/versioned/scheme
-knative.dev/eventing/pkg/client/clientset/versioned/typed/configs/v1alpha1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/eventing/v1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/eventing/v1beta1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/flows/v1
@@ -839,8 +836,6 @@ knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1alpha2
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1beta1
 knative.dev/eventing/pkg/client/clientset/versioned/typed/sources/v1beta2
 knative.dev/eventing/pkg/client/informers/externalversions
-knative.dev/eventing/pkg/client/informers/externalversions/configs
-knative.dev/eventing/pkg/client/informers/externalversions/configs/v1alpha1
 knative.dev/eventing/pkg/client/informers/externalversions/eventing
 knative.dev/eventing/pkg/client/informers/externalversions/eventing/v1
 knative.dev/eventing/pkg/client/informers/externalversions/eventing/v1beta1
@@ -863,7 +858,6 @@ knative.dev/eventing/pkg/client/injection/informers/eventing/v1/trigger
 knative.dev/eventing/pkg/client/injection/informers/factory
 knative.dev/eventing/pkg/client/injection/reconciler/eventing/v1/broker
 knative.dev/eventing/pkg/client/injection/reconciler/eventing/v1/trigger
-knative.dev/eventing/pkg/client/listers/configs/v1alpha1
 knative.dev/eventing/pkg/client/listers/eventing/v1
 knative.dev/eventing/pkg/client/listers/eventing/v1beta1
 knative.dev/eventing/pkg/client/listers/flows/v1
@@ -875,23 +869,23 @@ knative.dev/eventing/pkg/client/listers/sources/v1alpha1
 knative.dev/eventing/pkg/client/listers/sources/v1alpha2
 knative.dev/eventing/pkg/client/listers/sources/v1beta1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
-# knative.dev/eventing-awssqs v0.21.1-0.20210302205115-05b8e0db0acb
+# knative.dev/eventing-awssqs v0.21.1-0.20210304153115-152a90f5a00a
 ## explicit
 knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
-# knative.dev/eventing-kafka v0.21.1-0.20210304084815-ee7edfdd50d7
+# knative.dev/eventing-kafka v0.21.1-0.20210308090421-c1e9dbb621e3
 ## explicit
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
 knative.dev/eventing-kafka/pkg/apis/duck/v1alpha1
 knative.dev/eventing-kafka/pkg/apis/sources/v1beta1
-# knative.dev/eventing-redis v0.21.1-0.20210302220315-379a58f3cbf6
+# knative.dev/eventing-redis v0.21.1-0.20210304151515-d2dcaa9a496f
 ## explicit
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
-# knative.dev/hack v0.0.0-20210203173706-8368e1f6eacf
+# knative.dev/hack v0.0.0-20210305150220-f99a25560134
 ## explicit
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20210303192215-8fbab7ebb77b
+# knative.dev/pkg v0.0.0-20210308052421-737401c38b22
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
