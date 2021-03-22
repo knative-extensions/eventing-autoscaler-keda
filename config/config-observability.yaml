@@ -15,8 +15,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config-observability
-  namespace: eventing-autoscaler-keda
+  name: config-observability-eventing-autoscaler-keda
+  namespace: knative-eventing
   labels:
     autoscaler-keda.knative.dev/release: devel
 

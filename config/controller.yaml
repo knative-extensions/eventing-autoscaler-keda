@@ -15,24 +15,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: controller
-  namespace: eventing-autoscaler-keda
+  name: eventing-autoscaler-keda-controller
+  namespace: knative-eventing
   labels:
     eventing-autoscaler-keda.knative.dev/release: devel
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: controller
+      app: eventing-autoscaler-keda-controller
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: "false"
       labels:
-        app: controller
+        app: eventing-autoscaler-keda-controller
         eventing-autoscaler-keda.knative.dev/release: devel
     spec:
-      serviceAccountName: controller
+      serviceAccountName: eventing-autoscaler-keda
       containers:
       - name: controller
         image: ko://knative.dev/eventing-autoscaler-keda/cmd/controller
@@ -55,9 +55,9 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: CONFIG_LOGGING_NAME
-          value: config-logging
+          value: config-logging-eventing-autoscaler-keda
         - name: CONFIG_OBSERVABILITY_NAME
-          value: config-observability
+          value: config-observability-eventing-autoscaler-keda
         - name: METRICS_DOMAIN
           value: knative.dev/eventing-autoscaler-keda
       volumes:
