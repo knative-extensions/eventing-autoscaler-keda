@@ -1,4 +1,4 @@
-# cloud.google.com/go v0.73.0
+# cloud.google.com/go v0.79.0
 cloud.google.com/go/compute/metadata
 cloud.google.com/go/container/apiv1
 cloud.google.com/go/monitoring/apiv3
@@ -21,7 +21,7 @@ github.com/alecthomas/template
 github.com/alecthomas/template/parse
 # github.com/alecthomas/units v0.0.0-20201120081800-1786d5ef83d4
 github.com/alecthomas/units
-# github.com/aws/aws-sdk-go v1.37.1
+# github.com/aws/aws-sdk-go v1.37.32
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/awserr
 github.com/aws/aws-sdk-go/aws/awsutil
@@ -107,9 +107,9 @@ github.com/go-logr/logr
 github.com/go-openapi/jsonpointer
 # github.com/go-openapi/jsonreference v0.19.5
 github.com/go-openapi/jsonreference
-# github.com/go-openapi/spec v0.20.2
+# github.com/go-openapi/spec v0.20.3
 github.com/go-openapi/spec
-# github.com/go-openapi/swag v0.19.13
+# github.com/go-openapi/swag v0.19.14
 github.com/go-openapi/swag
 # github.com/gobuffalo/flect v0.2.2
 github.com/gobuffalo/flect
@@ -154,7 +154,7 @@ github.com/grpc-ecosystem/grpc-gateway/utilities
 # github.com/hashicorp/golang-lru v0.5.4
 github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
-# github.com/imdario/mergo v0.3.11
+# github.com/imdario/mergo v0.3.12
 github.com/imdario/mergo
 # github.com/jmespath/go-jmespath v0.4.0
 github.com/jmespath/go-jmespath
@@ -162,7 +162,7 @@ github.com/jmespath/go-jmespath
 github.com/josharian/intern
 # github.com/json-iterator/go v1.1.10
 github.com/json-iterator/go
-# github.com/kedacore/keda/v2 v2.1.0
+# github.com/kedacore/keda/v2 v2.2.0
 ## explicit
 github.com/kedacore/keda/v2/api/v1alpha1
 github.com/kedacore/keda/v2/pkg/generated/clientset/versioned
@@ -262,7 +262,7 @@ golang.org/x/crypto/ssh/terminal
 # golang.org/x/mod v0.4.1
 golang.org/x/mod/module
 golang.org/x/mod/semver
-# golang.org/x/net v0.0.0-20210119194325-5f4716e94777
+# golang.org/x/net v0.0.0-20210226172049-e18ecbb05110
 golang.org/x/net/context
 golang.org/x/net/context/ctxhttp
 golang.org/x/net/http/httpguts
@@ -272,17 +272,17 @@ golang.org/x/net/http2/hpack
 golang.org/x/net/idna
 golang.org/x/net/internal/timeseries
 golang.org/x/net/trace
-# golang.org/x/oauth2 v0.0.0-20210126194326-f9ce19ea3013
+# golang.org/x/oauth2 v0.0.0-20210313182246-cd4f82c27b84
 golang.org/x/oauth2
 golang.org/x/oauth2/google
 golang.org/x/oauth2/google/internal/externalaccount
 golang.org/x/oauth2/internal
 golang.org/x/oauth2/jws
 golang.org/x/oauth2/jwt
-# golang.org/x/sync v0.0.0-20201207232520-09787c993a3a
+# golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 golang.org/x/sync/errgroup
 golang.org/x/sync/semaphore
-# golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c
+# golang.org/x/sys v0.0.0-20210314195730-07df6a141424
 golang.org/x/sys/execabs
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/plan9
@@ -316,7 +316,7 @@ golang.org/x/xerrors
 golang.org/x/xerrors/internal
 # gomodules.xyz/jsonpatch/v2 v2.1.0
 gomodules.xyz/jsonpatch/v2
-# google.golang.org/api v0.36.0
+# google.golang.org/api v0.42.0
 google.golang.org/api/internal
 google.golang.org/api/internal/impersonate
 google.golang.org/api/iterator
@@ -339,7 +339,7 @@ google.golang.org/appengine/internal/socket
 google.golang.org/appengine/internal/urlfetch
 google.golang.org/appengine/socket
 google.golang.org/appengine/urlfetch
-# google.golang.org/genproto v0.0.0-20201214200347-8c77b98c765d
+# google.golang.org/genproto v0.0.0-20210315173758-2651cd453018
 google.golang.org/genproto/googleapis/api
 google.golang.org/genproto/googleapis/api/annotations
 google.golang.org/genproto/googleapis/api/distribution
@@ -457,7 +457,7 @@ gopkg.in/inf.v0
 gopkg.in/yaml.v2
 # gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 gopkg.in/yaml.v3
-# k8s.io/api v0.20.2 => k8s.io/api v0.19.7
+# k8s.io/api v0.20.4 => k8s.io/api v0.19.7
 ## explicit
 k8s.io/api/admission/v1
 k8s.io/api/admissionregistration/v1
@@ -517,7 +517,7 @@ k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/apiextensio
 k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/internalinterfaces
 k8s.io/apiextensions-apiserver/pkg/client/listers/apiextensions/v1
 k8s.io/apiextensions-apiserver/pkg/client/listers/apiextensions/v1beta1
-# k8s.io/apimachinery v0.20.2 => k8s.io/apimachinery v0.19.7
+# k8s.io/apimachinery v0.20.4 => k8s.io/apimachinery v0.19.7
 ## explicit
 k8s.io/apimachinery/pkg/api/apitesting/fuzzer
 k8s.io/apimachinery/pkg/api/equality
@@ -737,7 +737,7 @@ k8s.io/client-go/util/homedir
 k8s.io/client-go/util/keyutil
 k8s.io/client-go/util/retry
 k8s.io/client-go/util/workqueue
-# k8s.io/code-generator v0.20.0 => k8s.io/code-generator v0.19.7
+# k8s.io/code-generator v0.20.4 => k8s.io/code-generator v0.19.7
 ## explicit
 k8s.io/code-generator
 k8s.io/code-generator/cmd/client-gen
@@ -785,9 +785,9 @@ k8s.io/gengo/parser
 k8s.io/gengo/types
 # k8s.io/klog v1.0.0
 k8s.io/klog
-# k8s.io/klog/v2 v2.5.0
+# k8s.io/klog/v2 v2.8.0
 k8s.io/klog/v2
-# k8s.io/kube-openapi v0.0.0-20210113233702-8566a335510f
+# k8s.io/kube-openapi v0.0.0-20210305164622-f622666832c1
 k8s.io/kube-openapi/cmd/openapi-gen/args
 k8s.io/kube-openapi/pkg/common
 k8s.io/kube-openapi/pkg/generators
@@ -943,7 +943,7 @@ knative.dev/pkg/webhook/configmaps
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# sigs.k8s.io/controller-runtime v0.6.4
+# sigs.k8s.io/controller-runtime v0.6.5
 sigs.k8s.io/controller-runtime/pkg/scheme
 # sigs.k8s.io/structured-merge-diff/v4 v4.0.2
 sigs.k8s.io/structured-merge-diff/v4/value
