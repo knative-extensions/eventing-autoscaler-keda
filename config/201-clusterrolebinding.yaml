@@ -20,8 +20,8 @@ metadata:
     eventing-autoscaler-keda.knative.dev/release: devel
 subjects:
   - kind: ServiceAccount
-    name: controller
-    namespace: eventing-autoscaler-keda
+    name: eventing-autoscaler-keda
+    namespace: knative-eventing
 roleRef:
   kind: ClusterRole
   name: eventing-autoscaler-keda-admin

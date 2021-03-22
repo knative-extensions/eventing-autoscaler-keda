@@ -91,15 +91,15 @@ keda-operator-55658855fc-rc9rb            1/1     Running   0          5m3s
 
 ```bash
 export KO_DOCKER_REPO=...
-ko apply -f /config
+ko apply -f config/
 ```
 
-Confirm there is 1 pod running in `eventing-autoscaler-keda` namespace:
+Confirm there is a pod of `eventing-autoscaler-keda` controller running in `knative-eventing` namespace:
 
 ```bash
-$ kubectl get pods -n eventing-autoscaler-keda
-NAME                          READY   STATUS    RESTARTS   AGE
-controller-76fb8d6756-5f4vm   1/1     Running   0          21m
+$ kubectl get pod -n knative-eventing -l app=eventing-autoscaler-keda-controller
+NAME                                                   READY   STATUS    RESTARTS   AGE
+eventing-autoscaler-keda-controller-69bf565cb8-r5922   1/1     Running   0          3m7s
 ```
 
 ## Example of Kafka Source autoscaled by KEDA
