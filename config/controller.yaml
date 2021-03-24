@@ -33,6 +33,8 @@ spec:
         eventing-autoscaler-keda.knative.dev/release: devel
     spec:
       serviceAccountName: eventing-autoscaler-keda
+      securityContext:
+        runAsUser: 65532
       containers:
       - name: controller
         image: ko://knative.dev/eventing-autoscaler-keda/cmd/controller

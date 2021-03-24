@@ -90,3 +90,11 @@ rules:
     - "leases"
     verbs:
     - "*"
+  - apiGroups:
+    - security.openshift.io
+    resources:
+    - securitycontextconstraints
+    resourceNames:
+    - anyuid
+    verbs:
+    - use
