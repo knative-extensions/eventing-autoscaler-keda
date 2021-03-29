@@ -89,7 +89,7 @@ readonly KEDA_NAMESPACE="keda"
 
 # KEDA-Eventing autoscaler
 readonly EVENTING_AUTOSCALER_KEDA_CONFIG="./config"
-readonly EVENTING_AUTOSCALER_KEDA_NAMESPACE="eventing-autoscaler-keda"
+readonly EVENTING_AUTOSCALER_KEDA_NAMESPACE="knative-eventing"
 
 # Namespaces where we install Eventing components
 # This is the namespace of knative-eventing itself
@@ -147,7 +147,8 @@ function knative_setup() {
   wait_until_pods_running "${EVENTING_NAMESPACE}" || fail_test "Knative Kafka did not come up"
 
   kafka_setup
-  #zipkin_setup
+  keda_setup
+  #zipkin_setup # not used yet.
 }
 
 # Setup zipkin
@@ -193,8 +194,9 @@ function knative_teardown() {
     fi
   fi
 
-  #zipkin_teardown
   kafka_teardown
+  keda_teardown
+  #zipkin_teardown
 }
 
 # setup strimzi

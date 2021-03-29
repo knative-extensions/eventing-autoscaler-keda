@@ -30,8 +30,8 @@ test/presubmit-tests.sh --integration-tests
 ```
 
 _Note that if the tests you are running include `integration tests`, it will
-create a new GKE cluster in project `$PROJECT_ID`, start Knative Serving and
-Eventing system, upload test images to `$KO_DOCKER_REPO`, and run all
+create a new GKE cluster in project `$PROJECT_ID`, start KEDA and various
+Knative components, upload test images to `$KO_DOCKER_REPO`, and run all
 `e2e-*tests.sh` scripts under [`test`](.). After the tests finish, it will
 delete the cluster._
 
@@ -51,7 +51,7 @@ and run the end-to-end tests. After the tests finishes, it will delete the
 cluster._
 
 If you have already created your own Kubernetes cluster but haven't installed
-Knative, you can run with `test/e2e-tests.sh --run-tests`.
+Knative, you can run with `test/e2e-tests.sh --run-tests (--kafka-source|--kafka-mt-source)`.
 
 If you want to skip tearing down your cluster, add the `--skip-teardowns` flag.
 
