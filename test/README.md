@@ -1,6 +1,7 @@
 # Test
 
-This directory contains tests and testing docs for `Knative Eventing Autoscaler KEDA`.
+This directory contains tests and testing docs for
+`Knative Eventing Autoscaler KEDA`.
 
 - [Unit tests](#running-unit-tests) reside in the codebase alongside the code
   they test
@@ -51,7 +52,8 @@ and run the end-to-end tests. After the tests finishes, it will delete the
 cluster._
 
 If you have already created your own Kubernetes cluster but haven't installed
-Knative, you can run with `test/e2e-tests.sh --run-tests (--kafka-source|--kafka-mt-source)`.
+Knative, you can run with
+`test/e2e-tests.sh --run-tests (--kafka-source|--kafka-mt-source)`.
 
 If you want to skip tearing down your cluster, add the `--skip-teardowns` flag.
 
@@ -103,10 +105,8 @@ There's couple of things you need to install before running e2e tests locally.
 1. A docker repo containing [the test images](#test-images)
 1. [KEDA](https://keda.sh)
 1. When running the Kafka source tests, either
-    - [Knative Kafka Source](https://github.com/knative-sandbox/eventing-kafka/tree/main/config/source/single)
-    - [Knative Multi-Tenant Kafka Source](https://github.com/knative-sandbox/eventing-kafka/tree/main/config/source/multi)
-
-
+   - [Knative Kafka Source](https://github.com/knative-sandbox/eventing-kafka/tree/main/config/source/single)
+   - [Knative Multi-Tenant Kafka Source](https://github.com/knative-sandbox/eventing-kafka/tree/main/config/source/multi)
 
 ## Test images
 
