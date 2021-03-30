@@ -48,9 +48,6 @@ spec:
         ports:
         - name: metrics
           containerPort: 9090
-        volumeMounts:
-        - name: config-logging
-          mountPath: /etc/config-logging
         env:
         - name: SYSTEM_NAMESPACE
           valueFrom:
@@ -62,7 +59,3 @@ spec:
           value: config-observability-eventing-autoscaler-keda
         - name: METRICS_DOMAIN
           value: knative.dev/eventing-autoscaler-keda
-      volumes:
-        - name: config-logging
-          configMap:
-            name: config-logging
