@@ -19,11 +19,18 @@ package svc
 import (
 	"context"
 
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"knative.dev/pkg/apis"
 	duckv1 "knative.dev/pkg/apis/duck/v1"
 	"knative.dev/pkg/tracker"
 	"knative.dev/reconciler-test/pkg/feature"
+	"knative.dev/reconciler-test/pkg/k8s"
 	"knative.dev/reconciler-test/pkg/manifest"
 )
+
+func Gvr() schema.GroupVersionResource {
+	return schema.GroupVersionResource{Group: "", Version: "v1", Resource: "services"}
+}
 
 // Install will create a Service resource mapping :80 to :8080 on the provided
 // selector for pods.
@@ -62,4 +69,9 @@ func AsDestinationRef(name string) *duckv1.Destination {
 	return &duckv1.Destination{
 		Ref: AsRef(name),
 	}
+}
+
+// Address
+func Address(ctx context.Context, name string) (*apis.URL, error) {
+	return k8s.Address(ctx, Gvr(), name)
 }
