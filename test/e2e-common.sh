@@ -108,11 +108,6 @@ readonly KNATIVE_EVENTING_KAFKA_MT_SOURCE_RELEASE="$(get_latest_knative_yaml_sou
 
 #
 function knative_setup() {
-  if [[ "$TEST_KAFKA_SOURCE" == 0 && "$TEST_KAFKA_MT_SOURCE" == 0 ]]; then
-    echo "ERROR: missing or invalid test selector flag (either --kafka-source or --kafka-mt-source)"
-    exit 1
-  fi
-
   if is_release_branch; then
     if [[ "$TEST_KAFKA_SOURCE" == "1" ]]; then
       echo ">> Install Kafka source from ${KNATIVE_EVENTING_KAFKA_SOURCE_RELEASE}"
@@ -120,6 +115,9 @@ function knative_setup() {
     elif [[ "$TEST_KAFKA_MT_SOURCE" == "1" ]]; then
       echo ">> Install Kafka mt source from ${KNATIVE_EVENTING_KAFKA_MT_SOURCE_RELEASE}"
       kubectl apply -f ${KNATIVE_EVENTING_KAFKA_MT_SOURCE_RELEASE}
+    else
+      echo ">> Nothing to setup"
+      return 0
     fi
   else
     if [[ "$TEST_KAFKA_SOURCE" == "1" ]]; then
@@ -142,6 +140,9 @@ function knative_setup() {
       cd eventing-kafka
       ko apply -f "${KAFKA_MT_SOURCE_CONFIG}"
       popd
+    else
+      echo ">> Nothing to setup"
+      return 0
     fi
   fi
   wait_until_pods_running "${EVENTING_NAMESPACE}" || fail_test "Knative Kafka did not come up"
