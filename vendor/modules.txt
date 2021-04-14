@@ -795,7 +795,7 @@ k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.22.1-0.20210412234459-68afe5441d80
+# knative.dev/eventing v0.22.1-0.20210413200801-7544bdbd2f9b
 ## explicit
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -858,7 +858,7 @@ knative.dev/eventing/pkg/client/listers/sources/v1alpha2
 knative.dev/eventing/pkg/client/listers/sources/v1beta1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/test/rekt/resources/svc
-# knative.dev/eventing-awssqs v0.22.0
+# knative.dev/eventing-awssqs v0.22.1-0.20210414002701-ca508fc349fd
 ## explicit
 knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
 # knative.dev/eventing-kafka v0.22.1-0.20210413130700-d9460b50e16a
@@ -933,7 +933,7 @@ knative.dev/pkg/webhook/configmaps
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20210412220859-730c55592c9b
+# knative.dev/reconciler-test v0.0.0-20210414002500-fe2c0060d76e
 ## explicit
 knative.dev/reconciler-test/pkg/environment
 knative.dev/reconciler-test/pkg/feature
@@ -942,6 +942,7 @@ knative.dev/reconciler-test/pkg/k8s
 knative.dev/reconciler-test/pkg/manifest
 knative.dev/reconciler-test/pkg/milestone
 knative.dev/reconciler-test/pkg/state
+knative.dev/reconciler-test/resources/svc
 # sigs.k8s.io/controller-runtime v0.6.5
 sigs.k8s.io/controller-runtime/pkg/scheme
 # sigs.k8s.io/structured-merge-diff/v4 v4.0.2
