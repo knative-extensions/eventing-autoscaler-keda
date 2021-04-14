@@ -201,8 +201,6 @@ github.com/cloudevents/sdk-go/observability/opencensus/v2 v2.4.0/go.mod h1:rFV3J
 github.com/cloudevents/sdk-go/protocol/kafka_sarama/v2 v2.2.0/go.mod h1:XbBXL/a5TGNGs5N4UreDCIK7F71MNrXURJeVXury+XY=
 github.com/cloudevents/sdk-go/v2 v2.0.0/go.mod h1:3CTrpB4+u7Iaj6fd7E2Xvm5IxMdRoaAhqaRVnOr2rCU=
 github.com/cloudevents/sdk-go/v2 v2.2.0/go.mod h1:3CTrpB4+u7Iaj6fd7E2Xvm5IxMdRoaAhqaRVnOr2rCU=
-github.com/cloudevents/sdk-go/v2 v2.3.1 h1:QRTu0yRA4FbznjRSds0/4Hy6cVYpWV2wInlNJSHWAtw=
-github.com/cloudevents/sdk-go/v2 v2.3.1/go.mod h1:4fO2UjPMYYR1/7KPJQCwTPb0lFA8zYuitkUpAZFSY1Q=
 github.com/cloudevents/sdk-go/v2 v2.4.0 h1:IkzAOizTvn+M13KWDLFOiTb44YBuwAvbenzSg43bWM4=
 github.com/cloudevents/sdk-go/v2 v2.4.0/go.mod h1:MZiMwmAh5tGj+fPFvtHv9hKurKqXtdB9haJYMJ/7GJY=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
@@ -1561,13 +1559,13 @@ k8s.io/utils v0.0.0-20210111153108-fddb29f9d009 h1:0T5IaWHO3sJTEmCP6mUlBvMukxPKU
 k8s.io/utils v0.0.0-20210111153108-fddb29f9d009/go.mod h1:jPW/WVKK9YHAvNhRxK0md/EJ228hCsBRufyofKtW8HA=
 knative.dev/caching v0.0.0-20210412064841-08a0136e4368/go.mod h1:TWmp4xDp4geXVAu4+XZGUGwnroD4gtES89d6wSQx+ME=
 knative.dev/control-protocol v0.0.0-20210402065223-6e2383c7197d/go.mod h1:82/EwanWb1EjpPVz7ts5IxLi0GlX0eFZ5oVa8/xLMuc=
-knative.dev/eventing v0.22.0 h1:esDaddfSmiVhLKDnUCVVunSdNeHklVEz0fsqs3NupuQ=
-knative.dev/eventing v0.22.0/go.mod h1:LOG7bh0eZQkbYANcnORwke6Yy6aUu62o8GeByaOFfRQ=
 knative.dev/eventing v0.22.1-0.20210406191848-5171353bd1ed/go.mod h1:LOG7bh0eZQkbYANcnORwke6Yy6aUu62o8GeByaOFfRQ=
 knative.dev/eventing v0.22.1-0.20210412234459-68afe5441d80 h1:vLC0NxPuVqixKbL1ihucBzlY4pPG7Lf5AZbLS4hoGnw=
 knative.dev/eventing v0.22.1-0.20210412234459-68afe5441d80/go.mod h1:yGuyRWGY0gWpEX+/n+Qc1QoucfVuhPX/0T26fvxIXKQ=
-knative.dev/eventing-awssqs v0.22.0 h1:CFHgvLuyvw+VAB1UbO53Rhz46fFoqCVxnpTVU+wAe4w=
-knative.dev/eventing-awssqs v0.22.0/go.mod h1:Dnp/t9OvOYbWhUjc38Omw7po8IPaK23ObUpnKgU/MJo=
+knative.dev/eventing v0.22.1-0.20210413200801-7544bdbd2f9b h1:JRV0Py/8lgGQMs6zVDdr2MrqwJhpbNe+Fr7fu602XWQ=
+knative.dev/eventing v0.22.1-0.20210413200801-7544bdbd2f9b/go.mod h1:yGuyRWGY0gWpEX+/n+Qc1QoucfVuhPX/0T26fvxIXKQ=
+knative.dev/eventing-awssqs v0.22.1-0.20210414002701-ca508fc349fd h1:CcWZy3k1cbVxqiNhqY6zIZLU1hQuuZHjVYXDfC62j+4=
+knative.dev/eventing-awssqs v0.22.1-0.20210414002701-ca508fc349fd/go.mod h1:InLykgfov2xSyNTN78lvIbmKJWlA5TQKAbvwMsn1rY4=
 knative.dev/eventing-kafka v0.22.1-0.20210413130700-d9460b50e16a h1:D9+XQNNGVxp/Y0Nt1szuV9ifXFv16/cCUxnvZRw8xio=
 knative.dev/eventing-kafka v0.22.1-0.20210413130700-d9460b50e16a/go.mod h1:cXN7glYiy5/oRLqQJpBZVvztfE7H4iCiHHWHo+NIXXU=
 knative.dev/eventing-redis v0.22.1-0.20210413051659-94c719d48f90 h1:IoWyQgUHEOvABZ2+myqD4Jhd22KKdS598UhZq0GE7no=
@@ -1593,6 +1591,8 @@ knative.dev/pkg v0.0.0-20210412173742-b51994e3b312/go.mod h1:V/yjYpwRpIoUCavOoF8
 knative.dev/reconciler-test v0.0.0-20210329214021-2a67496462a4/go.mod h1:qLfJMHc0i9ENTSet/SUp/FcQm4QVfNTX8ZC//aVQN0M=
 knative.dev/reconciler-test v0.0.0-20210412220859-730c55592c9b h1:iZmF4VAtAVmgroOTeZkcEMADn2hTvJ/x462s+WJe7Mc=
 knative.dev/reconciler-test v0.0.0-20210412220859-730c55592c9b/go.mod h1:25eIFZKVo0CgZ8hGCK9Lxv2sH9VIZGQyCX64RQnP9Uk=
+knative.dev/reconciler-test v0.0.0-20210414002500-fe2c0060d76e h1:EmbRUYaefxvGVZahiALs1WVDL6Krdkglz4wgiSzg7X4=
+knative.dev/reconciler-test v0.0.0-20210414002500-fe2c0060d76e/go.mod h1:UD3bM2JfIECHyak+CEE+2JhmqCeQzC2ILtWAJo6s9mU=
 knative.dev/serving v0.22.1-0.20210412220359-a4f70f676819/go.mod h1:oqw+eK32RGQ0aSqTxGfZXL0awAy7ym5pGDJEYvEyu8U=
 modernc.org/cc v1.0.0/go.mod h1:1Sk4//wdnYJiUIxnW8ddKpaOJCF37yAdqYnkxUpaYxw=
 modernc.org/golex v1.0.0/go.mod h1:b/QX9oBD/LhixY6NDh+IdGv17hgB+51fET1i2kPSmvk=
