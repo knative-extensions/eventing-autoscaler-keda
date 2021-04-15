@@ -135,7 +135,7 @@ spec:
   bootstrapServers:
     - my-cluster-kafka-bootstrap.openshift-operators:9092
   topics:
-    - test
+    - my-topic
   sink:
     ref:
       apiVersion: serving.knative.dev/v1

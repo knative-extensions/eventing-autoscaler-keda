@@ -11,10 +11,9 @@ metadata:
     keda.autoscaling.knative.dev/cooldownPeriod: "10" 
     keda.autoscaling.knative.dev/kafkaLagThreshold: "2"
 spec:
-  consumers: 10
   consumerGroup: knative-group
   bootstrapServers:
-    - my-cluster-kafka-bootstrap.kafka:9092
+    - my-cluster-kafka-bootstrap.openshift-operators:9092
   topics:
     - my-topic
   sink:
