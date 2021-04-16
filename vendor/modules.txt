@@ -886,7 +886,6 @@ knative.dev/pkg/apis/testing/fuzzer
 knative.dev/pkg/changeset
 knative.dev/pkg/client/injection/apiextensions/client
 knative.dev/pkg/client/injection/apiextensions/informers/apiextensions/v1/customresourcedefinition
-knative.dev/pkg/client/injection/apiextensions/informers/apiextensions/v1beta1/customresourcedefinition
 knative.dev/pkg/client/injection/apiextensions/informers/factory
 knative.dev/pkg/client/injection/apiextensions/reconciler/apiextensions/v1/customresourcedefinition
 knative.dev/pkg/client/injection/ducks/duck/v1/addressable
