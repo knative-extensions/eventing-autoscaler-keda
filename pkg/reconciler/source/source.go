@@ -59,25 +59,22 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 	// Convert the namespace/name string into a distinct namespace and name
 	namespace, name, err := cache.SplitMetaNamespaceKey(key)
 	if err != nil {
-		logging.FromContext(ctx).Errorw("invalid resource key")
+		logging.FromContext(ctx).Errorw("invalid resource key", zap.String("key", key))
 		return nil
 	}
 
 	// Get the Source resource with this namespace/name
 	runtimeObj, err := r.sourceLister.ByNamespace(namespace).Get(name)
-	if err != nil {
-		logging.FromContext(ctx).Errorw("not able to get runtime object")
-		return nil
-	}
 	if apierrors.IsNotFound(err) {
 		// The resource may no longer exist, in which case we stop processing.
-		logging.FromContext(ctx).Errorw("Source in work queue no longer exists")
+		logging.FromContext(ctx).Infow("Source in work queue no longer exists")
 		return nil
 	} else if err != nil {
+		logging.FromContext(ctx).Errorw("not able to get runtime object")
 		return err
 	}
 
-	logging.FromContext(ctx).Info("RECONCILE kind: " + runtimeObj.GetObjectKind().GroupVersionKind().String())
+	logging.FromContext(ctx).Infow("Reconcile Knative Source", zap.String("kind", runtimeObj.GetObjectKind().GroupVersionKind().String()))
 
 	var ok bool
 	if _, ok = runtimeObj.(*duckv1.Source); !ok {

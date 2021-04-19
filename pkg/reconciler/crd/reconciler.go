@@ -25,7 +25,6 @@ import (
 	"sync"
 
 	"go.uber.org/zap"
-	corev1 "k8s.io/api/core/v1"
 	v1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/discovery"
@@ -35,25 +34,11 @@ import (
 	"knative.dev/pkg/configmap"
 	"knative.dev/pkg/controller"
 	"knative.dev/pkg/logging"
-	"knative.dev/pkg/reconciler"
 	pkgreconciler "knative.dev/pkg/reconciler"
 
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/source"
 )
-
-// newReconciledNormal makes a new reconciler event with event type Normal, and
-// reason CustomResourceDefinitionReconciled.
-func newReconciledNormal(namespace, name string) reconciler.Event {
-	return reconciler.NewEvent(corev1.EventTypeNormal, "CustomResourceDefinitionReconciled", "CustomResourceDefinition reconciled: \"%s/%s\"", namespace, name)
-}
-
-// crdReconcileIgnored makes a new reconciler event with event type Normal, and
-// reason CustomResourceDefinitionReconcileIgnored.
-func crdReconcileIgnored(namespace, name string) reconciler.Event {
-	return reconciler.NewEvent(corev1.EventTypeNormal, "CustomResourceDefinitionReconcileIgnored",
-		"CustomResourceDefinition reconciliation ignored, KEDA autoscaling for this CRD is not supported: \"%s/%s\"", namespace, name)
-}
 
 type runningController struct {
 	controller *controller.Impl
@@ -96,7 +81,8 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, crd *v1.CustomResourceDe
 
 	// check if KEDA autoscaling is supported for this CRD
 	if !keda.SupportedCRD(*gvk) {
-		return crdReconcileIgnored(crd.Namespace, crd.Name)
+		logging.FromContext(ctx).Infof("CustomResourceDefinition reconciliation ignored, KEDA autoscaling for this CRD is not supported: \"%s/%s\"", crd.Namespace, crd.Name)
+		return nil
 	}
 
 	// check if KEDA is installed
@@ -126,7 +112,7 @@ func (r *Reconciler) ReconcileKind(ctx context.Context, crd *v1.CustomResourceDe
 
 	logging.FromContext(ctx).Infow("Reconciled GVR and GVK", gvr, gvk, zap.String("CRD", crd.Name))
 
-	return newReconciledNormal(crd.Namespace, crd.Name)
+	return nil
 }
 
 // Optionally, use FinalizeKind to add finalizers. FinalizeKind will be called
