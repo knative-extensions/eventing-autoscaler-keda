@@ -74,7 +74,7 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		return err
 	}
 
-	logging.FromContext(ctx).Infow("Reconcile Knative Source", "kind", runtimeObj.GetObjectKind().GroupVersionKind().String())
+	logging.FromContext(ctx).Infow("Reconcile Knative Source", zap.String("kind", runtimeObj.GetObjectKind().GroupVersionKind().String()))
 
 	var ok bool
 	if _, ok = runtimeObj.(*duckv1.Source); !ok {
