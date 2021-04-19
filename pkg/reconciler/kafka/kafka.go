@@ -93,7 +93,20 @@ func GenerateTriggerAuthentication(src *kafkav1beta1.KafkaSource) (*kedav1alpha1
 	}
 
 	if src.Spec.KafkaAuthSpec.Net.SASL.Enable {
-		secret.StringData["sasl"] = "plaintext"
+
+		if src.Spec.KafkaAuthSpec.Net.SASL.Type.SecretKeyRef != nil {
+			switch src.Spec.KafkaAuthSpec.Net.SASL.Type.SecretKeyRef.Name {
+			case "SCRAM-SHA-256":
+				secret.StringData["sasl"] = "scram_sha256"
+			case "SCRAM-SHA-512":
+				secret.StringData["sasl"] = "scram_sha512"
+			case "PLAIN":
+				secret.StringData["sasl"] = "plaintext"
+			}
+		} else {
+			secret.StringData["sasl"] = "plaintext"
+		}
+
 		sasl := kedav1alpha1.AuthSecretTargetRef{Parameter: "sasl", Name: secret.Name, Key: "sasl"}
 
 		username := kedav1alpha1.AuthSecretTargetRef{
