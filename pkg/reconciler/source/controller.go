@@ -22,6 +22,7 @@ import (
 
 	"go.uber.org/zap"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/tools/cache"
 
@@ -35,7 +36,7 @@ import (
 	pkgreconciler "knative.dev/pkg/reconciler"
 
 	kedaclient "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
-	//scaledobjectinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/scaledobject"
+	scaledobjectinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/scaledobject"
 	kedaresources "knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 )
 
@@ -70,7 +71,7 @@ func NewController(crd string, gvr schema.GroupVersionResource, gvk schema.Group
 			}
 		}
 
-		//	scaledobjectInformer := scaledobjectinformer.Get(ctx)
+		scaledobjectInformer := scaledobjectinformer.Get(ctx)
 
 		r := &Reconciler{
 			kubeClient:      kubeclient.Get(ctx),
@@ -88,11 +89,23 @@ func NewController(crd string, gvr schema.GroupVersionResource, gvk schema.Group
 			Handler:    controller.HandleAll(impl.Enqueue),
 		})
 
-		// FIXME don't handle updates on ScaledObject.Status field
-		// scaledobjectInformer.Informer().AddEventHandler(cache.FilteringResourceEventHandler{
-		// 	FilterFunc: controller.FilterControllerGVK(gvk),
-		// 	Handler:    controller.HandleAll(impl.EnqueueControllerOf),
-		// })
+		// don't handle updates on ScaledObject.Status field
+		scaledobjectInformer.Informer().AddEventHandler(cache.FilteringResourceEventHandler{
+			FilterFunc: controller.FilterControllerGVK(gvk),
+			Handler: cache.ResourceEventHandlerFuncs{
+				AddFunc: impl.EnqueueControllerOf,
+				UpdateFunc: func(old, new interface{}) {
+					if mOld, ok := old.(metav1.Object); ok {
+						if mNew, ok := new.(metav1.Object); ok {
+							if mNew.GetGeneration() != mOld.GetGeneration() {
+								impl.EnqueueControllerOf(new)
+							}
+						}
+					}
+				},
+				DeleteFunc: impl.EnqueueControllerOf,
+			},
+		})
 
 		return impl
 	}
