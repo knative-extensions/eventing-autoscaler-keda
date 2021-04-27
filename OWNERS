@@ -1,6 +1,12 @@
 # The OWNERS file is used by prow to automatically merge approved PRs.
 
 approvers:
-- eventing-leads
-- toc
-- zroubalik
+- technical-oversight-committee
+- knative-release-leads
+- eventing-writers
+- eventing-autoscaler-keda-approvers
+
+reviewers:
+- eventing-writers
+- eventing-autoscaler-keda-approvers
+
