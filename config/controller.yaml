@@ -36,7 +36,7 @@ spec:
       securityContext:
         runAsUser: 65532
       containers:
-      - name: controller
+      - name: eventing-autoscaler-keda-controller
         image: ko://knative.dev/eventing-autoscaler-keda/cmd/controller
         resources:
           requests:
