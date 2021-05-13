@@ -52,12 +52,19 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication 
 		return nil, err
 	}
 
+	allowIdleConsumers := "false"
+	if src.Status.Placement != nil {
+		// KafkaSource is being managed by the multi-tenant controller.
+		allowIdleConsumers = "true"
+	}
+
 	for _, topic := range src.Spec.Topics {
 		triggerMetadata := map[string]string{
-			"bootstrapServers": bootstrapServers,
-			"consumerGroup":    consumerGroup,
-			"topic":            topic,
-			"lagThreshold":     strconv.Itoa(int(*lagThreshold)),
+			"bootstrapServers":   bootstrapServers,
+			"consumerGroup":      consumerGroup,
+			"topic":              topic,
+			"lagThreshold":       strconv.Itoa(int(*lagThreshold)),
+			"allowIdleConsumers": allowIdleConsumers,
 		}
 
 		trigger := kedav1alpha1.ScaleTriggers{
