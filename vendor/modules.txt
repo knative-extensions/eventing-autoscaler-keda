@@ -855,7 +855,7 @@ knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
 knative.dev/eventing-kafka/pkg/apis/duck/v1alpha1
 knative.dev/eventing-kafka/pkg/apis/sources/v1beta1
-# knative.dev/eventing-redis v0.22.1-0.20210518164215-32cf805fb2cb
+# knative.dev/eventing-redis v0.23.0
 ## explicit
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
