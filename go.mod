@@ -13,7 +13,7 @@ require (
 	knative.dev/eventing v0.23.0
 	knative.dev/eventing-awssqs v0.23.0
 	knative.dev/eventing-kafka v0.23.0
-	knative.dev/eventing-redis v0.22.1-0.20210518164215-32cf805fb2cb
+	knative.dev/eventing-redis v0.23.0
 	knative.dev/hack v0.0.0-20210428122153-93ad9129c268
 	knative.dev/pkg v0.0.0-20210510175900-4564797bf3b7
 	knative.dev/reconciler-test v0.0.0-20210512062647-d5adf72546be
