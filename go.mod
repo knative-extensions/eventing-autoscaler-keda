@@ -1,6 +1,6 @@
 module knative.dev/eventing-autoscaler-keda
 
-go 1.15
+go 1.16
 
 require (
 	github.com/kedacore/keda/v2 v2.2.0
