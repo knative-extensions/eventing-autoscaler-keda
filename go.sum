@@ -1572,10 +1572,12 @@ knative.dev/eventing-kafka v0.23.0/go.mod h1:49wvDOz4nqwlp+dugFmgCjriIkwBAfV33u0
 knative.dev/eventing-redis v0.23.0 h1:Ne+uzqH3rM4Khv2chxPcDZ4C74jB8IXJq9+g19U7its=
 knative.dev/eventing-redis v0.23.0/go.mod h1:GxQpE9/GamoPGuXjoGnG2QnyMyQ4HarsA+cf0IOaV90=
 knative.dev/hack v0.0.0-20210309141825-9b73a256fd9a/go.mod h1:PHt8x8yX5Z9pPquBEfIj0X66f8iWkWfR0S/sarACJrI=
+knative.dev/hack v0.0.0-20210309141825-9b73a256fd9a/go.mod h1:PHt8x8yX5Z9pPquBEfIj0X66f8iWkWfR0S/sarACJrI=
 knative.dev/hack v0.0.0-20210428122153-93ad9129c268 h1:lBIj9Epd9UQ55NEaHzAdY/UZbuaegCdGPKVC2+Z68Q0=
 knative.dev/hack v0.0.0-20210428122153-93ad9129c268/go.mod h1:PHt8x8yX5Z9pPquBEfIj0X66f8iWkWfR0S/sarACJrI=
 knative.dev/hack/schema v0.0.0-20210428122153-93ad9129c268/go.mod h1:ffjwmdcrH5vN3mPhO8RrF2KfNnbHeCE2C60A+2cv3U0=
 knative.dev/networking v0.0.0-20210512050647-ace2d3306f0b/go.mod h1:y7RmP2/dHO/DAC1QmpUtgTVF6/Z8whaL+wjgey+HthU=
+knative.dev/pkg v0.0.0-20210315160101-6a33a1ab29ac/go.mod h1:7swdJzGy7U6iq8538vt2yFsZJqmnSAxMFexWK9Ktyes=
 knative.dev/pkg v0.0.0-20210315160101-6a33a1ab29ac/go.mod h1:7swdJzGy7U6iq8538vt2yFsZJqmnSAxMFexWK9Ktyes=
 knative.dev/pkg v0.0.0-20210510175900-4564797bf3b7 h1:i4P8emOPrLctmbaPHp5eRIOqz+XTOkit7KgZeS+onKs=
 knative.dev/pkg v0.0.0-20210510175900-4564797bf3b7/go.mod h1:fIl4l4OmZodkElyaHoT0LCF5wT+3+P/kinawQ4XlLtE=
