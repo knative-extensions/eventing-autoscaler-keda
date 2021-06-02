@@ -3,13 +3,13 @@ module knative.dev/eventing-autoscaler-keda
 go 1.16
 
 require (
-	github.com/kedacore/keda/v2 v2.2.0
+	github.com/kedacore/keda/v2 v2.3.0
 	go.uber.org/zap v1.16.0
-	k8s.io/api v0.20.4
+	k8s.io/api v0.20.7
 	k8s.io/apiextensions-apiserver v0.19.7
-	k8s.io/apimachinery v0.20.4
+	k8s.io/apimachinery v0.20.7
 	k8s.io/client-go v11.0.1-0.20190805182717-6502b5e7b1b5+incompatible
-	k8s.io/code-generator v0.20.4
+	k8s.io/code-generator v0.20.7
 	knative.dev/eventing v0.23.1-0.20210528215830-b813a54f049b
 	knative.dev/eventing-awssqs v0.23.1-0.20210528155729-47d2aa10fba2
 	knative.dev/eventing-kafka v0.23.1-0.20210528154330-f77841ca86d9
