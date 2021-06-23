@@ -22,8 +22,8 @@ import (
 	"strconv"
 	"testing"
 
-	"knative.dev/eventing-autoscaler-keda/test/e2e/features/kafkasource"
-	ks "knative.dev/eventing-autoscaler-keda/test/e2e/resources/kafkasource"
+	"knative.dev/eventing-kafka/test/rekt/features/kafkasource"
+	ks "knative.dev/eventing-kafka/test/rekt/resources/kafkasource"
 	_ "knative.dev/pkg/system/testing"
 )
 
@@ -44,7 +44,6 @@ func TestSmoke_KafkaSource(t *testing.T) {
 	configs := [][]ks.CfgFn{
 		{
 			ks.WithBootstrapServers([]string{"my-cluster-kafka-bootstrap.kafka:9092"}),
-			ks.WithTopics([]string{"topic-1"}),
 		},
 	}
 
