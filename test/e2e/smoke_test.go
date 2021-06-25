@@ -42,7 +42,6 @@ func TestSmoke_KafkaSource(t *testing.T) {
 	ctx, env := global.Environment(
 		knative.WithKnativeNamespace(system.Namespace()),
 		knative.WithLoggingConfig,
-		knative.WithTracingConfig,
 		k8s.WithEventListener,
 		environment.WithPollTimings(2*time.Second, 20*time.Second),
 		environment.Managed(t),
