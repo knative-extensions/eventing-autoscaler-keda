@@ -22,4 +22,5 @@ import (
 
 	// codegen: hack/generate-knative.sh
 	_ "knative.dev/pkg/hack"
+	_ "knative.dev/reconciler-test/cmd/eventshub"
 )

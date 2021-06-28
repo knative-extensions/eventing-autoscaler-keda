@@ -19,42 +19,34 @@ limitations under the License.
 package e2e
 
 import (
-	"strconv"
 	"testing"
+	"time"
 
-	"knative.dev/eventing-autoscaler-keda/test/e2e/features/kafkasource"
-	ks "knative.dev/eventing-autoscaler-keda/test/e2e/resources/kafkasource"
+	"knative.dev/eventing-kafka/test/rekt/features/kafkasource"
+	ks "knative.dev/eventing-kafka/test/rekt/resources/kafkasource"
+	"knative.dev/pkg/system"
 	_ "knative.dev/pkg/system/testing"
+	"knative.dev/reconciler-test/pkg/environment"
+	"knative.dev/reconciler-test/pkg/k8s"
+	"knative.dev/reconciler-test/pkg/knative"
+)
+
+const (
+	kafkaBootstrapUrlPlain = "my-cluster-kafka-bootstrap.kafka.svc:9092"
 )
 
 // TestSmoke_KafkaSource
 func TestSmoke_KafkaSource(t *testing.T) {
 	t.Parallel()
 
-	ctx, env := global.Environment()
-	t.Cleanup(env.Finish)
+	ctx, env := global.Environment(
+		knative.WithKnativeNamespace(system.Namespace()),
+		knative.WithLoggingConfig,
+		k8s.WithEventListener,
+		environment.WithPollTimings(2*time.Second, 20*time.Second),
+		environment.Managed(t),
+	)
 
-	names := []string{
-		"customname",
-		"name-with-dash",
-		"name1with2numbers3",
-		"name63-0123456789012345678901234567890123456789012345678901234",
-	}
-
-	configs := [][]ks.CfgFn{
-		{
-			ks.WithBootstrapServers([]string{"my-cluster-kafka-bootstrap.kafka:9092"}),
-			ks.WithTopics([]string{"topic-1"}),
-		},
-	}
-
-	for _, name := range names {
-		for i, cfg := range configs {
-			n := name + strconv.Itoa(i) // Make the name unique for each config.
-			if len(n) >= 64 {
-				n = n[:63] // 63 is the max length.
-			}
-			env.Test(ctx, t, kafkasource.KafkaSourceGoesReady(n, cfg...))
-		}
-	}
+	env.Test(ctx, t,
+		kafkasource.KafkaSourceGoesReady("readysource", ks.WithBootstrapServers([]string{kafkaBootstrapUrlPlain})))
 }
