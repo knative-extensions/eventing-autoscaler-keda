@@ -1917,12 +1917,12 @@ knative.dev/caching v0.0.0-20210622183028-95f67e075071/go.mod h1:9gwZcCBtmo9pi1o
 knative.dev/control-protocol v0.0.0-20210622195244-f6f46782b93d/go.mod h1:7KaKumGBRwejhysypmTvkIdFbs0RQ5ZgiziTGehvZTg=
 knative.dev/eventing v0.23.1-0.20210624052545-d69382b45e27/go.mod h1:9xo0SWkIfpXrx0lvGQO7MUlPF8cu+QCMd2gGxj6wxrU=
 knative.dev/eventing v0.23.1-0.20210624083445-2fcbc0ac500d/go.mod h1:9xo0SWkIfpXrx0lvGQO7MUlPF8cu+QCMd2gGxj6wxrU=
-knative.dev/eventing v0.23.1-0.20210624151846-c84fe22c23a4 h1:G0TJVd/t9Kked1mekzEaRlc6XB7VYqJGaBNoGJ1Z7y0=
-knative.dev/eventing v0.23.1-0.20210624151846-c84fe22c23a4/go.mod h1:9xo0SWkIfpXrx0lvGQO7MUlPF8cu+QCMd2gGxj6wxrU=
+knative.dev/eventing v0.24.0 h1:CoaQwZBizxZyOFJUvFcyb7vYSvpYBmfb4IYRNWUdTPE=
+knative.dev/eventing v0.24.0/go.mod h1:9xo0SWkIfpXrx0lvGQO7MUlPF8cu+QCMd2gGxj6wxrU=
 knative.dev/eventing-awssqs v0.23.1-0.20210624070346-4c16b3870a99 h1:IuzZVwQn97QP2AwP3LmLiRhGnllXZvXjua3ErlBWW/E=
 knative.dev/eventing-awssqs v0.23.1-0.20210624070346-4c16b3870a99/go.mod h1:LDYcFVTrfYkCia/vYOzPRt75eg7OKfsZaY83328UVeE=
-knative.dev/eventing-kafka v0.23.1-0.20210624154946-d974ddaf58df h1:Cdhl0CVPCNyJMSbxJsZvqm/tgjLLszOLBbG5LAswfpQ=
-knative.dev/eventing-kafka v0.23.1-0.20210624154946-d974ddaf58df/go.mod h1:N7hUVDUJ6brQIaArDRBa3+s8kZAdCRhZHnxCHuvLeWM=
+knative.dev/eventing-kafka v0.23.1-0.20210629093313-691c922f7fec h1:fif01CfH0ZjvCuahSB0L4AO1ovABWzl6YBFofHVS3SQ=
+knative.dev/eventing-kafka v0.23.1-0.20210629093313-691c922f7fec/go.mod h1:N7hUVDUJ6brQIaArDRBa3+s8kZAdCRhZHnxCHuvLeWM=
 knative.dev/eventing-redis v0.23.1-0.20210624222221-040f5e981900 h1:LjBySvOTimVbP+Kk4crhLE7ygvLRkrfcm+ZUlXdUcQQ=
 knative.dev/eventing-redis v0.23.1-0.20210624222221-040f5e981900/go.mod h1:GaqfQf/2AYcE9airOza5FhTsefYhM4wAfmoKcgc7N4s=
 knative.dev/hack v0.0.0-20210428122153-93ad9129c268/go.mod h1:PHt8x8yX5Z9pPquBEfIj0X66f8iWkWfR0S/sarACJrI=
