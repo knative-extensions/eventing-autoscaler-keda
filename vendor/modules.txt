@@ -883,7 +883,7 @@ k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.24.1-0.20210702080639-90932eb671e0
+# knative.dev/eventing v0.24.1-0.20210708130023-221dfdfced62
 ## explicit
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -934,10 +934,10 @@ knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/test/rekt/resources/svc
-# knative.dev/eventing-awssqs v0.24.0
+# knative.dev/eventing-awssqs v0.24.1-0.20210706222617-260b5bebb364
 ## explicit
 knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
-# knative.dev/eventing-kafka v0.24.1-0.20210702151339-f6cdc01e6fbc
+# knative.dev/eventing-kafka v0.24.1-0.20210708072323-21cafa72e334
 ## explicit
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
@@ -959,14 +959,14 @@ knative.dev/eventing-kafka/test/rekt/features/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkacat
 knative.dev/eventing-kafka/test/rekt/resources/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkatopic
-# knative.dev/eventing-redis v0.24.1-0.20210702190040-c72feb45ce15
+# knative.dev/eventing-redis v0.24.1-0.20210708220419-9d4447361420
 ## explicit
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
 # knative.dev/hack v0.0.0-20210622141627-e28525d8d260
 ## explicit
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20210701025203-30f9568e894e
+# knative.dev/pkg v0.0.0-20210708145023-4a3e56dc13b2
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1029,7 +1029,7 @@ knative.dev/pkg/webhook/configmaps
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20210630182710-2a6d91dfee1e
+# knative.dev/reconciler-test v0.0.0-20210708041622-7e3301d49ac9
 ## explicit
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
