@@ -28,8 +28,8 @@ import (
 	"knative.dev/pkg/logging"
 	pkgreconciler "knative.dev/pkg/reconciler"
 
-	kedaclient "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
-	triggerauthenticationinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/triggerauthentication"
+	kedaclient "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/injection/client"
+	triggerauthenticationinformer "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/injection/informers/keda/v1alpha1/triggerauthentication"
 )
 
 // Only can scale RabbitMQBrokers

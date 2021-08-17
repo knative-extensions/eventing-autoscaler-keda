@@ -1,4 +1,4 @@
-# cloud.google.com/go v0.84.0
+# cloud.google.com/go v0.86.0
 cloud.google.com/go/compute/metadata
 # contrib.go.opencensus.io/exporter/ocagent v0.7.1-0.20200907061046-05415f1de66d
 contrib.go.opencensus.io/exporter/ocagent
@@ -168,19 +168,9 @@ github.com/jcmturner/rpc/v2/ndr
 github.com/josharian/intern
 # github.com/json-iterator/go v1.1.11
 github.com/json-iterator/go
-# github.com/kedacore/keda/v2 v2.3.0
+# github.com/kedacore/keda/v2 v2.4.0
 ## explicit
 github.com/kedacore/keda/v2/api/v1alpha1
-github.com/kedacore/keda/v2/pkg/generated/clientset/versioned
-github.com/kedacore/keda/v2/pkg/generated/clientset/versioned/fake
-github.com/kedacore/keda/v2/pkg/generated/clientset/versioned/scheme
-github.com/kedacore/keda/v2/pkg/generated/clientset/versioned/typed/keda/v1alpha1
-github.com/kedacore/keda/v2/pkg/generated/clientset/versioned/typed/keda/v1alpha1/fake
-github.com/kedacore/keda/v2/pkg/generated/informers/externalversions
-github.com/kedacore/keda/v2/pkg/generated/informers/externalversions/internalinterfaces
-github.com/kedacore/keda/v2/pkg/generated/informers/externalversions/keda
-github.com/kedacore/keda/v2/pkg/generated/informers/externalversions/keda/v1alpha1
-github.com/kedacore/keda/v2/pkg/generated/listers/keda/v1alpha1
 # github.com/kelseyhightower/envconfig v1.4.0
 github.com/kelseyhightower/envconfig
 # github.com/klauspost/compress v1.13.0
@@ -359,7 +349,7 @@ google.golang.org/appengine/internal/modules
 google.golang.org/appengine/internal/remote_api
 google.golang.org/appengine/internal/urlfetch
 google.golang.org/appengine/urlfetch
-# google.golang.org/genproto v0.0.0-20210624195500-8bfb893ecb84
+# google.golang.org/genproto v0.0.0-20210708141623-e76da96a951f
 google.golang.org/genproto/googleapis/api/httpbody
 google.golang.org/genproto/googleapis/rpc/status
 google.golang.org/genproto/protobuf/field_mask
@@ -451,7 +441,7 @@ gopkg.in/inf.v0
 gopkg.in/yaml.v2
 # gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 gopkg.in/yaml.v3
-# k8s.io/api v0.20.7 => k8s.io/api v0.20.7
+# k8s.io/api v0.20.8 => k8s.io/api v0.20.7
 ## explicit
 k8s.io/api/admission/v1
 k8s.io/api/admissionregistration/v1
@@ -513,7 +503,7 @@ k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/apiextensio
 k8s.io/apiextensions-apiserver/pkg/client/informers/externalversions/internalinterfaces
 k8s.io/apiextensions-apiserver/pkg/client/listers/apiextensions/v1
 k8s.io/apiextensions-apiserver/pkg/client/listers/apiextensions/v1beta1
-# k8s.io/apimachinery v0.20.7 => k8s.io/apimachinery v0.20.7
+# k8s.io/apimachinery v0.20.8 => k8s.io/apimachinery v0.20.7
 ## explicit
 k8s.io/apimachinery/pkg/api/apitesting/fuzzer
 k8s.io/apimachinery/pkg/api/equality
@@ -742,7 +732,7 @@ k8s.io/client-go/util/jsonpath
 k8s.io/client-go/util/keyutil
 k8s.io/client-go/util/retry
 k8s.io/client-go/util/workqueue
-# k8s.io/code-generator v0.20.7 => k8s.io/code-generator v0.20.7
+# k8s.io/code-generator v0.20.8 => k8s.io/code-generator v0.20.7
 ## explicit
 k8s.io/code-generator
 k8s.io/code-generator/cmd/client-gen
@@ -790,7 +780,7 @@ k8s.io/gengo/parser
 k8s.io/gengo/types
 # k8s.io/klog v1.0.0
 k8s.io/klog
-# k8s.io/klog/v2 v2.8.0
+# k8s.io/klog/v2 v2.9.0
 k8s.io/klog/v2
 # k8s.io/kube-openapi v0.0.0-20210305164622-f622666832c1
 k8s.io/kube-openapi/cmd/openapi-gen/args
@@ -972,6 +962,7 @@ knative.dev/reconciler-test/pkg/milestone
 knative.dev/reconciler-test/pkg/state
 knative.dev/reconciler-test/resources/svc
 # sigs.k8s.io/controller-runtime v0.6.5
+## explicit
 sigs.k8s.io/controller-runtime/pkg/scheme
 # sigs.k8s.io/structured-merge-diff/v4 v4.0.3
 sigs.k8s.io/structured-merge-diff/v4/value

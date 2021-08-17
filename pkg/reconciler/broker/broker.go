@@ -29,8 +29,8 @@ import (
 	"knative.dev/pkg/logging"
 	pkgreconciler "knative.dev/pkg/reconciler"
 
-	kedaclientset "github.com/kedacore/keda/v2/pkg/generated/clientset/versioned"
-	kedalisters "github.com/kedacore/keda/v2/pkg/generated/listers/keda/v1alpha1"
+	kedaclientset "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/clientset/versioned"
+	kedalisters "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/listers/keda/v1alpha1"
 
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/broker/resources"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"

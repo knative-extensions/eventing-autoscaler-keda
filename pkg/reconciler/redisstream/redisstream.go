@@ -25,7 +25,7 @@ import (
 	redisstreamv1alpha1 "knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1"
 	"knative.dev/pkg/kmeta"
 
-	kedav1alpha1 "github.com/kedacore/keda/v2/api/v1alpha1"
+	kedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/apis/keda/v1alpha1"
 
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 )

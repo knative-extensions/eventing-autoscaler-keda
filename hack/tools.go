@@ -21,6 +21,9 @@ import (
 	_ "k8s.io/code-generator"
 	_ "knative.dev/hack"
 
+	// We copy them into third_party, so we need them.
+	_ "github.com/kedacore/keda/v2/api/v1alpha1"
+
 	// codegen: hack/generate-knative.sh
 	_ "knative.dev/pkg/hack"
 	_ "knative.dev/reconciler-test/cmd/eventshub"
