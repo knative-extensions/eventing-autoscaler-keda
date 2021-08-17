@@ -24,7 +24,7 @@ import (
 	eventingv1 "knative.dev/eventing/pkg/apis/eventing/v1"
 	"knative.dev/pkg/kmeta"
 
-	kedav1alpha1 "github.com/kedacore/keda/v2/api/v1alpha1"
+	kedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/apis/keda/v1alpha1"
 )
 
 func MakeTriggerAuthentication(b *eventingv1.Broker, secretName, secretKey string) *kedav1alpha1.TriggerAuthentication {

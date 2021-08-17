@@ -32,9 +32,9 @@ import (
 	"knative.dev/pkg/controller"
 	"knative.dev/pkg/logging"
 
-	kedaclient "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/client"
+	kedaclient "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/injection/client"
 
-	scaledobjectinformer "knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda/informers/keda/v1alpha1/scaledobject"
+	scaledobjectinformer "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/injection/informers/keda/v1alpha1/scaledobject"
 )
 
 // Only can scale RabbitMQBrokers

@@ -21,9 +21,9 @@ import (
 	"strconv"
 	"strings"
 
-	kedav1alpha1 "github.com/kedacore/keda/v2/api/v1alpha1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	kedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/apis/keda/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
 	"knative.dev/pkg/kmeta"
 

@@ -34,26 +34,25 @@ echo "=== Update Codegen for $MODULE_NAME"
 # Kubebuilder project layout has API under 'api/v1alpha1', ie. 'github.com/kedacore/keda/api/v1alpha1'
 # client-go codegen expects group name (keda) in the path, ie. 'github.com/kedacore/keda/api/keda/v1alpha1'
 # Because there's no way how to modify any of these settings, to enable client codegen,
-# we need to hack things a little bit (in vendor move temporarily api directory in 'api/keda/v1alpha1')
-rm -rf ${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/keda
-mkdir ${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/keda
-mv ${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/v1alpha1 ${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/keda/v1alpha1
+# we need to reorganize things a little bit (copy to 'third_party/api/keda/v1alpha1')
+rm -rf ${REPO_ROOT_DIR}/third_party/pkg/apis/keda
+mkdir -p ${REPO_ROOT_DIR}/third_party/pkg/apis/keda
+cp -R "${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/v1alpha1" ${REPO_ROOT_DIR}/third_party/pkg/apis/keda/
+
+group "Kubernetes Codegen"
+
+# Generate our own client (otherwise injection won't work)
+${CODEGEN_PKG}/generate-groups.sh "client,informer,lister" \
+  knative.dev/eventing-autoscaler-keda/third_party/pkg/client knative.dev/eventing-autoscaler-keda/third_party/pkg/apis \
+  "keda:v1alpha1" \
+  --go-header-file ${REPO_ROOT_DIR}/hack/boilerplate/boilerplate.go.txt
 
 group "Knative Codegen"
 
-# Knative Injection
-OUTPUT_PKG="knative.dev/eventing-autoscaler-keda/pkg/client/injection/keda" \
-VERSIONED_CLIENTSET_PKG="github.com/kedacore/keda/v2/pkg/generated/clientset/versioned" \
-EXTERNAL_INFORMER_PKG="github.com/kedacore/keda/v2/pkg/generated/informers/externalversions" \
-  ${KNATIVE_CODEGEN_PKG}/hack/generate-knative.sh "injection" \
-    github.com/kedacore/keda/v2 \
-    github.com/kedacore/keda/v2/api \
-    "keda:v1alpha1" \
-    --go-header-file ${REPO_ROOT_DIR}/hack/boilerplate/boilerplate.go.txt \
-
-# Move back api directory, which was moved temporarily for codegen
-mv ${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/keda/v1alpha1 ${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/v1alpha1
-rm -rf ${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/keda
+${KNATIVE_CODEGEN_PKG}/hack/generate-knative.sh "injection" \
+  knative.dev/eventing-autoscaler-keda/third_party/pkg/client knative.dev/eventing-autoscaler-keda/third_party/pkg/apis \
+  "keda:v1alpha1" \
+  --go-header-file ${REPO_ROOT_DIR}/hack/boilerplate/boilerplate.go.txt
 
 group "Update deps post-codegen"
 
