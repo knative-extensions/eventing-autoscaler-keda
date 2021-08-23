@@ -21,8 +21,15 @@ package triggerauthentication
 import (
 	context "context"
 
+	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	labels "k8s.io/apimachinery/pkg/labels"
+	cache "k8s.io/client-go/tools/cache"
+	apiskedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/apis/keda/v1alpha1"
+	versioned "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/clientset/versioned"
 	v1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/informers/externalversions/keda/v1alpha1"
+	client "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/injection/client"
 	factory "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/injection/informers/factory"
+	kedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/listers/keda/v1alpha1"
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
 	logging "knative.dev/pkg/logging"
@@ -30,6 +37,7 @@ import (
 
 func init() {
 	injection.Default.RegisterInformer(withInformer)
+	injection.Dynamic.RegisterDynamicInformer(withDynamicInformer)
 }
 
 // Key is used for associating the Informer inside the context.Context.
@@ -41,6 +49,11 @@ func withInformer(ctx context.Context) (context.Context, controller.Informer) {
 	return context.WithValue(ctx, Key{}, inf), inf.Informer()
 }
 
+func withDynamicInformer(ctx context.Context) context.Context {
+	inf := &wrapper{client: client.Get(ctx)}
+	return context.WithValue(ctx, Key{}, inf)
+}
+
 // Get extracts the typed informer from the context.
 func Get(ctx context.Context) v1alpha1.TriggerAuthenticationInformer {
 	untyped := ctx.Value(Key{})
@@ -49,4 +62,45 @@ func Get(ctx context.Context) v1alpha1.TriggerAuthenticationInformer {
 			"Unable to fetch knative.dev/eventing-autoscaler-keda/third_party/pkg/client/informers/externalversions/keda/v1alpha1.TriggerAuthenticationInformer from context.")
 	}
 	return untyped.(v1alpha1.TriggerAuthenticationInformer)
+}
+
+type wrapper struct {
+	client versioned.Interface
+
+	namespace string
+}
+
+var _ v1alpha1.TriggerAuthenticationInformer = (*wrapper)(nil)
+var _ kedav1alpha1.TriggerAuthenticationLister = (*wrapper)(nil)
+
+func (w *wrapper) Informer() cache.SharedIndexInformer {
+	return cache.NewSharedIndexInformer(nil, &apiskedav1alpha1.TriggerAuthentication{}, 0, nil)
+}
+
+func (w *wrapper) Lister() kedav1alpha1.TriggerAuthenticationLister {
+	return w
+}
+
+func (w *wrapper) TriggerAuthentications(namespace string) kedav1alpha1.TriggerAuthenticationNamespaceLister {
+	return &wrapper{client: w.client, namespace: namespace}
+}
+
+func (w *wrapper) List(selector labels.Selector) (ret []*apiskedav1alpha1.TriggerAuthentication, err error) {
+	lo, err := w.client.KedaV1alpha1().TriggerAuthentications(w.namespace).List(context.TODO(), v1.ListOptions{
+		LabelSelector: selector.String(),
+		// TODO(mattmoor): Incorporate resourceVersion bounds based on staleness criteria.
+	})
+	if err != nil {
+		return nil, err
+	}
+	for idx := range lo.Items {
+		ret = append(ret, &lo.Items[idx])
+	}
+	return ret, nil
+}
+
+func (w *wrapper) Get(name string) (*apiskedav1alpha1.TriggerAuthentication, error) {
+	return w.client.KedaV1alpha1().TriggerAuthentications(w.namespace).Get(context.TODO(), name, v1.GetOptions{
+		// TODO(mattmoor): Incorporate resourceVersion bounds based on staleness criteria.
+	})
 }
