@@ -12,10 +12,10 @@ require (
 	k8s.io/code-generator v0.20.7
 	knative.dev/eventing v0.25.0
 	knative.dev/eventing-awssqs v0.25.0
-	knative.dev/eventing-kafka v0.24.1-0.20210810233659-ee98e74f3f0a
-	knative.dev/eventing-redis v0.24.1-0.20210810234459-71b9fc862271
+	knative.dev/eventing-kafka v0.25.1
+	knative.dev/eventing-redis v0.25.0
 	knative.dev/hack v0.0.0-20210622141627-e28525d8d260
-	knative.dev/pkg v0.0.0-20210803160015-21eb4c167cc5
+	knative.dev/pkg v0.0.0-20210902173607-844a6bc45596
 	knative.dev/reconciler-test v0.0.0-20210803183715-b61cc77c06f6
 )
 
