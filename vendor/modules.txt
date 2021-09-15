@@ -828,7 +828,7 @@ k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.25.1-0.20210903113057-4a55e519013e
+# knative.dev/eventing v0.25.1-0.20210914210007-602ea299ac4e
 ## explicit
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -879,10 +879,10 @@ knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/test/rekt/resources/svc
-# knative.dev/eventing-awssqs v0.25.1-0.20210831131755-2918b790b116
+# knative.dev/eventing-awssqs v0.25.1-0.20210903192059-8bd4124c493b
 ## explicit
 knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
-# knative.dev/eventing-kafka v0.25.1-0.20210903091657-acf06a29bf44
+# knative.dev/eventing-kafka v0.25.1-0.20210914070810-0c42ef596cba
 ## explicit
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
@@ -891,6 +891,7 @@ knative.dev/eventing-kafka/pkg/apis/kafka
 knative.dev/eventing-kafka/pkg/apis/kafka/v1alpha1
 knative.dev/eventing-kafka/pkg/apis/messaging
 knative.dev/eventing-kafka/pkg/apis/messaging/v1beta1
+knative.dev/eventing-kafka/pkg/apis/sources/config
 knative.dev/eventing-kafka/pkg/apis/sources/v1beta1
 knative.dev/eventing-kafka/pkg/client/clientset/versioned
 knative.dev/eventing-kafka/pkg/client/clientset/versioned/scheme
@@ -904,14 +905,14 @@ knative.dev/eventing-kafka/test/rekt/features/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkacat
 knative.dev/eventing-kafka/test/rekt/resources/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkatopic
-# knative.dev/eventing-redis v0.25.1-0.20210901161033-19fc0b8bef7f
+# knative.dev/eventing-redis v0.25.1-0.20210910141631-0513e9bc910a
 ## explicit
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
 # knative.dev/hack v0.0.0-20210806075220-815cd312d65c
 ## explicit
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20210903055557-dec98b426132
+# knative.dev/pkg v0.0.0-20210914164111-4857ab6939e3
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
