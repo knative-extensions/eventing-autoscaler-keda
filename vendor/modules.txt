@@ -829,11 +829,12 @@ k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.26.1-0.20211027135601-c804fd2b94fb
+# knative.dev/eventing v0.26.1-0.20211029030551-ed19465266c5
 ## explicit
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
 knative.dev/eventing/pkg/apis/duck/v1
+knative.dev/eventing/pkg/apis/duck/v1alpha1
 knative.dev/eventing/pkg/apis/eventing
 knative.dev/eventing/pkg/apis/eventing/v1
 knative.dev/eventing/pkg/apis/eventing/v1beta1
@@ -880,14 +881,13 @@ knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/test/rekt/resources/svc
-# knative.dev/eventing-awssqs v0.26.1-0.20211019131536-65d59f0f3c54
+# knative.dev/eventing-awssqs v0.26.1-0.20211029073852-e4ab5c633806
 ## explicit
 knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
-# knative.dev/eventing-kafka v0.26.1-0.20211027132002-a7255df49f63
+# knative.dev/eventing-kafka v0.26.1-0.20211029081552-c380a0634e9c
 ## explicit
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
-knative.dev/eventing-kafka/pkg/apis/duck/v1alpha1
 knative.dev/eventing-kafka/pkg/apis/kafka
 knative.dev/eventing-kafka/pkg/apis/kafka/v1alpha1
 knative.dev/eventing-kafka/pkg/apis/messaging
@@ -906,14 +906,14 @@ knative.dev/eventing-kafka/test/rekt/features/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkacat
 knative.dev/eventing-kafka/test/rekt/resources/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkatopic
-# knative.dev/eventing-redis v0.26.1-0.20211027133002-72b89ceebe7c
+# knative.dev/eventing-redis v0.26.1-0.20211029074253-5371229ea09f
 ## explicit
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
-# knative.dev/hack v0.0.0-20211026141922-a71c865b5f66
+# knative.dev/hack v0.0.0-20211028194650-b96d65a5ff5e
 ## explicit
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20211027105800-3b33e02e5b9c
+# knative.dev/pkg v0.0.0-20211028235650-5d9d300c2e40
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -977,7 +977,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20211019133535-04ea7ddac7e3
+# knative.dev/reconciler-test v0.0.0-20211029073051-cff9b538d33c
 ## explicit
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
