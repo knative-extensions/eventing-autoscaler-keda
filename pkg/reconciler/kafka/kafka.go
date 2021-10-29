@@ -53,7 +53,7 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication 
 	}
 
 	allowIdleConsumers := "false"
-	if src.Status.Placement != nil {
+	if src.Status.Placements != nil {
 		// KafkaSource is being managed by the multi-tenant controller.
 		allowIdleConsumers = "true"
 	}
