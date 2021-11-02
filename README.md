@@ -1,5 +1,7 @@
 # Experimental KEDA support for Knative Event Sources Autoscaling
 
+**[This component is ALPHA](https://github.com/knative/community/tree/main/mechanics/MATURITY-LEVELS.md)**
+
 [![Build status](https://github.com/knative-sandbox/eventing-autoscaler-keda//workflows/master%20build/badge.svg)](https://github.com/knative-sandbox/eventing-autoscaler-keda/actions)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
