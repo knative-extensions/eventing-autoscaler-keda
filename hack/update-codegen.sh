@@ -30,14 +30,8 @@ echo "=== Update Codegen for $MODULE_NAME"
 #                  k8s.io/kubernetes. The output-base is needed for the generators to output into the vendor dir
 #                  instead of the $GOPATH directly. For normal projects this can be dropped.
 
-# KEDA uses Kubebuilder
-# Kubebuilder project layout has API under 'api/v1alpha1', ie. 'github.com/kedacore/keda/api/v1alpha1'
-# client-go codegen expects group name (keda) in the path, ie. 'github.com/kedacore/keda/api/keda/v1alpha1'
-# Because there's no way how to modify any of these settings, to enable client codegen,
-# we need to reorganize things a little bit (copy to 'third_party/api/keda/v1alpha1')
-rm -rf ${REPO_ROOT_DIR}/third_party/pkg/apis/keda
-mkdir -p ${REPO_ROOT_DIR}/third_party/pkg/apis/keda
-cp -R "${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/api/v1alpha1" ${REPO_ROOT_DIR}/third_party/pkg/apis/keda/
+
+cp -R "${REPO_ROOT_DIR}/vendor/github.com/kedacore/keda/v2/apis/keda/v1alpha1" ${REPO_ROOT_DIR}/third_party/pkg/apis/keda/
 
 group "Kubernetes Codegen"
 
