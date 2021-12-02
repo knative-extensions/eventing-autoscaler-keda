@@ -660,7 +660,7 @@ function go_update_deps() {
   export GOFLAGS=-mod=vendor
 
   group "Updating licenses"
-  #update_licenses third_party/VENDOR-LICENSE "./..."
+  update_licenses third_party/VENDOR-LICENSE "./..."
 
   group "Removing broken symlinks"
   remove_broken_symlinks ./vendor
