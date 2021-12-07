@@ -22,7 +22,7 @@ import (
 	_ "knative.dev/hack"
 
 	// We copy them into third_party, so we need them.
-	_ "github.com/kedacore/keda/v2/api/v1alpha1"
+	_ "github.com/kedacore/keda/v2/apis/keda/v1alpha1"
 
 	// codegen: hack/generate-knative.sh
 	_ "knative.dev/pkg/hack"
