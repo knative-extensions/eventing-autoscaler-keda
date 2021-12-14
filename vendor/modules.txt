@@ -883,10 +883,10 @@ knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/test/rekt/resources/svc
-# knative.dev/eventing-awssqs v0.27.1-0.20211213113920-50ad6f5f168e
+# knative.dev/eventing-awssqs v0.28.0
 ## explicit
 knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
-# knative.dev/eventing-kafka v0.27.1-0.20211213064519-f1bb19a5070f
+# knative.dev/eventing-kafka v0.28.0
 ## explicit
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
@@ -908,7 +908,7 @@ knative.dev/eventing-kafka/test/rekt/features/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkacat
 knative.dev/eventing-kafka/test/rekt/resources/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkatopic
-# knative.dev/eventing-redis v0.27.1-0.20211213015118-e2215c1d4f0a
+# knative.dev/eventing-redis v0.28.0
 ## explicit
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
