@@ -74,7 +74,10 @@ func (c *Clientset) Tracker() testing.ObjectTracker {
 	return c.tracker
 }
 
-var _ clientset.Interface = &Clientset{}
+var (
+	_ clientset.Interface = &Clientset{}
+	_ testing.FakeClient  = &Clientset{}
+)
 
 // KedaV1alpha1 retrieves the KedaV1alpha1Client
 func (c *Clientset) KedaV1alpha1() kedav1alpha1.KedaV1alpha1Interface {
