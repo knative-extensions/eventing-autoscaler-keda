@@ -8,7 +8,7 @@
 |                   |                                                                                                                        |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | **STATUS**        | Experimental                                                                                                           |
-| **Sponsoring WG** | [Eventing Sources](https://github.com/knative/community/blob/master/working-groups/WORKING-GROUPS.md#eventing-sources) |
+| **Sponsoring WG** | [Eventing](https://github.com/knative/community/blob/main/working-groups/WORKING-GROUPS.md#eventing)                   |
 
 > Warning: Still under development. Not meant for production deployment.
 
