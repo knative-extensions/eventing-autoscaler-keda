@@ -32,14 +32,12 @@ import (
 	"k8s.io/client-go/tools/cache"
 	kedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/apis/keda/v1alpha1"
 	kedaclientset "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/clientset/versioned"
-	awssqsv1alpha1 "knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
 	redisstreamv1alpha1 "knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1"
 	duckv1 "knative.dev/pkg/apis/duck/v1"
 	"knative.dev/pkg/logging"
 	pkgreconciler "knative.dev/pkg/reconciler"
 
-	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/awssqs"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/kafka"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/keda"
 	"knative.dev/eventing-autoscaler-keda/pkg/reconciler/redisstream"
@@ -105,15 +103,6 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 			return err
 		}
 		return r.reconcileKafkaSource(ctx, kafkaSource)
-	case "AwsSqsSource":
-		var awsSqsSource = &awssqsv1alpha1.AwsSqsSource{}
-
-		awssqsv1alpha1.AddToScheme(scheme.Scheme)
-		if err := scheme.Scheme.Convert(unstructuredSource, awsSqsSource, nil); err != nil {
-			logging.FromContext(ctx).Errorw("Failed to convert Unstructured Source to AwsSqsSource", zap.Error(err))
-			return err
-		}
-		return r.reconcileAwsSqsSource(ctx, awsSqsSource)
 	case "RedisStreamSource":
 		var redisStreamSource = &redisstreamv1alpha1.RedisStreamSource{}
 
@@ -159,23 +148,6 @@ func (r *Reconciler) reconcileKafkaSource(ctx context.Context, src *kafkav1beta1
 		if _, isEvent := err.(*pkgreconciler.ReconcilerEvent); !isEvent {
 			return err
 		}
-	}
-
-	return r.reconcileScaledObject(ctx, scaledObject, src)
-}
-
-func (r *Reconciler) reconcileAwsSqsSource(ctx context.Context, src *awssqsv1alpha1.AwsSqsSource) error {
-	scaletarget, err := awssqs.GenerateScaleTarget(ctx, r.kubeClient, src)
-	if err != nil {
-		return err
-	}
-	triggers, err := awssqs.GenerateScaleTriggers(src)
-	if err != nil {
-		return err
-	}
-	scaledObject, err := keda.GenerateScaledObject(src, r.gvk, scaletarget, triggers)
-	if err != nil {
-		return err
 	}
 
 	return r.reconcileScaledObject(ctx, scaledObject, src)

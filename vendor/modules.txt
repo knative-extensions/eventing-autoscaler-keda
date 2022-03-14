@@ -895,9 +895,6 @@ knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/test/rekt/resources/svc
-# knative.dev/eventing-awssqs v0.29.1-0.20220302165045-502b3e543cc6
-## explicit
-knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1
 # knative.dev/eventing-kafka v0.28.1-0.20220308215949-a262ed153f01
 ## explicit
 knative.dev/eventing-kafka/pkg/apis/bindings

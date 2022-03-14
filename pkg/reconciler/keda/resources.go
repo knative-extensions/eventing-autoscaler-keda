@@ -23,7 +23,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	kedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/apis/keda/v1alpha1"
-	awssqsv1alpha1 "knative.dev/eventing-awssqs/pkg/apis/sources/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
 	redisstreamv1alpha1 "knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1"
 )
@@ -97,8 +96,6 @@ func GetInt32ValueFromMap(dict map[string]string, key string, defaultValue int32
 func SupportedCRD(gvk schema.GroupVersionKind) bool {
 	switch gvk {
 	case kafkav1beta1.SchemeGroupVersion.WithKind("KafkaSource"):
-		return true
-	case awssqsv1alpha1.SchemeGroupVersion.WithKind("AwsSqsSource"):
 		return true
 	case redisstreamv1alpha1.SchemeGroupVersion.WithKind("RedisStreamSource"):
 		return true

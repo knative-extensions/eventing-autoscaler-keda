@@ -21,7 +21,7 @@ cluster. If the newly installed CRD is supported by this controller, it creates
 a new dynamic controller which watches custom objects of kind specified by the
 CRD.
 
-Currently there is support for **Kafka Source** and **AWS SQS Source**. We also
+Currently there is support for **Kafka Source**. We also
 have experimental support for **RabbitMQ Broker** and **Redis Stream Source**.
 
 ## Annotations
@@ -41,9 +41,6 @@ metadata:
     # Kafka Source
     keda.autoscaling.knative.dev/kafkaLagThreshold: "10"
 
-    # AWS SQS Source
-    keda.autoscaling.knative.dev/awsSqsQueueLength: "5"
-
     # Redis Stream Source
     keda.autoscaling.knative.dev/redisStreamPendingEntriesCount: "5"
 ```
@@ -60,9 +57,6 @@ metadata:
   waits until it scales down. Default: `300`
 - `keda.autoscaling.knative.dev/kafkaLagThreshold` - only for Kafka Source,
   refers to the stream is lagging on the current consumer group. Default: `10`
-- `keda.autoscaling.knative.dev/awsSqsQueueLength` - only for AWS SQS Source,
-  refers to the target value for ApproximateNumberOfMessages in the SQS Queue.
-  Default: `5`
 - `keda.autoscaling.knative.dev/rabbitMQQueueLength` - only for RabbitMQ broker,
   refers to the target value for number of messages in a RabbitMQ brokers
   trigger queue: `1`
