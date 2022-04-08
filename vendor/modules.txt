@@ -968,7 +968,7 @@ k8s.io/utils/internal/third_party/forked/golang/net
 k8s.io/utils/net
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.30.1-0.20220404080342-aaa15c17be0b
+# knative.dev/eventing v0.30.1-0.20220407170245-58865afba92c
 ## explicit; go 1.16
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -1020,7 +1020,7 @@ knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/test/rekt/resources/svc
-# knative.dev/eventing-kafka v0.30.1-0.20220322160026-ad099b074a0f
+# knative.dev/eventing-kafka v0.30.1-0.20220407165154-1a3c914271f9
 ## explicit; go 1.16
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
@@ -1042,14 +1042,14 @@ knative.dev/eventing-kafka/test/rekt/features/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkacat
 knative.dev/eventing-kafka/test/rekt/resources/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkatopic
-# knative.dev/eventing-redis v0.30.2-0.20220404145444-7a5df777ce45
+# knative.dev/eventing-redis v0.30.2-0.20220407190047-44662b403b53
 ## explicit; go 1.16
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
-# knative.dev/hack v0.0.0-20220401031746-a75ca495e7f4
+# knative.dev/hack v0.0.0-20220407171644-0e0784b13cef
 ## explicit; go 1.14
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20220405014943-4f42bf4bc83e
+# knative.dev/pkg v0.0.0-20220407210145-4d62e1dbb943
 ## explicit; go 1.17
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1114,7 +1114,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20220404145543-3f1d5e0092fe
+# knative.dev/reconciler-test v0.0.0-20220407164846-93ef9639ad95
 ## explicit; go 1.17
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
