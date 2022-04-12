@@ -11,17 +11,17 @@ require (
 	k8s.io/apimachinery v0.23.5
 	k8s.io/client-go v0.23.5
 	k8s.io/code-generator v0.23.5
-	knative.dev/eventing v0.30.1-0.20220407170245-58865afba92c
-	knative.dev/eventing-kafka v0.30.1-0.20220407165154-1a3c914271f9
-	knative.dev/eventing-redis v0.30.2-0.20220407190047-44662b403b53
-	knative.dev/hack v0.0.0-20220407171644-0e0784b13cef
-	knative.dev/pkg v0.0.0-20220407210145-4d62e1dbb943
-	knative.dev/reconciler-test v0.0.0-20220407164846-93ef9639ad95
+	knative.dev/eventing v0.30.1-0.20220412073008-22223245a4a4
+	knative.dev/eventing-kafka v0.30.1-0.20220411133507-bdbcc864cf94
+	knative.dev/eventing-redis v0.30.2-0.20220411142907-938f31e07c12
+	knative.dev/hack v0.0.0-20220411131823-6ffd8417de7c
+	knative.dev/pkg v0.0.0-20220411234407-00c122e376d0
+	knative.dev/reconciler-test v0.0.0-20220411142808-55eab02440e9
 	sigs.k8s.io/controller-runtime v0.11.1
 )
 
 require (
-	cloud.google.com/go/compute v1.1.0 // indirect
+	cloud.google.com/go/compute v1.5.0 // indirect
 	contrib.go.opencensus.io/exporter/ocagent v0.7.1-0.20200907061046-05415f1de66d // indirect
 	contrib.go.opencensus.io/exporter/prometheus v0.4.0 // indirect
 	contrib.go.opencensus.io/exporter/zipkin v0.1.2 // indirect
@@ -98,18 +98,18 @@ require (
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/mod v0.5.1 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
-	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8 // indirect
+	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
 	golang.org/x/sys v0.0.0-20220227234510-4e6760a101f9 // indirect
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	golang.org/x/time v0.0.0-20211116232009-f0f3c7e86c11 // indirect
+	golang.org/x/time v0.0.0-20220224211638-0e9765cccd65 // indirect
 	golang.org/x/tools v0.1.9 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
-	google.golang.org/api v0.67.0 // indirect
+	google.golang.org/api v0.70.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20220207164111-0872dc986b00 // indirect
+	google.golang.org/genproto v0.0.0-20220222213610-43724f9ea8cf // indirect
 	google.golang.org/grpc v1.44.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
@@ -120,7 +120,7 @@ require (
 	k8s.io/klog/v2 v2.60.1-0.20220317184644-43cc75f9ae89 // indirect
 	k8s.io/kube-openapi v0.0.0-20220124234850-424119656bbf // indirect
 	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
-	sigs.k8s.io/json v0.0.0-20211020170558-c049b76a60c6 // indirect
+	sigs.k8s.io/json v0.0.0-20211208200746-9f7c6b3444d2 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
