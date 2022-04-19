@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.23.5
 	k8s.io/client-go v0.23.5
 	k8s.io/code-generator v0.23.5
-	knative.dev/eventing v0.30.1-0.20220412073008-22223245a4a4
-	knative.dev/eventing-kafka v0.30.1-0.20220411133507-bdbcc864cf94
-	knative.dev/eventing-redis v0.30.2-0.20220412135111-bed7577c1138
+	knative.dev/eventing v0.30.1-0.20220419093029-073af747932c
+	knative.dev/eventing-kafka v0.30.1-0.20220419093935-344274a13594
+	knative.dev/eventing-redis v0.30.2-0.20220418131613-e1028d194366
 	knative.dev/hack v0.0.0-20220411131823-6ffd8417de7c
 	knative.dev/pkg v0.0.0-20220412134708-e325df66cb51
-	knative.dev/reconciler-test v0.0.0-20220412141310-6da8e62f926f
+	knative.dev/reconciler-test v0.0.0-20220412165608-994f0c3fab62
 	sigs.k8s.io/controller-runtime v0.11.1
 )
 
@@ -70,7 +70,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kelseyhightower/envconfig v1.4.0 // indirect
-	github.com/klauspost/compress v1.14.2 // indirect
+	github.com/klauspost/compress v1.14.4 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -109,7 +109,7 @@ require (
 	gomodules.xyz/jsonpatch/v2 v2.2.0 // indirect
 	google.golang.org/api v0.70.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20220222213610-43724f9ea8cf // indirect
+	google.golang.org/genproto v0.0.0-20220301145929-1ac2ace0dbf7 // indirect
 	google.golang.org/grpc v1.44.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
