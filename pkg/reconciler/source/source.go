@@ -117,12 +117,37 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 	return nil
 }
 
+func (r *Reconciler) retrieveSaslTypeIfPresent(ctx context.Context, src *kafkav1beta1.KafkaSource) (*string, error) {
+	if src.Spec.KafkaAuthSpec.Net.SASL.Enable {
+		if src.Spec.KafkaAuthSpec.Net.SASL.Type.SecretKeyRef != nil {
+
+			secretKeyRefName := src.Spec.KafkaAuthSpec.Net.SASL.Type.SecretKeyRef.Name
+			secretKeyRefKey := src.Spec.KafkaAuthSpec.Net.SASL.Type.SecretKeyRef.Key
+			secret, err := r.kubeClient.CoreV1().Secrets(src.Namespace).Get(ctx, secretKeyRefName, metav1.GetOptions{})
+			if err != nil {
+				return nil, pkgreconciler.NewEvent(corev1.EventTypeWarning, "SaslTypeSecretUnavailable", "Unable to get SASL type from secret: \"%s/%s\", %w", src.Namespace, secretKeyRefName, err)
+			}
+			saslTypeValue := string(secret.Data[secretKeyRefKey])
+			logging.FromContext(ctx).Debug(fmt.Sprintf("Got SASL type value %s for key %q", saslTypeValue, secretKeyRefKey))
+			return &saslTypeValue, nil
+		}
+	}
+	return nil, nil
+}
+
 func (r *Reconciler) reconcileKafkaSource(ctx context.Context, src *kafkav1beta1.KafkaSource) error {
 
 	var triggerAuthentication *kedav1alpha1.TriggerAuthentication
 	var secret *corev1.Secret
 	if src.Spec.KafkaAuthSpec.Net.SASL.Enable || src.Spec.KafkaAuthSpec.Net.TLS.Enable {
-		triggerAuthentication, secret = kafka.GenerateTriggerAuthentication(src)
+		saslType, err := r.retrieveSaslTypeIfPresent(ctx, src)
+		if err != nil {
+			return err
+		}
+		triggerAuthentication, secret, err = kafka.GenerateTriggerAuthentication(src, saslType)
+		if err != nil {
+			return err
+		}
 	}
 
 	triggers, err := kafka.GenerateScaleTriggers(src, triggerAuthentication)

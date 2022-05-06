@@ -83,7 +83,7 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication 
 	return triggers, nil
 }
 
-func GenerateTriggerAuthentication(src *kafkav1beta1.KafkaSource) (*kedav1alpha1.TriggerAuthentication, *corev1.Secret) {
+func GenerateTriggerAuthentication(src *kafkav1beta1.KafkaSource, saslType *string) (*kedav1alpha1.TriggerAuthentication, *corev1.Secret, error) {
 
 	secretTargetRefs := []kedav1alpha1.AuthSecretTargetRef{}
 
@@ -101,17 +101,19 @@ func GenerateTriggerAuthentication(src *kafkav1beta1.KafkaSource) (*kedav1alpha1
 
 	if src.Spec.KafkaAuthSpec.Net.SASL.Enable {
 
-		if src.Spec.KafkaAuthSpec.Net.SASL.Type.SecretKeyRef != nil {
-			switch src.Spec.KafkaAuthSpec.Net.SASL.Type.SecretKeyRef.Name {
+		if saslType != nil {
+			switch *saslType {
 			case "SCRAM-SHA-256":
 				secret.StringData["sasl"] = "scram_sha256"
 			case "SCRAM-SHA-512":
 				secret.StringData["sasl"] = "scram_sha512"
 			case "PLAIN":
 				secret.StringData["sasl"] = "plaintext"
+			default:
+				return nil, nil, fmt.Errorf("SASL type value %q is not supported", *saslType)
 			}
 		} else {
-			secret.StringData["sasl"] = "plaintext"
+			secret.StringData["sasl"] = "plaintext" //default
 		}
 
 		sasl := kedav1alpha1.AuthSecretTargetRef{Parameter: "sasl", Name: secret.Name, Key: "sasl"}
@@ -175,5 +177,5 @@ func GenerateTriggerAuthentication(src *kafkav1beta1.KafkaSource) (*kedav1alpha1
 		Spec: kedav1alpha1.TriggerAuthenticationSpec{
 			SecretTargetRef: secretTargetRefs,
 		},
-	}, &secret
+	}, &secret, nil
 }
