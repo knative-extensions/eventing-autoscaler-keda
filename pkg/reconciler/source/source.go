@@ -127,7 +127,6 @@ func (r *Reconciler) retrieveSaslTypeIfPresent(ctx context.Context, src *kafkav1
 			if err != nil {
 				return nil, pkgreconciler.NewEvent(corev1.EventTypeWarning, "SaslTypeSecretUnavailable", "Unable to get SASL type from secret: \"%s/%s\", %w", src.Namespace, secretKeyRefName, err)
 			}
-			logging.FromContext(ctx).Debug(fmt.Sprintf("Got secret for SASL type %#v ", secret))
 			saslTypeValue := string(secret.Data[secretKeyRefKey])
 			logging.FromContext(ctx).Debug(fmt.Sprintf("Got SASL type value %s for key %q", saslTypeValue, secretKeyRefKey))
 			return &saslTypeValue, nil
