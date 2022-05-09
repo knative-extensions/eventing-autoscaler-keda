@@ -75,9 +75,7 @@ func MakeDispatcherScaledObject(ctx context.Context, b *v1.Broker, t *v1.Trigger
 		queueLength = defaultQueueLength
 	}
 
-	// TODO(vaikas): https://github.com/knative-sandbox/eventing-rabbitmq/issues/61
-	// queueName := fmt.Sprintf("%s/%s", t.Namespace, t.Name)
-	queueName := fmt.Sprintf("%s-%s", t.Namespace, t.Name)
+	queueName := fmt.Sprintf("%s.%s.%s", t.Namespace, t.Name, b.GetUID())
 	deploymentName := fmt.Sprintf("%s-dispatcher", t.Name)
 	triggerAuthenticationName := fmt.Sprintf("%s-trigger-auth", t.Spec.Broker)
 
