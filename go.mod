@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.23.5
 	k8s.io/client-go v0.23.5
 	k8s.io/code-generator v0.23.5
-	knative.dev/eventing v0.32.0
-	knative.dev/eventing-kafka v0.32.0
-	knative.dev/eventing-redis v0.32.0
-	knative.dev/hack v0.0.0-20220524153203-12d3e2a7addc
-	knative.dev/pkg v0.0.0-20220524202603-19adf798efb8
-	knative.dev/reconciler-test v0.0.0-20220524205904-f750f80bfc7e
+	knative.dev/eventing v0.32.1-0.20220614135415-c1b0ea692715
+	knative.dev/eventing-kafka v0.32.1-0.20220610014424-689d5055201c
+	knative.dev/eventing-redis v0.32.1-0.20220610015324-801b466ebc36
+	knative.dev/hack v0.0.0-20220610014127-dc6c287516dc
+	knative.dev/pkg v0.0.0-20220610014025-7d607d643ee2
+	knative.dev/reconciler-test v0.0.0-20220610141926-64ffd15625ec
 	sigs.k8s.io/controller-runtime v0.11.1
 )
 
@@ -36,7 +36,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cloudevents/conformance v0.2.0 // indirect
 	github.com/cloudevents/sdk-go/sql/v2 v2.8.0 // indirect
-	github.com/cloudevents/sdk-go/v2 v2.8.0 // indirect
+	github.com/cloudevents/sdk-go/v2 v2.10.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
@@ -94,7 +94,7 @@ require (
 	go.opencensus.io v0.23.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/automaxprocs v1.4.0 // indirect
-	go.uber.org/multierr v1.6.0 // indirect
+	go.uber.org/multierr v1.8.0 // indirect
 	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/mod v0.5.1 // indirect
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
