@@ -6,17 +6,17 @@ require (
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/kedacore/keda/v2 v2.6.1
 	go.uber.org/zap v1.21.0
-	k8s.io/api v0.23.5
-	k8s.io/apiextensions-apiserver v0.23.5
-	k8s.io/apimachinery v0.23.5
-	k8s.io/client-go v0.23.5
-	k8s.io/code-generator v0.23.5
-	knative.dev/eventing v0.32.1-0.20220614135415-c1b0ea692715
-	knative.dev/eventing-kafka v0.32.1-0.20220610014424-689d5055201c
-	knative.dev/eventing-redis v0.32.1-0.20220610015324-801b466ebc36
+	k8s.io/api v0.23.8
+	k8s.io/apiextensions-apiserver v0.23.8
+	k8s.io/apimachinery v0.23.8
+	k8s.io/client-go v0.23.8
+	k8s.io/code-generator v0.23.8
+	knative.dev/eventing v0.32.1-0.20220628020529-eaec7294bc50
+	knative.dev/eventing-kafka v0.32.1-0.20220624065225-46fa189bd987
+	knative.dev/eventing-redis v0.32.1-0.20220628015029-a7f51b3fd9f4
 	knative.dev/hack v0.0.0-20220610014127-dc6c287516dc
-	knative.dev/pkg v0.0.0-20220610014025-7d607d643ee2
-	knative.dev/reconciler-test v0.0.0-20220610141926-64ffd15625ec
+	knative.dev/pkg v0.0.0-20220628014530-177751338ddc
+	knative.dev/reconciler-test v0.0.0-20220628015529-24511be23df8
 	sigs.k8s.io/controller-runtime v0.11.1
 )
 
@@ -114,7 +114,7 @@ require (
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/gengo v0.0.0-20220307231824-4627b89bbf1b // indirect
 	k8s.io/klog v1.0.0 // indirect
 	k8s.io/klog/v2 v2.60.1-0.20220317184644-43cc75f9ae89 // indirect
