@@ -968,8 +968,8 @@ k8s.io/utils/internal/third_party/forked/golang/net
 k8s.io/utils/net
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.32.1-0.20220628020529-eaec7294bc50
-## explicit; go 1.16
+# knative.dev/eventing v0.32.1-0.20220712162113-0eb566ae2067
+## explicit; go 1.17
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
 knative.dev/eventing/pkg/apis/duck/v1
@@ -1020,7 +1020,7 @@ knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/test/rekt/resources/svc
-# knative.dev/eventing-kafka v0.32.1-0.20220624065225-46fa189bd987
+# knative.dev/eventing-kafka v0.32.1-0.20220712061112-dbdcc5251b5b
 ## explicit; go 1.16
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
@@ -1042,14 +1042,14 @@ knative.dev/eventing-kafka/test/rekt/features/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkacat
 knative.dev/eventing-kafka/test/rekt/resources/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkatopic
-# knative.dev/eventing-redis v0.32.1-0.20220628015029-a7f51b3fd9f4
+# knative.dev/eventing-redis v0.32.1-0.20220711014811-af1737e2db4c
 ## explicit; go 1.16
 knative.dev/eventing-redis/source/pkg/apis/sources
 knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1
-# knative.dev/hack v0.0.0-20220610014127-dc6c287516dc
+# knative.dev/hack v0.0.0-20220701014203-65c463ac8c98
 ## explicit; go 1.14
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20220628014530-177751338ddc
+# knative.dev/pkg v0.0.0-20220705130606-e60d250dc637
 ## explicit; go 1.17
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1114,7 +1114,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20220628015529-24511be23df8
+# knative.dev/reconciler-test v0.0.0-20220705155206-f05db88effbe
 ## explicit; go 1.17
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
