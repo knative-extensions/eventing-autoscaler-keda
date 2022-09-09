@@ -31,7 +31,8 @@ import (
 )
 
 const (
-	defaultKafkaLagThreshold = 10
+	defaultKafkaLagThreshold           = 10
+	defaultKafkaActivationLagThreshold = 0
 )
 
 func GenerateScaleTarget(src *kafkav1beta1.KafkaSource) *kedav1alpha1.ScaleTarget {
@@ -52,6 +53,11 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication 
 		return nil, err
 	}
 
+	activationLagThreshold, err := keda.GetInt32ValueFromMap(src.Annotations, keda.KedaAutoscalingKafkaActivationLagThreshold, defaultKafkaActivationLagThreshold)
+	if err != nil {
+		return nil, err
+	}
+
 	allowIdleConsumers := "false"
 	if src.Status.Placements != nil {
 		// KafkaSource is being managed by the multi-tenant controller.
@@ -60,11 +66,12 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication 
 
 	for _, topic := range src.Spec.Topics {
 		triggerMetadata := map[string]string{
-			"bootstrapServers":   bootstrapServers,
-			"consumerGroup":      consumerGroup,
-			"topic":              topic,
-			"lagThreshold":       strconv.Itoa(int(*lagThreshold)),
-			"allowIdleConsumers": allowIdleConsumers,
+			"bootstrapServers":       bootstrapServers,
+			"consumerGroup":          consumerGroup,
+			"topic":                  topic,
+			"lagThreshold":           strconv.Itoa(int(*lagThreshold)),
+			"activationLagThreshold": strconv.Itoa(int(*activationLagThreshold)),
+			"allowIdleConsumers":     allowIdleConsumers,
 		}
 
 		trigger := kedav1alpha1.ScaleTriggers{

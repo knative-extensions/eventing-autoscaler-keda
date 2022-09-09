@@ -56,7 +56,9 @@ metadata:
 - `keda.autoscaling.knative.dev/cooldownPeriod` - period of time in seconds KEDA
   waits until it scales down. Default: `300`
 - `keda.autoscaling.knative.dev/kafkaLagThreshold` - only for Kafka Source,
-  refers to the stream is lagging on the current consumer group. Default: `10`
+  refers to the lag on the current consumer group that's used for scaling (1<->N). Default: `10`
+- `keda.autoscaling.knative.dev/kafkaActivationLagThreshold` - only for Kafka Source,
+  refers to the lag on the current consumer group that's used for activation (0<->1). Default: `0`
 - `keda.autoscaling.knative.dev/rabbitMQQueueLength` - only for RabbitMQ broker,
   refers to the target value for number of messages in a RabbitMQ brokers
   trigger queue: `1`

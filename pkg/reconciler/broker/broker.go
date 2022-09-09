@@ -47,7 +47,7 @@ type Reconciler struct {
 var _ brokerreconciler.Interface = (*Reconciler)(nil)
 
 // This has to stay in sync with:
-/// https://github.com/knative-sandbox/eventing-rabbitmq/blob/master/pkg/reconciler/broker/resources/secret.go#L29
+// / https://github.com/knative-sandbox/eventing-rabbitmq/blob/master/pkg/reconciler/broker/resources/secret.go#L29
 const brokerURLSecretKey = "brokerURL"
 
 // This has to stay in sync with:
