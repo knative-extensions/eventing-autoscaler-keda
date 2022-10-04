@@ -3,7 +3,6 @@ module knative.dev/eventing-autoscaler-keda
 go 1.18
 
 require (
-	github.com/hashicorp/golang-lru v0.5.4
 	github.com/kedacore/keda/v2 v2.8.1
 	go.uber.org/zap v1.21.0
 	k8s.io/api v0.24.4
@@ -11,14 +10,16 @@ require (
 	k8s.io/apimachinery v0.24.4
 	k8s.io/client-go v0.24.4
 	k8s.io/code-generator v0.24.4
-	knative.dev/eventing v0.34.2
+	knative.dev/eventing v0.34.1-0.20221004074129-91e8838ce1e1
 	knative.dev/eventing-kafka v0.34.1-0.20220907020318-2f1fbd6dda1b
 	knative.dev/eventing-redis v0.33.1-0.20220906142344-2de21240808a
-	knative.dev/hack v0.0.0-20220914183605-d1317b08c0c3
-	knative.dev/pkg v0.0.0-20220914154704-5f66ecf267fe
-	knative.dev/reconciler-test v0.0.0-20220909115625-069c951deacf
+	knative.dev/hack v0.0.0-20221003111221-b3c97904d3b5
+	knative.dev/pkg v0.0.0-20220930124718-7c4fef1af593
+	knative.dev/reconciler-test v0.0.0-20220929014120-debffa2af018
 	sigs.k8s.io/controller-runtime v0.12.3
 )
+
+require github.com/hashicorp/golang-lru v0.5.4 // indirect
 
 require (
 	cloud.google.com/go v0.102.1 // indirect
@@ -31,7 +32,7 @@ require (
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/Shopify/sarama v1.36.0 // indirect
-	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211221011931-643d94fcab96 // indirect
+	github.com/antlr/antlr4/runtime/Go/antlr v1.4.10 // indirect
 	github.com/benbjohnson/clock v1.1.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
@@ -40,7 +41,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cloudevents/conformance v0.2.0 // indirect
 	github.com/cloudevents/sdk-go/sql/v2 v2.8.0 // indirect
-	github.com/cloudevents/sdk-go/v2 v2.10.1 // indirect
+	github.com/cloudevents/sdk-go/v2 v2.12.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.3.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
