@@ -32,7 +32,7 @@ import (
 
 const (
 	defaultKafkaLagThreshold           = 10
-	defaultKafkaActivationLagThreshold = 0
+	defaultKafkaActivationLagThreshold = 1
 )
 
 func GenerateScaleTarget(src *kafkav1beta1.KafkaSource) *kedav1alpha1.ScaleTarget {
