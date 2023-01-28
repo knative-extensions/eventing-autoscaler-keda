@@ -3,6 +3,7 @@ module knative.dev/eventing-autoscaler-keda
 go 1.18
 
 require (
+	github.com/hashicorp/golang-lru v0.5.4
 	github.com/kedacore/keda/v2 v2.9.1
 	go.uber.org/zap v1.23.0
 	k8s.io/api v0.25.4
@@ -67,7 +68,6 @@ require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
-	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
