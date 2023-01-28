@@ -3,7 +3,6 @@ module knative.dev/eventing-autoscaler-keda
 go 1.18
 
 require (
-	github.com/hashicorp/golang-lru v0.5.4
 	github.com/kedacore/keda/v2 v2.9.1
 	go.uber.org/zap v1.23.0
 	k8s.io/api v0.25.4
@@ -11,12 +10,12 @@ require (
 	k8s.io/apimachinery v0.25.4
 	k8s.io/client-go v0.25.4
 	k8s.io/code-generator v0.25.4
-	knative.dev/eventing v0.35.0
-	knative.dev/eventing-kafka v0.35.0
-	knative.dev/eventing-redis v0.34.0
-	knative.dev/hack v0.0.0-20221122182941-c12c1bfbd6d2
-	knative.dev/pkg v0.0.0-20221123154742-05b694ec4d3a
-	knative.dev/reconciler-test v0.0.0-20221017014457-090970c9ca3c
+	knative.dev/eventing v0.36.1-0.20230126180940-d46e08b1f3d4
+	knative.dev/eventing-kafka v0.36.0
+	knative.dev/eventing-redis v0.36.0
+	knative.dev/hack v0.0.0-20230113013652-c7cfcb062de9
+	knative.dev/pkg v0.0.0-20230117181655-247510c00e9d
+	knative.dev/reconciler-test v0.0.0-20230123181139-476a442e3644
 	sigs.k8s.io/controller-runtime v0.13.1
 )
 
@@ -38,8 +37,8 @@ require (
 	github.com/census-instrumentation/opencensus-proto v0.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cloudevents/conformance v0.2.0 // indirect
-	github.com/cloudevents/sdk-go/sql/v2 v2.8.0 // indirect
-	github.com/cloudevents/sdk-go/v2 v2.12.0 // indirect
+	github.com/cloudevents/sdk-go/sql/v2 v2.13.0 // indirect
+	github.com/cloudevents/sdk-go/v2 v2.13.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/eapache/go-resiliency v1.3.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
@@ -68,6 +67,7 @@ require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
+	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect

@@ -20,7 +20,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
-	"knative.dev/eventing-redis/source/pkg/apis/sources"
+
+	"knative.dev/eventing-redis/pkg/source/apis/sources"
 )
 
 // SchemeGroupVersion is group version used to register these objects
