@@ -11,7 +11,7 @@ require (
 	k8s.io/apimachinery v0.25.4
 	k8s.io/client-go v0.25.4
 	k8s.io/code-generator v0.25.4
-	knative.dev/eventing v0.36.1-0.20230126180940-d46e08b1f3d4
+	knative.dev/eventing v0.36.0
 	knative.dev/eventing-kafka v0.36.0
 	knative.dev/eventing-redis v0.36.0
 	knative.dev/hack v0.0.0-20230113013652-c7cfcb062de9
