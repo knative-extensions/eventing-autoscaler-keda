@@ -872,8 +872,8 @@ k8s.io/kube-openapi v0.0.0-20221123214604-86e75ddd809a h1:UR2YSPKAb8j3uL2yK8V+t2
 k8s.io/kube-openapi v0.0.0-20221123214604-86e75ddd809a/go.mod h1:+Axhij7bCpeqhklhUTe3xmOn6bWxolyZEeyaFpjGtl4=
 k8s.io/utils v0.0.0-20221108210102-8e77b1f39fe2 h1:GfD9OzL11kvZN5iArC6oTS7RTj7oJOIfnislxYlqTj8=
 k8s.io/utils v0.0.0-20221108210102-8e77b1f39fe2/go.mod h1:OLgZIPagt7ERELqWJFomSt595RzquPNLL48iOWgYOg0=
-knative.dev/eventing v0.36.1-0.20230126180940-d46e08b1f3d4 h1:XljSvAs/HqZ1K7yFsmmKDpfBS4a31svJXMj2rJk5qgs=
-knative.dev/eventing v0.36.1-0.20230126180940-d46e08b1f3d4/go.mod h1:Qka5Z6+LeMoHGL1QAznVdmq5LAu21b4F3rgxc2AMgRg=
+knative.dev/eventing v0.36.0 h1:a7kamc2S+LcpNMDX3llnwZm+DqMcYSXgKIgJXdaQQSY=
+knative.dev/eventing v0.36.0/go.mod h1:Qka5Z6+LeMoHGL1QAznVdmq5LAu21b4F3rgxc2AMgRg=
 knative.dev/eventing-kafka v0.36.0 h1:Z5slcqqOT3k1VNCstAdUrE8gjK2qtdcNoQwxGyUdkiA=
 knative.dev/eventing-kafka v0.36.0/go.mod h1:siL65MjHrUCjBCEoWPr8KuSQQ2f0EOomJZJJjGQHsD4=
 knative.dev/eventing-redis v0.36.0 h1:0UrSANry52zLKWQlBP6LvmLawYMcIsX9NDwjA7c73aU=
