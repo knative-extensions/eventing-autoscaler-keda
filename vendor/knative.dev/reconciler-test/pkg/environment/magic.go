@@ -28,6 +28,7 @@ import (
 	"go.uber.org/zap"
 	corev1 "k8s.io/api/core/v1"
 	"knative.dev/pkg/logging"
+
 	"knative.dev/reconciler-test/pkg/feature"
 	"knative.dev/reconciler-test/pkg/milestone"
 	"knative.dev/reconciler-test/pkg/state"
@@ -44,6 +45,7 @@ func NewGlobalEnvironment(ctx context.Context, initializers ...func()) GlobalEnv
 		c:                initializeImageStores(ctx),
 		instanceID:       uuid.New().String(),
 		initializers:     initializers,
+		teardownOnFail:   *teardownOnFail,
 	}
 }
 
@@ -58,6 +60,7 @@ type MagicGlobalEnvironment struct {
 	instanceID       string
 	initializers     []func()
 	initializersOnce sync.Once
+	teardownOnFail   bool
 }
 
 type MagicEnvironment struct {
@@ -69,6 +72,7 @@ type MagicEnvironment struct {
 	namespace        string
 	namespaceCreated bool
 	refs             []corev1.ObjectReference
+	refsMu           sync.Mutex
 
 	// milestones sends milestone events, if configured.
 	milestones milestone.Emitter
@@ -79,6 +83,8 @@ type MagicEnvironment struct {
 	// imagePullSecretNamespace/imagePullSecretName: An optional secret to add to service account of new namespaces
 	imagePullSecretName      string
 	imagePullSecretNamespace string
+
+	teardownOnFail bool
 }
 
 const (
@@ -86,11 +92,19 @@ const (
 )
 
 func (mr *MagicEnvironment) Reference(ref ...corev1.ObjectReference) {
+	mr.refsMu.Lock()
+	defer mr.refsMu.Unlock()
+
 	mr.refs = append(mr.refs, ref...)
 }
 
 func (mr *MagicEnvironment) References() []corev1.ObjectReference {
-	return mr.refs
+	mr.refsMu.Lock()
+	defer mr.refsMu.Unlock()
+
+	r := make([]corev1.ObjectReference, len(mr.refs))
+	copy(r, mr.refs)
+	return r
 }
 
 func (mr *MagicEnvironment) Finish() {
@@ -103,7 +117,7 @@ func (mr *MagicEnvironment) Finish() {
 	if mr.milestones != nil {
 		mr.milestones.Finished(result)
 	}
-	if err := mr.DeleteNamespaceIfNeeded(); err != nil {
+	if err := mr.DeleteNamespaceIfNeeded(result); err != nil {
 		if mr.milestones != nil {
 			mr.milestones.Exception(NamespaceDeleteErrorReason,
 				"failed to delete namespace %q, %v", mr.namespace, err)
@@ -121,8 +135,8 @@ func WithPollTimings(interval, timeout time.Duration) EnvOpts {
 
 // Managed enables auto-lifecycle management of the environment. Including
 // registration of following opts:
-//  - Cleanup,
-//  - WithTestLogger.
+//   - Cleanup,
+//   - WithTestLogger.
 func Managed(t feature.T) EnvOpts {
 	return UnionOpts(Cleanup(t), WithTestLogger(t))
 }
@@ -152,10 +166,11 @@ func (mr *MagicGlobalEnvironment) Environment(opts ...EnvOpts) (context.Context,
 	namespace := feature.MakeK8sNamePrefix(feature.AppendRandomString("test"))
 
 	env := &MagicEnvironment{
-		c:            mr.c,
-		l:            mr.RequirementLevel,
-		s:            mr.FeatureState,
-		featureMatch: mr.FeatureMatch,
+		c:              mr.c,
+		l:              mr.RequirementLevel,
+		s:              mr.FeatureState,
+		featureMatch:   mr.FeatureMatch,
+		teardownOnFail: mr.teardownOnFail,
 
 		namespace:                namespace,
 		imagePullSecretName:      "kn-test-image-pull-secret",
@@ -215,7 +230,9 @@ func (mr *MagicEnvironment) TemplateConfig(base map[string]interface{}) map[stri
 	for k, v := range base {
 		cfg[k] = v
 	}
-	cfg["namespace"] = mr.namespace
+	if _, ok := cfg["namespace"]; !ok {
+		cfg["namespace"] = mr.namespace
+	}
 	return cfg
 }
 
@@ -295,74 +312,61 @@ func (mr *MagicEnvironment) Test(ctx context.Context, originalT *testing.T, f *f
 	ctx = state.ContextWith(ctx, f.State)
 	ctx = feature.ContextWith(ctx, f)
 
-	steps := categorizeSteps(f.Steps)
+	stepsByTiming := categorizeSteps(f.Steps)
 
-	skipAssertions := false
-	skipRequirements := false
-	skipReason := ""
+	mr.milestones.StepsPlanned(f.Name, stepsByTiming, originalT)
 
-	mr.milestones.StepsPlanned(f.Name, steps, originalT)
+	// skip is flag that signals whether the steps for the subsequent timings should
+	// be skipped because a step in a previous timing failed.
+	//
+	// Setup and Teardown steps are executed always
+	skip := false
 
-	for _, s := range steps[feature.Setup] {
-		s := s
+	originalT.Run(f.Name, func(t *testing.T) {
 
-		// Setup are executed always, no matter their level and state
-		internalT := mr.executeWithoutWrappingT(ctx, originalT, f, &s)
+		for _, timing := range feature.Timings() {
+			steps := feature.Steps(stepsByTiming[timing])
 
-		// Failed setup fails everything, so just run the teardown
-		if internalT.Failed() {
-			skipAssertions = true
-			skipRequirements = true // No need to test other requirements
-			break                   // No need to continue the setup
+			// Special case for teardown timing
+			if timing == feature.Teardown {
+				if skip {
+					if mr.teardownOnFail {
+						// Prepend logging steps to the teardown phase when a previous timing failed.
+						steps = append(mr.loggingSteps(), steps...)
+					} else {
+						// When not doing teardown only execute logging steps.
+						steps = mr.loggingSteps()
+					}
+				}
+				skip = false
+			}
+
+			originalT.Logf("Running %d steps for timing:\n%s\n\n", len(steps), steps.String())
+
+			t.Run(timing.String(), func(t *testing.T) {
+				// no parallel, various timing steps run in order: setup, requirement, assert, teardown
+
+				if skip {
+					t.Skipf("Skipping steps for timing %s due to failed previous timing\n", timing.String())
+					return
+				}
+
+				for _, s := range steps {
+					s := s
+					if mr.shouldFail(&s) {
+						mr.execute(ctx, t, f, &s)
+					} else {
+						mr.executeOptional(ctx, t, f, &s)
+					}
+				}
+			})
+
+			if t.Failed() {
+				// skip the following timings since curring timing failed
+				skip = true
+			}
 		}
-	}
-
-	for _, s := range steps[feature.Requirement] {
-		s := s
-
-		if skipRequirements {
-			break
-		}
-
-		internalT := mr.executeWithoutWrappingT(ctx, originalT, f, &s)
-
-		if internalT.Failed() {
-			skipAssertions = true
-			skipRequirements = true // No need to test other requirements
-		}
-	}
-
-	for _, s := range steps[feature.Assert] {
-		s := s
-
-		if skipAssertions {
-			break
-		}
-
-		if mr.shouldFail(&s) {
-			mr.executeWithoutWrappingT(ctx, originalT, f, &s)
-		} else {
-			mr.executeWithSkippingT(ctx, originalT, f, &s)
-		}
-
-		// TODO implement fail fast feature to avoid proceeding with testing if an "expected level" assert fails here
-	}
-
-	if originalT.Failed() {
-		// Prepend logging steps to the teardown phase.
-		steps[feature.Teardown] = append(mr.loggingSteps(), steps[feature.Teardown]...)
-	}
-
-	for _, s := range steps[feature.Teardown] {
-		s := s
-
-		// Teardown are executed always, no matter their level and state
-		mr.executeWithoutWrappingT(ctx, originalT, f, &s)
-	}
-
-	if skipReason != "" {
-		originalT.Skipf("Skipping feature '%s' assertions because %s", f.Name, skipReason)
-	}
+	})
 }
 
 type unknownResult struct{}
@@ -373,6 +377,7 @@ func (u unknownResult) Failed() bool {
 
 // TODO: this logic is strange and hard to follow.
 func (mr *MagicEnvironment) shouldFail(s *feature.Step) bool {
+	// if it's _not_ alpha nor must
 	return !(mr.s&s.S == 0 || mr.l&s.L == 0)
 }
 

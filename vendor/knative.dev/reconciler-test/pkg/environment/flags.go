@@ -29,6 +29,9 @@ var (
 	s = new(feature.States)
 	l = new(feature.Levels)
 	f = new(string)
+
+	ipFilePath     = new(string)
+	teardownOnFail = new(bool)
 )
 
 // InitFlags registers the requirement and state filter flags supported by the
@@ -54,6 +57,10 @@ func InitFlags(fs *flag.FlagSet) {
 
 	// Feature
 	fs.StringVar(f, "feature", "", "run only Features matching `regexp`")
+
+	fs.StringVar(ipFilePath, "images.producer.file", "", "file path for file-based image producer")
+
+	fs.BoolVar(teardownOnFail, "teardown.on.fail", false, "Set this flag to do teardown even if test fails.")
 }
 
 type stateValue struct {

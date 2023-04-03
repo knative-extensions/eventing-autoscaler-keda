@@ -22,6 +22,7 @@ import (
 	"strings"
 
 	"knative.dev/pkg/logging"
+
 	"knative.dev/reconciler-test/pkg/environment"
 	eventshubrbac "knative.dev/reconciler-test/pkg/eventshub/rbac"
 	"knative.dev/reconciler-test/pkg/feature"
@@ -37,12 +38,12 @@ var templates embed.FS
 // Note: this function expects that the Environment is configured with the
 // following options, otherwise it will panic:
 //
-//   ctx, env := global.Environment(
-//     knative.WithKnativeNamespace("knative-namespace"),
-//     knative.WithLoggingConfig,
-//     knative.WithTracingConfig,
-//     k8s.WithEventListener,
-//   )
+//	ctx, env := global.Environment(
+//	  knative.WithKnativeNamespace("knative-namespace"),
+//	  knative.WithLoggingConfig,
+//	  knative.WithTracingConfig,
+//	  k8s.WithEventListener,
+//	)
 func Install(name string, options ...EventsHubOption) feature.StepFn {
 	return func(ctx context.Context, t feature.T) {
 		if err := registerImage(ctx); err != nil {
@@ -71,22 +72,25 @@ func Install(name string, options ...EventsHubOption) feature.StepFn {
 
 		isReceiver := strings.Contains(envs["EVENT_GENERATORS"], "receiver")
 
-		// Deploy
-		if _, err := manifest.InstallYamlFS(ctx, templates, map[string]interface{}{
+		cfg := map[string]interface{}{
 			"name":          name,
 			"envs":          envs,
 			"image":         ImageFromContext(ctx),
 			"withReadiness": isReceiver,
-		}); err != nil {
+		}
+
+		if ic := environment.GetIstioConfig(ctx); ic.Enabled {
+			manifest.WithIstioPodAnnotations(cfg)
+		}
+
+		manifest.PodSecurityCfgFn(ctx, t)(cfg)
+
+		// Deploy
+		if _, err := manifest.InstallYamlFS(ctx, templates, cfg); err != nil {
 			log.Fatal(err)
 		}
 
-		podref, err := k8s.PodReference(namespace, name)
-		if err != nil {
-			log.Fatal(err)
-		}
-		k8s.WaitForPodRunningOrFail(ctx, t, name)
-		k8s.WaitForReadyOrDoneOrFail(ctx, t, podref)
+		k8s.WaitForPodReadyOrSucceededOrFail(ctx, t, name)
 
 		// If the eventhubs starts an event receiver, we need to wait for the service endpoint to be synced
 		if isReceiver {

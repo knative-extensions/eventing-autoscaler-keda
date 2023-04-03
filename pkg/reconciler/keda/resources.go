@@ -24,7 +24,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	kedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/apis/keda/v1alpha1"
 	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
-	redisstreamv1alpha1 "knative.dev/eventing-redis/source/pkg/apis/sources/v1alpha1"
+	redisstreamv1alpha1 "knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1"
 )
 
 const (
