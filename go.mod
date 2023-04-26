@@ -13,7 +13,7 @@ require (
 	k8s.io/code-generator v0.25.4
 	knative.dev/eventing v0.37.0
 	knative.dev/eventing-kafka v0.37.0
-	knative.dev/eventing-redis v0.36.1-0.20230413133552-30d81ad08522
+	knative.dev/eventing-redis v0.37.0
 	knative.dev/hack v0.0.0-20230417170854-f591fea109b3
 	knative.dev/pkg v0.0.0-20230418073056-dfad48eaa5d0
 	knative.dev/reconciler-test v0.0.0-20230420091239-6c21623d2555
