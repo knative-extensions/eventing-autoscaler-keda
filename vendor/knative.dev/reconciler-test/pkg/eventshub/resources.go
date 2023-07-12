@@ -22,7 +22,10 @@ import (
 	"fmt"
 	"strings"
 
+	corev1 "k8s.io/api/core/v1"
+	"k8s.io/apimachinery/pkg/api/meta"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime/schema"
 	kubeclient "knative.dev/pkg/client/injection/kube/client"
 	"knative.dev/pkg/logging"
 
@@ -86,9 +89,6 @@ func Install(name string, options ...EventsHubOption) feature.StepFn {
 		eventListener := k8s.EventListenerFromContext(ctx)
 		registerEventsHubStore(ctx, eventListener, name, namespace)
 
-		// Install ServiceAccount, Role, RoleBinding
-		eventshubrbac.Install()(ctx, t)
-
 		isReceiver := strings.Contains(envs[EventGeneratorsEnv], "receiver")
 		isEnforceTLS := strings.Contains(envs[EnforceTLS], "true")
 
@@ -110,9 +110,12 @@ func Install(name string, options ...EventsHubOption) feature.StepFn {
 			"serviceName":    serviceName,
 			"envs":           envs,
 			"image":          ImageFromContext(ctx),
-			"withReadiness":  isReceiver,
+			"isReceiver":     isReceiver,
 			"withEnforceTLS": isEnforceTLS,
 		}
+
+		// Install ServiceAccount, Role, RoleBinding
+		eventshubrbac.Install(cfg)(ctx, t)
 
 		if ic := environment.GetIstioConfig(ctx); ic.Enabled {
 			manifest.WithIstioPodAnnotations(cfg)
@@ -120,7 +123,7 @@ func Install(name string, options ...EventsHubOption) feature.StepFn {
 
 		manifest.PodSecurityCfgFn(ctx, t)(cfg)
 
-		if isEnforceTLS {
+		if isEnforceTLS && isReceiver {
 			if _, err := manifest.InstallYamlFS(ctx, serviceTLSCertificate, cfg); err != nil {
 				log.Fatal(err)
 			}
@@ -185,6 +188,21 @@ func WithTLS(t feature.T) environment.EnvOpts {
 			return ctx, nil
 		}), nil
 	}
+}
+
+func ReceiverGVR(ctx context.Context) schema.GroupVersionResource {
+	apiVersion := "v1"
+	if isForwarder(ctx) {
+		apiVersion = "serving.knative.dev/v1"
+	}
+	or := &corev1.ObjectReference{
+		Kind:       "Service",
+		Namespace:  environment.FromContext(ctx).Namespace(),
+		APIVersion: apiVersion,
+	}
+
+	gvr, _ := meta.UnsafeGuessKindToResource(or.GroupVersionKind())
+	return gvr
 }
 
 type caCertsKey struct{}
