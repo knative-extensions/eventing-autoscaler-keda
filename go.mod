@@ -12,8 +12,8 @@ require (
 	k8s.io/client-go v0.26.5
 	k8s.io/code-generator v0.26.5
 	knative.dev/eventing v0.38.0
-	knative.dev/eventing-kafka v0.37.1-0.20230726220740-2cb3e9dfcf8e
-	knative.dev/eventing-redis v0.37.1-0.20230724075217-14328d98f13e
+	knative.dev/eventing-kafka v0.38.0
+	knative.dev/eventing-redis v0.38.0
 	knative.dev/hack v0.0.0-20230712131415-ddae80293c43
 	knative.dev/pkg v0.0.0-20230718152110-aef227e72ead
 	knative.dev/reconciler-test v0.0.0-20230726074640-26cee79ad63d
