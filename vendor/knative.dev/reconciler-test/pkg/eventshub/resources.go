@@ -28,6 +28,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	kubeclient "knative.dev/pkg/client/injection/kube/client"
 	"knative.dev/pkg/logging"
+	"knative.dev/pkg/network"
 
 	"knative.dev/reconciler-test/pkg/environment"
 	eventshubrbac "knative.dev/reconciler-test/pkg/eventshub/rbac"
@@ -112,6 +113,7 @@ func Install(name string, options ...EventsHubOption) feature.StepFn {
 			"image":          ImageFromContext(ctx),
 			"isReceiver":     isReceiver,
 			"withEnforceTLS": isEnforceTLS,
+			"clusterDomain":  network.GetClusterDomainName(),
 		}
 
 		// Install ServiceAccount, Role, RoleBinding
@@ -156,7 +158,7 @@ func Install(name string, options ...EventsHubOption) feature.StepFn {
 			// No event recording desired, just logging.
 			envs[EventLogsEnv] = "logger"
 			cfg["envs"] = envs
-			cfg["sink"] = sinkURL
+			cfg["sink"] = sinkURL.URL.String()
 
 			// Deploy Forwarder
 			if _, err := manifest.InstallYamlFS(ctx, forwarderTemplates, cfg); err != nil {
