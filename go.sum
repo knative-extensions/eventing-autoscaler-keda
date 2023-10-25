@@ -784,10 +784,10 @@ k8s.io/utils v0.0.0-20230209194617-a36077c30491 h1:r0BAOLElQnnFhE/ApUsg3iHdVYYPB
 k8s.io/utils v0.0.0-20230209194617-a36077c30491/go.mod h1:OLgZIPagt7ERELqWJFomSt595RzquPNLL48iOWgYOg0=
 knative.dev/eventing v0.39.0 h1:UlP5sSfxUzsFvdDF+T22EYoaz9LdITcha1oF898kLFw=
 knative.dev/eventing v0.39.0/go.mod h1:MlEiEcHALqZnu0OFMuWdJfjBzM7HlSJfk8pQbTcIy4o=
-knative.dev/eventing-kafka v0.38.1-0.20231024063947-d1a169d2dfc7 h1:U46LHLBvYLLNrcA4tH344f1woz7c6vCDs6RrNBU0a5U=
-knative.dev/eventing-kafka v0.38.1-0.20231024063947-d1a169d2dfc7/go.mod h1:xvI9PihVo77Uax4nlxiwkRXmnql1VjL5YjM+og9EnBU=
-knative.dev/eventing-redis v0.38.1-0.20231024061811-59fd4100fccd h1:7aWfIWlDsgt6CQspbpKLE0SK4fwrduZ4r/GbECArgDU=
-knative.dev/eventing-redis v0.38.1-0.20231024061811-59fd4100fccd/go.mod h1:KDnHV3f7HpCFhpsMrNb5LB26zNWDTwjyTRsMAqs7O1U=
+knative.dev/eventing-kafka v0.39.0 h1:h4d+jd/i81gCAHdFaDACTYg5bFzyzdSJDXZ9tXWLTo0=
+knative.dev/eventing-kafka v0.39.0/go.mod h1:AM7WliTLXyFkiuVEw60wYQ3z9lb7QbW7LtecpJiWU2Q=
+knative.dev/eventing-redis v0.39.0 h1:gW7HnJjLdGnHy839E47ureErDCdprLfRlj46x7hJaL8=
+knative.dev/eventing-redis v0.39.0/go.mod h1:LR8o3LMYbAymxKYcqmf5ImKYCDmJDPwWnXEWctot/sM=
 knative.dev/hack v0.0.0-20231016131700-2c938d4918da h1:xy+fvuz2LDOMsZ5UwXRaMF70NYUs9fsG+EF5/ierYBg=
 knative.dev/hack v0.0.0-20231016131700-2c938d4918da/go.mod h1:yk2OjGDsbEnQjfxdm0/HJKS2WqTLEFg/N6nUs6Rqx3Q=
 knative.dev/pkg v0.0.0-20231023151236-29775d7c9e5c h1:xyPoEToTWeBdn6tinhLxXfnhJhTNQt5WzHiTNiFphRw=
