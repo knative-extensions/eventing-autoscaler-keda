@@ -911,7 +911,7 @@ k8s.io/utils/net
 k8s.io/utils/pointer
 k8s.io/utils/strings/slices
 k8s.io/utils/trace
-# knative.dev/eventing v0.39.1-0.20231103063133-d978f3c993fd
+# knative.dev/eventing v0.39.1-0.20231106141706-62e797b257bb
 ## explicit; go 1.19
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -966,7 +966,7 @@ knative.dev/eventing/pkg/client/listers/flows/v1
 knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
-# knative.dev/eventing-kafka v0.39.1-0.20231103061633-d45c9efe4e54
+# knative.dev/eventing-kafka v0.39.1-0.20231106140932-b704a1c94165
 ## explicit; go 1.19
 knative.dev/eventing-kafka/pkg/apis/bindings
 knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
@@ -981,14 +981,14 @@ knative.dev/eventing-kafka/test/rekt/features/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkacat
 knative.dev/eventing-kafka/test/rekt/resources/kafkasource
 knative.dev/eventing-kafka/test/rekt/resources/kafkatopic
-# knative.dev/eventing-redis v0.39.1-0.20231103063936-2e3ef435c110
+# knative.dev/eventing-redis v0.39.1-0.20231106174124-306868cd4967
 ## explicit; go 1.18
 knative.dev/eventing-redis/pkg/source/apis/sources
 knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1
 # knative.dev/hack v0.0.0-20231102183416-0d99b7ee9d63
 ## explicit; go 1.18
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20231106073528-acf0a2d2dea9
+# knative.dev/pkg v0.0.0-20231107094615-5c9b7a8d8265
 ## explicit; go 1.18
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1058,7 +1058,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20231103063332-212f3db95925
+# knative.dev/reconciler-test v0.0.0-20231107120858-d2429fb0b545
 ## explicit; go 1.20
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
