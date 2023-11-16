@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.27.6
 	k8s.io/client-go v0.27.6
 	k8s.io/code-generator v0.27.6
-	knative.dev/eventing v0.39.1-0.20231114180859-d964da3a8ace
-	knative.dev/eventing-kafka v0.39.1-0.20231110061352-06acd3346b39
-	knative.dev/eventing-redis v0.39.1-0.20231114072216-59ba9b01b33f
+	knative.dev/eventing v0.39.1-0.20231116110531-8ebe8692096f
+	knative.dev/eventing-kafka v0.39.1-0.20231115070816-3150f294976f
+	knative.dev/eventing-redis v0.39.1-0.20231115071017-7b9b89d26178
 	knative.dev/hack v0.0.0-20231109190034-5deaddeb51a7
 	knative.dev/pkg v0.0.0-20231115001034-97c7258e3a98
-	knative.dev/reconciler-test v0.0.0-20231109234136-36fcbd054949
+	knative.dev/reconciler-test v0.0.0-20231115072946-99723665c94d
 	sigs.k8s.io/controller-runtime v0.13.1
 )
 
