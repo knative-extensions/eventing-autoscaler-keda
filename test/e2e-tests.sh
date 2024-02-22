@@ -49,7 +49,7 @@ TEST_KAFKA_MT_SOURCE=${TEST_KAFKA_MT_SOURCE:-0}
 echo "e2e-tests.sh command line: $@"
 
 # If you wish to use this script just as test setup, *without* teardown, add "--skip-teardowns" to the initialize command
-initialize $@ --skip-istio-addon
+initialize "$@" --skip-istio-addon --cluster-version=1.28
 
 echo "e2e-tests.sh environment:"
 echo "EVENTING_NAMESPACE: ${EVENTING_NAMESPACE}"
