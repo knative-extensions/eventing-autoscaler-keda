@@ -5,18 +5,18 @@ go 1.21
 require (
 	github.com/hashicorp/golang-lru v1.0.2
 	github.com/kedacore/keda/v2 v2.9.1
-	go.uber.org/zap v1.26.0
+	go.uber.org/zap v1.27.0
 	k8s.io/api v0.29.2
 	k8s.io/apiextensions-apiserver v0.29.2
 	k8s.io/apimachinery v0.29.2
 	k8s.io/client-go v0.29.2
 	k8s.io/code-generator v0.29.2
-	knative.dev/eventing v0.40.1-0.20240222090536-b5eefb616d2e
+	knative.dev/eventing v0.40.1-0.20240226100147-060c430bc1ca
 	knative.dev/eventing-kafka v0.40.1-0.20240207142533-d23eb248d3ac
-	knative.dev/eventing-redis v0.40.1-0.20240222092327-f63070303e5d
+	knative.dev/eventing-redis v0.40.1-0.20240226112542-6ed6082d9daf
 	knative.dev/hack v0.0.0-20240222141347-5f0998e65262
-	knative.dev/pkg v0.0.0-20240221180044-bea88256cb23
-	knative.dev/reconciler-test v0.0.0-20240222090814-c7f9959df259
+	knative.dev/pkg v0.0.0-20240226072014-32e13c4925ed
+	knative.dev/reconciler-test v0.0.0-20240226112256-310e7fb72b6c
 	sigs.k8s.io/controller-runtime v0.13.1
 )
 
@@ -65,7 +65,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_golang v1.18.0 // indirect
 	github.com/prometheus/client_model v0.5.0 // indirect
-	github.com/prometheus/common v0.47.0 // indirect
+	github.com/prometheus/common v0.48.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
 	github.com/prometheus/statsd_exporter v0.22.7 // indirect
 	github.com/rickb777/date v1.13.0 // indirect
@@ -87,10 +87,10 @@ require (
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.18.0 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.4.0 // indirect
-	google.golang.org/api v0.165.0 // indirect
+	google.golang.org/api v0.167.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240205150955-31a09d347014 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240205150955-31a09d347014 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240213162025-012b6fc9bca9 // indirect
 	google.golang.org/grpc v1.61.1 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
