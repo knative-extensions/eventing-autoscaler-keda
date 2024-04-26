@@ -23,8 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"knative.dev/eventing-kafka/test/rekt/features/kafkasource"
-	ks "knative.dev/eventing-kafka/test/rekt/resources/kafkasource"
+	ks "knative.dev/eventing-kafka-broker/test/rekt/resources/kafkasource"
 	"knative.dev/pkg/system"
 	_ "knative.dev/pkg/system/testing"
 	"knative.dev/reconciler-test/pkg/environment"
@@ -49,5 +48,5 @@ func TestSmoke_KafkaSource(t *testing.T) {
 	)
 
 	env.Test(ctx, t,
-		kafkasource.KafkaSourceGoesReady("readysource", ks.WithBootstrapServers([]string{kafkaBootstrapUrlPlain})))
+		ks.Install("readysource", ks.WithBootstrapServers([]string{kafkaBootstrapUrlPlain})).AsFeature())
 }

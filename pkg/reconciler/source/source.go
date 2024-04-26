@@ -32,7 +32,7 @@ import (
 	"k8s.io/client-go/tools/cache"
 	kedav1alpha1 "knative.dev/eventing-autoscaler-keda/third_party/pkg/apis/keda/v1alpha1"
 	kedaclientset "knative.dev/eventing-autoscaler-keda/third_party/pkg/client/clientset/versioned"
-	kafkav1beta1 "knative.dev/eventing-kafka/pkg/apis/sources/v1beta1"
+	kafkav1beta1 "knative.dev/eventing-kafka-broker/control-plane/pkg/apis/sources/v1beta1"
 	redisstreamv1alpha1 "knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1"
 	duckv1 "knative.dev/pkg/apis/duck/v1"
 	"knative.dev/pkg/logging"
