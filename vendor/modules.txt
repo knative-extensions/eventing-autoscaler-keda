@@ -208,11 +208,11 @@ github.com/prometheus/procfs/internal/util
 github.com/prometheus/statsd_exporter/pkg/level
 github.com/prometheus/statsd_exporter/pkg/mapper
 github.com/prometheus/statsd_exporter/pkg/mapper/fsm
-# github.com/rickb777/date v1.13.0
-## explicit; go 1.14
+# github.com/rickb777/date v1.14.1
+## explicit; go 1.15
 github.com/rickb777/date/period
-# github.com/rickb777/plural v1.2.1
-## explicit; go 1.14
+# github.com/rickb777/plural v1.2.2
+## explicit; go 1.15
 github.com/rickb777/plural
 # github.com/robfig/cron/v3 v3.0.1
 ## explicit; go 1.12
@@ -900,7 +900,7 @@ k8s.io/utils/pointer
 k8s.io/utils/ptr
 k8s.io/utils/strings/slices
 k8s.io/utils/trace
-# knative.dev/eventing v0.41.0
+# knative.dev/eventing v0.41.1-0.20240426051806-c1c7c9b84261
 ## explicit; go 1.21
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -960,21 +960,24 @@ knative.dev/eventing/pkg/client/listers/messaging/v1
 knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/pkg/eventingtls
-# knative.dev/eventing-kafka v0.40.1-0.20240207142533-d23eb248d3ac
+# knative.dev/eventing-kafka-broker v0.40.1-0.20240426013942-395ae211fd9f
 ## explicit; go 1.21
-knative.dev/eventing-kafka/pkg/apis/bindings
-knative.dev/eventing-kafka/pkg/apis/bindings/v1beta1
-knative.dev/eventing-kafka/pkg/apis/sources/config
-knative.dev/eventing-kafka/pkg/apis/sources/v1beta1
-knative.dev/eventing-kafka/pkg/client/clientset/versioned
-knative.dev/eventing-kafka/pkg/client/clientset/versioned/scheme
-knative.dev/eventing-kafka/pkg/client/clientset/versioned/typed/bindings/v1beta1
-knative.dev/eventing-kafka/pkg/client/clientset/versioned/typed/sources/v1beta1
-knative.dev/eventing-kafka/pkg/client/injection/client
-knative.dev/eventing-kafka/test/rekt/features/kafkasource
-knative.dev/eventing-kafka/test/rekt/resources/kafkacat
-knative.dev/eventing-kafka/test/rekt/resources/kafkasource
-knative.dev/eventing-kafka/test/rekt/resources/kafkatopic
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/eventing
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/eventing/v1alpha1
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/messaging
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/messaging/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/sources/config
+knative.dev/eventing-kafka-broker/control-plane/pkg/apis/sources/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/scheme
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/bindings/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/eventing/v1alpha1
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/messaging/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/sources/v1beta1
+knative.dev/eventing-kafka-broker/control-plane/pkg/client/injection/client
+knative.dev/eventing-kafka-broker/test/rekt/resources/kafkasource
 # knative.dev/eventing-redis v0.41.0
 ## explicit; go 1.21
 knative.dev/eventing-redis/pkg/source/apis/sources
@@ -1057,7 +1060,6 @@ knative.dev/pkg/webhook/resourcesemantics/validation
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
 knative.dev/reconciler-test/pkg/eventshub
-knative.dev/reconciler-test/pkg/eventshub/assert
 knative.dev/reconciler-test/pkg/eventshub/dropevents
 knative.dev/reconciler-test/pkg/eventshub/dropevents/dropeventsfibonacci
 knative.dev/reconciler-test/pkg/eventshub/dropevents/dropeventsfirst
