@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.29.2
 	k8s.io/client-go v0.29.2
 	k8s.io/code-generator v0.29.2
-	knative.dev/eventing v0.41.1-0.20240503115851-3dfe973bff08
-	knative.dev/eventing-kafka-broker v0.41.1-0.20240503091534-e0c22ccd2f89
-	knative.dev/eventing-redis v0.41.1-0.20240501132103-4bac6d3e62e9
+	knative.dev/eventing v0.41.1-0.20240503140455-0e165f242f2d
+	knative.dev/eventing-kafka-broker v0.41.1-0.20240503154919-f43f310c7603
+	knative.dev/eventing-redis v0.41.1-0.20240503141830-230745c00458
 	knative.dev/hack v0.0.0-20240426013324-abdcdea830f0
 	knative.dev/pkg v0.0.0-20240429080158-b69fa2713537
-	knative.dev/reconciler-test v0.0.0-20240503123133-b2181edc81ad
+	knative.dev/reconciler-test v0.0.0-20240503135940-d08dcf83a7db
 	sigs.k8s.io/controller-runtime v0.13.1
 )
 
@@ -33,16 +33,16 @@ require (
 	github.com/cloudevents/conformance v0.2.0 // indirect
 	github.com/cloudevents/sdk-go/sql/v2 v2.15.2 // indirect
 	github.com/cloudevents/sdk-go/v2 v2.15.2 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
 	github.com/evanphx/json-patch v5.6.0+incompatible // indirect
 	github.com/evanphx/json-patch/v5 v5.9.0 // indirect
 	github.com/go-kit/log v0.2.1 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
-	github.com/go-openapi/jsonpointer v0.19.6 // indirect
-	github.com/go-openapi/jsonreference v0.20.2 // indirect
-	github.com/go-openapi/swag v0.22.3 // indirect
+	github.com/go-openapi/jsonpointer v0.20.2 // indirect
+	github.com/go-openapi/jsonreference v0.20.4 // indirect
+	github.com/go-openapi/swag v0.22.7 // indirect
 	github.com/gobuffalo/flect v1.0.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
@@ -72,7 +72,7 @@ require (
 	github.com/rickb777/plural v1.2.2 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/stretchr/testify v1.8.4 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/automaxprocs v1.5.3 // indirect
