@@ -4,6 +4,7 @@
 
 [![Build status](https://github.com/knative-sandbox/eventing-autoscaler-keda//workflows/master%20build/badge.svg)](https://github.com/knative-sandbox/eventing-autoscaler-keda/actions)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fknative-extensions%2Feventing-autoscaler-keda.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fknative-extensions%2Feventing-autoscaler-keda?ref=badge_shield)
 
 |                   |                                                                                                                        |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -175,3 +176,7 @@ vaikas-a01:eventing-autoscaler-keda vaikas$ kubectl get scaledobjects
 NAME           SCALETARGETKIND      SCALETARGETNAME           TRIGGERS   AUTHENTICATION         READY   ACTIVE   AGE
 ping-trigger   apps/v1.Deployment   ping-trigger-dispatcher   rabbitmq   default-trigger-auth   True    True     14m
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fknative-extensions%2Feventing-autoscaler-keda.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fknative-extensions%2Feventing-autoscaler-keda?ref=badge_large)
