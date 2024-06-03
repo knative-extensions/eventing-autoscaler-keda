@@ -323,14 +323,14 @@ golang.org/x/tools/internal/stdlib
 # gomodules.xyz/jsonpatch/v2 v2.4.0
 ## explicit; go 1.20
 gomodules.xyz/jsonpatch/v2
-# google.golang.org/api v0.181.0
+# google.golang.org/api v0.182.0
 ## explicit; go 1.20
 google.golang.org/api/support/bundler
-# google.golang.org/genproto/googleapis/api v0.0.0-20240506185236-b8a5c65736ae
+# google.golang.org/genproto/googleapis/api v0.0.0-20240513163218-0867130af1f8
 ## explicit; go 1.19
 google.golang.org/genproto/googleapis/api/httpbody
-# google.golang.org/genproto/googleapis/rpc v0.0.0-20240513163218-0867130af1f8
-## explicit; go 1.19
+# google.golang.org/genproto/googleapis/rpc v0.0.0-20240521202816-d264139d666e
+## explicit; go 1.20
 google.golang.org/genproto/googleapis/rpc/status
 # google.golang.org/grpc v1.64.0
 ## explicit; go 1.19
@@ -900,7 +900,7 @@ k8s.io/utils/pointer
 k8s.io/utils/ptr
 k8s.io/utils/strings/slices
 k8s.io/utils/trace
-# knative.dev/eventing v0.41.1-0.20240530202412-a58c1352db05
+# knative.dev/eventing v0.41.1-0.20240603072148-08b0813c5f8c
 ## explicit; go 1.21
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -961,7 +961,7 @@ knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
-# knative.dev/eventing-kafka-broker v0.41.1-0.20240531113657-483904b1ef98
+# knative.dev/eventing-kafka-broker v0.41.1-0.20240603122140-ca55cda01bda
 ## explicit; go 1.21
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1beta1
@@ -979,14 +979,14 @@ knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/t
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/sources/v1beta1
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/injection/client
 knative.dev/eventing-kafka-broker/test/rekt/resources/kafkasource
-# knative.dev/eventing-redis v0.41.1-0.20240530173836-7698c68784e9
+# knative.dev/eventing-redis v0.41.1-0.20240531131736-d98c2f6beaf9
 ## explicit; go 1.21
 knative.dev/eventing-redis/pkg/source/apis/sources
 knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1
 # knative.dev/hack v0.0.0-20240529131459-3b6d6441e7ea
 ## explicit; go 1.18
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20240529181700-7d52a43448b2
+# knative.dev/pkg v0.0.0-20240603080447-170996133132
 ## explicit; go 1.21
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1056,7 +1056,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20240530174226-c8f73e2fdcd8
+# knative.dev/reconciler-test v0.0.0-20240531150205-2723f53aa8ed
 ## explicit; go 1.21
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
