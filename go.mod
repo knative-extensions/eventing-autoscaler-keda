@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.29.2
 	k8s.io/client-go v0.29.2
 	k8s.io/code-generator v0.29.2
-	knative.dev/eventing v0.41.1-0.20240611091249-c60bcd048fd3
-	knative.dev/eventing-kafka-broker v0.41.1-0.20240610122418-95ab3adfe53f
-	knative.dev/eventing-redis v0.41.1-0.20240607132901-c1869ebab702
+	knative.dev/eventing v0.41.1-0.20240613093107-ea8f0fda4c06
+	knative.dev/eventing-kafka-broker v0.41.1-0.20240613054433-311b607778d5
+	knative.dev/eventing-redis v0.41.1-0.20240611153730-ee06376c3cb9
 	knative.dev/hack v0.0.0-20240607132042-09143140a254
 	knative.dev/pkg v0.0.0-20240610120318-15e6cdf2f386
-	knative.dev/reconciler-test v0.0.0-20240607131348-2023469d1158
+	knative.dev/reconciler-test v0.0.0-20240611155001-199a5264927d
 	sigs.k8s.io/controller-runtime v0.13.1
 )
 
@@ -95,6 +95,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+	k8s.io/apiserver v0.29.2 // indirect
 	k8s.io/gengo v0.0.0-20240129211411-f967bbeff4b4 // indirect
 	k8s.io/klog/v2 v2.120.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20231010175941-2dd684a91f00 // indirect
