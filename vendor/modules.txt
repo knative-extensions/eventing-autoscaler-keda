@@ -904,7 +904,7 @@ k8s.io/utils/pointer
 k8s.io/utils/ptr
 k8s.io/utils/strings/slices
 k8s.io/utils/trace
-# knative.dev/eventing v0.41.1-0.20240613093107-ea8f0fda4c06
+# knative.dev/eventing v0.41.1-0.20240617131715-e298f32440e4
 ## explicit; go 1.21
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -975,7 +975,7 @@ knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
-# knative.dev/eventing-kafka-broker v0.41.1-0.20240613054433-311b607778d5
+# knative.dev/eventing-kafka-broker v0.41.1-0.20240614160739-64077b9547f4
 ## explicit; go 1.21
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1beta1
@@ -993,14 +993,14 @@ knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/t
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/sources/v1beta1
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/injection/client
 knative.dev/eventing-kafka-broker/test/rekt/resources/kafkasource
-# knative.dev/eventing-redis v0.41.1-0.20240611153730-ee06376c3cb9
+# knative.dev/eventing-redis v0.41.1-0.20240614135942-5f25bff7cf1b
 ## explicit; go 1.21
 knative.dev/eventing-redis/pkg/source/apis/sources
 knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1
 # knative.dev/hack v0.0.0-20240607132042-09143140a254
 ## explicit; go 1.18
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20240610120318-15e6cdf2f386
+# knative.dev/pkg v0.0.0-20240614135239-339c22b8218c
 ## explicit; go 1.21
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1015,6 +1015,7 @@ knative.dev/pkg/client/injection/apiextensions/informers/apiextensions/v1/custom
 knative.dev/pkg/client/injection/apiextensions/informers/factory
 knative.dev/pkg/client/injection/apiextensions/reconciler/apiextensions/v1/customresourcedefinition
 knative.dev/pkg/client/injection/ducks/duck/v1/addressable
+knative.dev/pkg/client/injection/ducks/duck/v1/authstatus
 knative.dev/pkg/client/injection/ducks/duck/v1/source
 knative.dev/pkg/client/injection/kube/client
 knative.dev/pkg/client/injection/kube/informers/admissionregistration/v1/mutatingwebhookconfiguration
