@@ -1,6 +1,6 @@
 module knative.dev/eventing-autoscaler-keda
 
-go 1.21
+go 1.22
 
 require (
 	github.com/hashicorp/golang-lru v1.0.2
@@ -11,11 +11,11 @@ require (
 	k8s.io/apimachinery v0.29.2
 	k8s.io/client-go v0.29.2
 	k8s.io/code-generator v0.29.2
-	knative.dev/eventing v0.41.1-0.20240620085917-18dfe3c0ac90
-	knative.dev/eventing-kafka-broker v0.41.1-0.20240619122019-83728d25ce97
-	knative.dev/eventing-redis v0.41.1-0.20240618171140-220023e2f832
+	knative.dev/eventing v0.41.1-0.20240620173702-f84a98c60901
+	knative.dev/eventing-kafka-broker v0.41.1-0.20240620150918-046eb4b5fb39
+	knative.dev/eventing-redis v0.41.1-0.20240620151033-aa6af8ba49de
 	knative.dev/hack v0.0.0-20240607132042-09143140a254
-	knative.dev/pkg v0.0.0-20240614135239-339c22b8218c
+	knative.dev/pkg v0.0.0-20240620215714-915c00977757
 	knative.dev/reconciler-test v0.0.0-20240618170853-5bf0b86114f8
 	sigs.k8s.io/controller-runtime v0.13.1
 )
@@ -88,7 +88,7 @@ require (
 	golang.org/x/tools v0.22.0 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.4.0 // indirect
 	google.golang.org/api v0.183.0 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240521202816-d264139d666e // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20240604185151-ef581f913117 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240528184218-531527333157 // indirect
 	google.golang.org/grpc v1.64.0 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
