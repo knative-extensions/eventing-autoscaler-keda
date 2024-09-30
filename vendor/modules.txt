@@ -247,8 +247,8 @@ go.opencensus.io/trace/tracestate
 # go.uber.org/atomic v1.10.0
 ## explicit; go 1.18
 go.uber.org/atomic
-# go.uber.org/automaxprocs v1.5.3
-## explicit; go 1.18
+# go.uber.org/automaxprocs v1.6.0
+## explicit; go 1.20
 go.uber.org/automaxprocs/internal/cgroups
 go.uber.org/automaxprocs/internal/runtime
 go.uber.org/automaxprocs/maxprocs
@@ -920,7 +920,7 @@ k8s.io/utils/pointer
 k8s.io/utils/ptr
 k8s.io/utils/strings/slices
 k8s.io/utils/trace
-# knative.dev/eventing v0.42.1-0.20240923135023-641cbb7dffe2
+# knative.dev/eventing v0.42.1-0.20240926123447-e7fca7646f4a
 ## explicit; go 1.22.0
 knative.dev/eventing/pkg/apis/config
 knative.dev/eventing/pkg/apis/duck
@@ -991,7 +991,7 @@ knative.dev/eventing/pkg/client/listers/sources/v1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
-# knative.dev/eventing-kafka-broker v0.42.1-0.20240920132909-545216c71c96
+# knative.dev/eventing-kafka-broker v0.42.1-0.20240930121539-e3ede639913e
 ## explicit; go 1.22.0
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1beta1
@@ -1009,14 +1009,14 @@ knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/t
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/sources/v1beta1
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/injection/client
 knative.dev/eventing-kafka-broker/test/rekt/resources/kafkasource
-# knative.dev/eventing-redis v0.42.1-0.20240919064006-b266e93c8f2a
+# knative.dev/eventing-redis v0.42.1-0.20240924141445-72a9e0d123ee
 ## explicit; go 1.22.0
 knative.dev/eventing-redis/pkg/source/apis/sources
 knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1
 # knative.dev/hack v0.0.0-20240909014011-fc6a8452af6d
 ## explicit; go 1.21
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20240923063442-aabe552ba5e6
+# knative.dev/pkg v0.0.0-20240930065954-503173341499
 ## explicit; go 1.22.0
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1087,7 +1087,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20240924085229-13c0118a9d5c
+# knative.dev/reconciler-test v0.0.0-20240926123451-87d857060042
 ## explicit; go 1.22.0
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
