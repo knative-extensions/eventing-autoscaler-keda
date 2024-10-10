@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.30.3
 	k8s.io/client-go v0.30.3
 	k8s.io/code-generator v0.30.3
-	knative.dev/eventing v0.42.1-0.20241002131722-e6490c30395c
-	knative.dev/eventing-kafka-broker v0.42.1-0.20241002080521-b9233feecbfd
+	knative.dev/eventing v0.42.1-0.20241010131443-db729bc94333
+	knative.dev/eventing-kafka-broker v0.42.1-0.20241010131559-513846d69c9a
 	knative.dev/eventing-redis v0.42.1-0.20241003080023-5a6905d8783a
-	knative.dev/hack v0.0.0-20240909014011-fc6a8452af6d
-	knative.dev/pkg v0.0.0-20240930065954-503173341499
-	knative.dev/reconciler-test v0.0.0-20240926123451-87d857060042
+	knative.dev/hack v0.0.0-20241010131451-05b2fb30cb4d
+	knative.dev/pkg v0.0.0-20241010131207-e0f65ceabc68
+	knative.dev/reconciler-test v0.0.0-20241010131438-060f0966b48c
 	sigs.k8s.io/controller-runtime v0.13.1
 )
 
@@ -78,19 +78,19 @@ require (
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/mod v0.21.0 // indirect
-	golang.org/x/net v0.29.0 // indirect
+	golang.org/x/net v0.30.0 // indirect
 	golang.org/x/oauth2 v0.22.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.25.0 // indirect
-	golang.org/x/term v0.24.0 // indirect
-	golang.org/x/text v0.18.0 // indirect
+	golang.org/x/sys v0.26.0 // indirect
+	golang.org/x/term v0.25.0 // indirect
+	golang.org/x/text v0.19.0 // indirect
 	golang.org/x/time v0.6.0 // indirect
-	golang.org/x/tools v0.25.0 // indirect
+	golang.org/x/tools v0.26.0 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.4.0 // indirect
 	google.golang.org/api v0.183.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240814211410-ddb44dafa142 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240814211410-ddb44dafa142 // indirect
-	google.golang.org/grpc v1.67.0 // indirect
+	google.golang.org/grpc v1.67.1 // indirect
 	google.golang.org/protobuf v1.34.2 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
