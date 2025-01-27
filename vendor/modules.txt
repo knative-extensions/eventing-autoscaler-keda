@@ -1042,7 +1042,7 @@ knative.dev/eventing/pkg/client/listers/sources/v1alpha1
 knative.dev/eventing/pkg/client/listers/sources/v1beta2
 knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
-# knative.dev/eventing-kafka-broker v0.43.1-0.20250124102534-5c18227c9452
+# knative.dev/eventing-kafka-broker v0.44.0
 ## explicit; go 1.22.7
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1
