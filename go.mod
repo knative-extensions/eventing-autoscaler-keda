@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.32.2
 	k8s.io/client-go v0.32.2
 	k8s.io/code-generator v0.32.2
-	knative.dev/eventing v0.44.1-0.20250213150852-75195a587329
+	knative.dev/eventing v0.44.1-0.20250217174749-cee6e8cca430
 	knative.dev/eventing-kafka-broker v0.43.1-0.20250214124052-aed6672d6d58
-	knative.dev/eventing-redis v0.44.1-0.20250129132159-8fb0a1c47505
-	knative.dev/hack v0.0.0-20250128013659-5f7f0f50e9de
-	knative.dev/pkg v0.0.0-20250214140553-ae2c6bcc1f59
-	knative.dev/reconciler-test v0.0.0-20250129131157-3424ad806aa1
+	knative.dev/eventing-redis v0.44.1-0.20250217113756-70186ddb9bf0
+	knative.dev/hack v0.0.0-20250217122557-ce4c934f30e5
+	knative.dev/pkg v0.0.0-20250218011850-c925de2a3f07
+	knative.dev/reconciler-test v0.0.0-20250217113456-62eb465c1406
 	sigs.k8s.io/controller-runtime v0.13.1
 )
 
@@ -75,7 +75,6 @@ require (
 	github.com/stretchr/testify v1.10.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
