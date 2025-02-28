@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.32.2
 	k8s.io/client-go v0.32.2
 	k8s.io/code-generator v0.32.2
-	knative.dev/eventing v0.44.1-0.20250217174749-cee6e8cca430
-	knative.dev/eventing-kafka-broker v0.43.1-0.20250214124052-aed6672d6d58
-	knative.dev/eventing-redis v0.44.1-0.20250217113756-70186ddb9bf0
-	knative.dev/hack v0.0.0-20250217122557-ce4c934f30e5
-	knative.dev/pkg v0.0.0-20250218011850-c925de2a3f07
-	knative.dev/reconciler-test v0.0.0-20250217113456-62eb465c1406
+	knative.dev/eventing v0.44.1-0.20250227153031-fe83e25214e9
+	knative.dev/eventing-kafka-broker v0.43.1-0.20250228112831-eeff5a438efa
+	knative.dev/eventing-redis v0.44.1-0.20250219014743-4a291f60c89c
+	knative.dev/hack v0.0.0-20250219013704-306ce745e077
+	knative.dev/pkg v0.0.0-20250226145529-0372c089c78f
+	knative.dev/reconciler-test v0.0.0-20250219013557-5ca0bd4fcad5
 	sigs.k8s.io/controller-runtime v0.13.1
 )
 
@@ -48,7 +48,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/gnostic-models v0.6.9 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.1 // indirect
