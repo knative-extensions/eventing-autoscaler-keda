@@ -1,6 +1,6 @@
 module knative.dev/eventing-autoscaler-keda
 
-go 1.23.0
+go 1.24.0
 
 require (
 	github.com/hashicorp/golang-lru v1.0.2
@@ -12,8 +12,8 @@ require (
 	k8s.io/client-go v0.32.2
 	k8s.io/code-generator v0.32.2
 	knative.dev/eventing v0.45.0
-	knative.dev/eventing-kafka-broker v0.43.1-0.20250423200025-a5c7f94a542f
-	knative.dev/eventing-redis v0.44.1-0.20250423132827-57dda4c631b7
+	knative.dev/eventing-kafka-broker v0.45.0
+	knative.dev/eventing-redis v0.45.0
 	knative.dev/hack v0.0.0-20250331013814-c577ed9f7775
 	knative.dev/pkg v0.0.0-20250415155312-ed3e2158b883
 	knative.dev/reconciler-test v0.0.0-20250415170512-23f86169156f
