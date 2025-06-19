@@ -32,7 +32,7 @@ import (
 )
 
 const (
-	kafkaBootstrapUrlPlain = "my-cluster-kafka-bootstrap.kafka.svc:9092"
+	kafkaBootstrapURLPlain = "my-cluster-kafka-bootstrap.kafka.svc:9092"
 )
 
 // TestSmoke_KafkaSource
@@ -48,5 +48,5 @@ func TestSmoke_KafkaSource(t *testing.T) {
 	)
 
 	env.Test(ctx, t,
-		ks.Install("readysource", ks.WithBootstrapServers([]string{kafkaBootstrapUrlPlain})).AsFeature())
+		ks.Install("readysource", ks.WithBootstrapServers([]string{kafkaBootstrapURLPlain})).AsFeature())
 }
