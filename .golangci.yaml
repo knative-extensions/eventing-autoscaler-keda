@@ -8,6 +8,11 @@ linters:
     - unconvert
   disable:
     - errcheck
+  settings:
+    staticcheck:
+      checks:
+        - all
+        - "-QF1008" # Disable https://staticcheck.dev/docs/checks/#QF1008
   exclusions:
     generated: lax
     presets:
@@ -16,7 +21,7 @@ linters:
       - legacy
       - std-error-handling
     paths:
-      - third_party$
+      - third_party
       - builtin$
       - examples$
 formatters:

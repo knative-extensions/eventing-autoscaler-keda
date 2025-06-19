@@ -286,7 +286,7 @@ func (r *Reconciler) reconcileSecret(ctx context.Context, expectedSecret *corev1
 		logging.FromContext(ctx).Errorw("Unable to get an existing ScaledObject", zap.Error(err))
 		return err
 	} else if !metav1.IsControlledBy(secret, obj) {
-		return fmt.Errorf("Secret %q is not owned by %q", secret.Name, obj)
+		return fmt.Errorf("secret %q is not owned by %q", secret.Name, obj)
 	} else {
 		// StringData is not populated on read so for now always update the secret
 		logging.FromContext(ctx).Debug("Updating secret")
