@@ -11,19 +11,18 @@ require (
 	k8s.io/apimachinery v0.33.1
 	k8s.io/client-go v0.33.1
 	k8s.io/code-generator v0.33.1
-	knative.dev/eventing v0.46.1-0.20250805061645-51710e296f74
+	knative.dev/eventing v0.46.1-0.20250805160046-3bdae0a971f5
 	knative.dev/eventing-kafka-broker v0.46.1-0.20250805050945-aef364fb6afe
-	knative.dev/eventing-redis v0.46.1-0.20250729152839-8406de7dc9d9
+	knative.dev/eventing-redis v0.46.1-0.20250805144546-9190c8e47562
 	knative.dev/hack v0.0.0-20250708013849-70d4b00da6ba
 	knative.dev/pkg v0.0.0-20250804212045-2a0abb7b5eb3
-	knative.dev/reconciler-test v0.0.0-20250805131045-bc8fcf423e5e
+	knative.dev/reconciler-test v0.0.0-20250805151946-e7475cab4beb
 	sigs.k8s.io/controller-runtime v0.19.0
 )
 
 require (
 	contrib.go.opencensus.io/exporter/ocagent v0.7.1-0.20200907061046-05415f1de66d // indirect
 	contrib.go.opencensus.io/exporter/prometheus v0.4.2 // indirect
-	contrib.go.opencensus.io/exporter/zipkin v0.1.2 // indirect
 	github.com/antlr/antlr4/runtime/Go/antlr v1.4.10 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
@@ -64,7 +63,6 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
-	github.com/openzipkin/zipkin-go v0.4.3 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/prometheus/client_golang v1.23.0 // indirect
