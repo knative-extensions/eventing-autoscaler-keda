@@ -11,9 +11,9 @@ require (
 	k8s.io/apimachinery v0.33.1
 	k8s.io/client-go v0.33.1
 	k8s.io/code-generator v0.33.1
-	knative.dev/eventing v0.46.0
-	knative.dev/eventing-kafka-broker v0.46.0
-	knative.dev/eventing-redis v0.46.0
+	knative.dev/eventing v0.46.1
+	knative.dev/eventing-kafka-broker v0.46.1
+	knative.dev/eventing-redis v0.46.1
 	knative.dev/hack v0.0.0-20250708013849-70d4b00da6ba
 	knative.dev/pkg v0.0.0-20250817152444-53ed1d53d232
 	knative.dev/reconciler-test v0.0.0-20250818184250-510456da982c
@@ -69,7 +69,7 @@ require (
 	github.com/prometheus/client_golang v1.22.0 // indirect
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/common v0.65.0 // indirect
-	github.com/prometheus/procfs v0.16.1 // indirect
+	github.com/prometheus/procfs v0.17.0 // indirect
 	github.com/prometheus/statsd_exporter v0.22.7 // indirect
 	github.com/rickb777/date v1.14.1 // indirect
 	github.com/rickb777/plural v1.2.2 // indirect
