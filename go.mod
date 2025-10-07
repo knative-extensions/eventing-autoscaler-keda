@@ -13,9 +13,9 @@ require (
 	k8s.io/code-generator v0.33.5
 	knative.dev/eventing v0.46.1-0.20251002211605-5828b491e837
 	knative.dev/eventing-kafka-broker v0.46.1-0.20250930122203-de6a2fa1a297
-	knative.dev/eventing-redis v0.46.1-0.20250930021104-0c83a8d94210
+	knative.dev/eventing-redis v0.46.1-0.20251003021406-ccd50eaf21e3
 	knative.dev/hack v0.0.0-20250902153942-1499de21e119
-	knative.dev/pkg v0.0.0-20251001003403-1e71536171b9
+	knative.dev/pkg v0.0.0-20251007000110-e53fcbb06907
 	knative.dev/reconciler-test v0.0.0-20250916021502-da6972135171
 	sigs.k8s.io/controller-runtime v0.19.0
 )
