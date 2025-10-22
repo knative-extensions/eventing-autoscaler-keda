@@ -1202,10 +1202,10 @@ knative.dev/eventing-kafka-broker/test/rekt/resources/kafkasource
 ## explicit; go 1.24.0
 knative.dev/eventing-redis/pkg/source/apis/sources
 knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1
-# knative.dev/hack v0.0.0-20251016122918-f2be520302e8
+# knative.dev/hack v0.0.0-20251022160748-50b120a65f30
 ## explicit; go 1.21
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20251022154045-7da1174b871b
+# knative.dev/pkg v0.0.0-20251022162148-4ebd86bc2d85
 ## explicit; go 1.24.0
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1293,7 +1293,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20251022154745-2f11b0665280
+# knative.dev/reconciler-test v0.0.0-20251022162849-b4a975100a56
 ## explicit; go 1.24.0
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
