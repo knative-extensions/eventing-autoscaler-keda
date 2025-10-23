@@ -1293,7 +1293,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20251022162849-b4a975100a56
+# knative.dev/reconciler-test v0.0.0-20251023120348-624cba8ba108
 ## explicit; go 1.24.0
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
