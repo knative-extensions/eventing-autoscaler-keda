@@ -16,7 +16,7 @@ require (
 	knative.dev/eventing-redis v0.46.6
 	knative.dev/hack v0.0.0-20251022160748-50b120a65f30
 	knative.dev/pkg v0.0.0-20251022162148-4ebd86bc2d85
-	knative.dev/reconciler-test v0.0.0-20251022162849-b4a975100a56
+	knative.dev/reconciler-test v0.0.0-20251023120348-624cba8ba108
 	sigs.k8s.io/controller-runtime v0.19.0
 )
 
