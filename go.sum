@@ -1020,8 +1020,8 @@ k8s.io/utils v0.0.0-20250604170112-4c0f3b243397 h1:hwvWFiBzdWw1FhfY1FooPn3kzWuJ8
 k8s.io/utils v0.0.0-20250604170112-4c0f3b243397/go.mod h1:OLgZIPagt7ERELqWJFomSt595RzquPNLL48iOWgYOg0=
 knative.dev/eventing v0.47.1-0.20251107142554-ed2c4f8446f1 h1:6gaG7msL3vdE5dkujePLqiFpWTLR+VDi/n9r+XOThQ0=
 knative.dev/eventing v0.47.1-0.20251107142554-ed2c4f8446f1/go.mod h1:y2ah9JhILLaQDOeh4IQcLd2uYaVBU6ErGe5b53BLV1s=
-knative.dev/eventing-kafka-broker v0.47.1-0.20251106141951-706fb124445d h1:h/tp/y5PaRgSDtMIW+Z2mCjYWEynJ+3RwiNg2+AFsFU=
-knative.dev/eventing-kafka-broker v0.47.1-0.20251106141951-706fb124445d/go.mod h1:DeqzQQ9P9q01q2kE5KTqr+/zuyhisJl8C7D28iGwKUA=
+knative.dev/eventing-kafka-broker v0.47.1-0.20251110114958-09a2a2a0afa6 h1:xTUf6lBq4qJcpTH3RbdN6c+qwaK4U0IsMEYjxFtErho=
+knative.dev/eventing-kafka-broker v0.47.1-0.20251110114958-09a2a2a0afa6/go.mod h1:Nlfp4fIFO+qmVjI0j5zv1tQVXRnuCfbpQART48E528M=
 knative.dev/eventing-redis v0.47.1-0.20251107135356-031b9b11e4e0 h1:Cg/B2m45eZ82YDjeoI3Fhg2mkcsjR0YSfWjqt+NktcI=
 knative.dev/eventing-redis v0.47.1-0.20251107135356-031b9b11e4e0/go.mod h1:TUsoJG+1SQFjzE7Ro8/74LkKNbMjrom2NkxN/hgB21M=
 knative.dev/hack v0.0.0-20251103013745-91eedd9bef96 h1:GVSOfMP+ID8WOs11rnR3QGeXagY18VkfBs9GZDjB4WU=
