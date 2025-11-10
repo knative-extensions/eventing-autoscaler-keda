@@ -12,7 +12,7 @@ require (
 	k8s.io/client-go v0.34.1
 	k8s.io/code-generator v0.34.1
 	knative.dev/eventing v0.47.1-0.20251107142554-ed2c4f8446f1
-	knative.dev/eventing-kafka-broker v0.47.1-0.20251106141951-706fb124445d
+	knative.dev/eventing-kafka-broker v0.47.1-0.20251110114958-09a2a2a0afa6
 	knative.dev/eventing-redis v0.47.1-0.20251107135356-031b9b11e4e0
 	knative.dev/hack v0.0.0-20251103013745-91eedd9bef96
 	knative.dev/pkg v0.0.0-20251104154049-5037c4760829
