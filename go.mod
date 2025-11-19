@@ -6,17 +6,17 @@ require (
 	github.com/hashicorp/golang-lru v1.0.2
 	github.com/kedacore/keda/v2 v2.9.1
 	go.uber.org/zap v1.27.0
-	k8s.io/api v0.34.1
-	k8s.io/apiextensions-apiserver v0.34.1
-	k8s.io/apimachinery v0.34.1
-	k8s.io/client-go v0.34.1
-	k8s.io/code-generator v0.34.1
-	knative.dev/eventing v0.47.1-0.20251107142554-ed2c4f8446f1
-	knative.dev/eventing-kafka-broker v0.47.1-0.20251110114958-09a2a2a0afa6
-	knative.dev/eventing-redis v0.47.1-0.20251107135356-031b9b11e4e0
-	knative.dev/hack v0.0.0-20251103013745-91eedd9bef96
-	knative.dev/pkg v0.0.0-20251104154049-5037c4760829
-	knative.dev/reconciler-test v0.0.0-20251107135556-a6d728b6cc25
+	k8s.io/api v0.34.2
+	k8s.io/apiextensions-apiserver v0.34.2
+	k8s.io/apimachinery v0.34.2
+	k8s.io/client-go v0.34.2
+	k8s.io/code-generator v0.34.2
+	knative.dev/eventing v0.47.1-0.20251118120514-7c37b1462d6e
+	knative.dev/eventing-kafka-broker v0.47.1-0.20251118115714-bfa0e674aaa9
+	knative.dev/eventing-redis v0.47.1-0.20251117014901-867f72ec0773
+	knative.dev/hack v0.0.0-20251117013754-67a5b048bc27
+	knative.dev/pkg v0.0.0-20251118173915-745990698d3c
+	knative.dev/reconciler-test v0.0.0-20251117013655-1e6de0a87d9a
 	sigs.k8s.io/controller-runtime v0.19.0
 )
 
@@ -92,7 +92,7 @@ require (
 	golang.org/x/mod v0.29.0 // indirect
 	golang.org/x/net v0.46.0 // indirect
 	golang.org/x/oauth2 v0.30.0 // indirect
-	golang.org/x/sync v0.17.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
 	golang.org/x/sys v0.37.0 // indirect
 	golang.org/x/term v0.36.0 // indirect
 	golang.org/x/text v0.30.0 // indirect
@@ -107,7 +107,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/apiserver v0.34.1 // indirect
+	k8s.io/apiserver v0.34.2 // indirect
 	k8s.io/gengo/v2 v2.0.0-20250604051438-85fd79dbfd9f // indirect
 	k8s.io/klog/v2 v2.130.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20250710124328-f3f2b991d03b // indirect
