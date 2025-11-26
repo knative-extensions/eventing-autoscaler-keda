@@ -5,18 +5,18 @@ go 1.24.0
 require (
 	github.com/hashicorp/golang-lru v1.0.2
 	github.com/kedacore/keda/v2 v2.9.1
-	go.uber.org/zap v1.27.0
+	go.uber.org/zap v1.27.1
 	k8s.io/api v0.34.2
 	k8s.io/apiextensions-apiserver v0.34.2
 	k8s.io/apimachinery v0.34.2
 	k8s.io/client-go v0.34.2
 	k8s.io/code-generator v0.34.2
-	knative.dev/eventing v0.47.1-0.20251121120517-0effffedd9a9
-	knative.dev/eventing-kafka-broker v0.47.1-0.20251124193726-bdbf8919cc48
-	knative.dev/eventing-redis v0.47.1-0.20251119135319-13c6f6fad658
-	knative.dev/hack v0.0.0-20251117013754-67a5b048bc27
-	knative.dev/pkg v0.0.0-20251124190527-7d24e8d1085f
-	knative.dev/reconciler-test v0.0.0-20251119135518-4b85657eb33d
+	knative.dev/eventing v0.47.1-0.20251126013633-47e18d46cb6c
+	knative.dev/eventing-kafka-broker v0.47.1-0.20251126013902-f39a6fcf97f6
+	knative.dev/eventing-redis v0.47.1-0.20251126014753-8ce1930bf335
+	knative.dev/hack v0.0.0-20251126013634-1484a9e9b641
+	knative.dev/pkg v0.0.0-20251126013532-e853b1d1d6bb
+	knative.dev/reconciler-test v0.0.0-20251126013638-4aa4b110c508
 	sigs.k8s.io/controller-runtime v0.19.0
 )
 
