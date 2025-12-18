@@ -13,10 +13,10 @@ require (
 	k8s.io/code-generator v0.34.3
 	knative.dev/eventing v0.47.1-0.20251216143128-de3db52821ed
 	knative.dev/eventing-kafka-broker v0.47.1-0.20251205082612-42935d0bec5e
-	knative.dev/eventing-redis v0.47.1-0.20251216135728-84fec749caca
+	knative.dev/eventing-redis v0.47.1-0.20251217135625-cf6cff9a6c31
 	knative.dev/hack v0.0.0-20251126013634-1484a9e9b641
-	knative.dev/pkg v0.0.0-20251216153728-9c8140b780d1
-	knative.dev/reconciler-test v0.0.0-20251216135827-7b51b2a66f40
+	knative.dev/pkg v0.0.0-20251217214024-80c8bc434670
+	knative.dev/reconciler-test v0.0.0-20251217021727-d67001b5cfe8
 	sigs.k8s.io/controller-runtime v0.19.0
 )
 
