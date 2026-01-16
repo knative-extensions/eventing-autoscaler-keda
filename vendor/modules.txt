@@ -1051,7 +1051,7 @@ k8s.io/utils/net
 k8s.io/utils/pointer
 k8s.io/utils/ptr
 k8s.io/utils/trace
-# knative.dev/eventing v0.47.1-0.20260105025030-79d12a93ce2e
+# knative.dev/eventing v0.47.1-0.20260114135450-59b517c8aca0
 ## explicit; go 1.24.0
 knative.dev/eventing/pkg/apis/common/integration/v1alpha1
 knative.dev/eventing/pkg/apis/config
@@ -1129,7 +1129,7 @@ knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
 knative.dev/eventing/pkg/observability
 knative.dev/eventing/pkg/observability/configmap
-# knative.dev/eventing-kafka-broker v0.47.1-0.20251223121817-f9ffd24a8ec9
+# knative.dev/eventing-kafka-broker v0.47.1-0.20260116125349-d2f2614f7238
 ## explicit; go 1.24.0
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1
@@ -1156,14 +1156,14 @@ knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/t
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/sources/v1beta1
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/injection/client
 knative.dev/eventing-kafka-broker/test/rekt/resources/kafkasource
-# knative.dev/eventing-redis v0.47.1-0.20260105021531-db23d034939f
+# knative.dev/eventing-redis v0.47.1-0.20260114015159-eb5431de73bc
 ## explicit; go 1.24.0
 knative.dev/eventing-redis/pkg/source/apis/sources
 knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1
-# knative.dev/hack v0.0.0-20251126013634-1484a9e9b641
+# knative.dev/hack v0.0.0-20260114013932-ee8a1b2d08eb
 ## explicit; go 1.24
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20260111201937-93d6642bd10b
+# knative.dev/pkg v0.0.0-20260114161248-8c840449eed2
 ## explicit; go 1.24.0
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1243,7 +1243,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20251217021727-d67001b5cfe8
+# knative.dev/reconciler-test v0.0.0-20260114013820-b74774d63680
 ## explicit; go 1.24.0
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
