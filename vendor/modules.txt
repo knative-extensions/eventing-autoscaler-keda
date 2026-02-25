@@ -1129,7 +1129,7 @@ knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
 knative.dev/eventing/pkg/observability
 knative.dev/eventing/pkg/observability/configmap
-# knative.dev/eventing-kafka-broker v0.48.1-0.20260219014057-f764177d8a8a
+# knative.dev/eventing-kafka-broker v0.48.1-0.20260225131420-38083e7662b4
 ## explicit; go 1.24.0
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1
@@ -1163,7 +1163,7 @@ knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1
 # knative.dev/hack v0.0.0-20260212092700-0126b283bf20
 ## explicit; go 1.24
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20260221010456-9fb97f59fc24
+# knative.dev/pkg v0.0.0-20260225113719-b239e967f175
 ## explicit; go 1.25.0
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1243,7 +1243,7 @@ knative.dev/pkg/webhook/json
 knative.dev/pkg/webhook/resourcesemantics
 knative.dev/pkg/webhook/resourcesemantics/defaulting
 knative.dev/pkg/webhook/resourcesemantics/validation
-# knative.dev/reconciler-test v0.0.0-20260224173119-ef80c5585ffe
+# knative.dev/reconciler-test v0.0.0-20260225102319-dfd939c0a1e2
 ## explicit; go 1.25.0
 knative.dev/reconciler-test/cmd/eventshub
 knative.dev/reconciler-test/pkg/environment
