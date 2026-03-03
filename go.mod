@@ -6,16 +6,16 @@ require (
 	github.com/hashicorp/golang-lru v1.0.2
 	github.com/kedacore/keda/v2 v2.9.1
 	go.uber.org/zap v1.27.1
-	k8s.io/api v0.35.1
-	k8s.io/apiextensions-apiserver v0.35.1
-	k8s.io/apimachinery v0.35.1
-	k8s.io/client-go v0.35.1
-	k8s.io/code-generator v0.35.1
-	knative.dev/eventing v0.48.1-0.20260224135219-ac3281fbdc98
-	knative.dev/eventing-kafka-broker v0.48.1-0.20260225131420-38083e7662b4
+	k8s.io/api v0.35.2
+	k8s.io/apiextensions-apiserver v0.35.2
+	k8s.io/apimachinery v0.35.2
+	k8s.io/client-go v0.35.2
+	k8s.io/code-generator v0.35.2
+	knative.dev/eventing v0.48.1-0.20260302160052-223b43fa6087
+	knative.dev/eventing-kafka-broker v0.48.1-0.20260227130422-6b45df53c485
 	knative.dev/eventing-redis v0.48.1-0.20260223021701-4feb331f6a98
 	knative.dev/hack v0.0.0-20260212092700-0126b283bf20
-	knative.dev/pkg v0.0.0-20260225113719-b239e967f175
+	knative.dev/pkg v0.0.0-20260302190359-1f39e94ef003
 	knative.dev/reconciler-test v0.0.0-20260225102319-dfd939c0a1e2
 	sigs.k8s.io/controller-runtime v0.19.0
 )
@@ -89,7 +89,7 @@ require (
 	go.yaml.in/yaml/v2 v2.4.3 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/mod v0.33.0 // indirect
-	golang.org/x/net v0.50.0 // indirect
+	golang.org/x/net v0.51.0 // indirect
 	golang.org/x/oauth2 v0.34.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.41.0 // indirect
@@ -106,7 +106,7 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/apiserver v0.35.1 // indirect
+	k8s.io/apiserver v0.35.2 // indirect
 	k8s.io/gengo/v2 v2.0.0-20250922181213-ec3ebc5fd46b // indirect
 	k8s.io/klog/v2 v2.130.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20250910181357-589584f1c912 // indirect
