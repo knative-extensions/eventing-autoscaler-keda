@@ -1063,7 +1063,7 @@ k8s.io/utils/net
 k8s.io/utils/pointer
 k8s.io/utils/ptr
 k8s.io/utils/trace
-# knative.dev/eventing v0.49.1-0.20260727153458-6cdaf81c52e4
+# knative.dev/eventing v0.50.0
 ## explicit; go 1.25.0
 knative.dev/eventing/pkg/apis/common/integration/v1alpha1
 knative.dev/eventing/pkg/apis/config
@@ -1141,7 +1141,7 @@ knative.dev/eventing/pkg/crossnamespace
 knative.dev/eventing/pkg/eventingtls
 knative.dev/eventing/pkg/observability
 knative.dev/eventing/pkg/observability/configmap
-# knative.dev/eventing-kafka-broker v0.49.1-0.20260722034926-be8757253c2e
+# knative.dev/eventing-kafka-broker v0.50.0
 ## explicit; go 1.25.0
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings
 knative.dev/eventing-kafka-broker/control-plane/pkg/apis/bindings/v1
@@ -1168,7 +1168,7 @@ knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/t
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/clientset/versioned/typed/sources/v1beta1
 knative.dev/eventing-kafka-broker/control-plane/pkg/client/injection/client
 knative.dev/eventing-kafka-broker/test/rekt/resources/kafkasource
-# knative.dev/eventing-redis v0.49.1-0.20260727142605-bed9fb16c7fd
+# knative.dev/eventing-redis v0.50.0
 ## explicit; go 1.25.0
 knative.dev/eventing-redis/pkg/source/apis/sources
 knative.dev/eventing-redis/pkg/source/apis/sources/v1alpha1
