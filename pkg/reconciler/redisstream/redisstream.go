@@ -58,7 +58,7 @@ func GenerateScaleTriggers(src *redisstreamv1alpha1.RedisStreamSource, triggerAu
 	trigger := kedav1alpha1.ScaleTriggers{
 		Type:              "redis-streams",
 		Metadata:          triggerMetadata,
-		AuthenticationRef: &kedav1alpha1.ScaledObjectAuthRef{},
+		AuthenticationRef: &kedav1alpha1.AuthenticationRef{},
 	}
 
 	if triggerAuthentication != nil {

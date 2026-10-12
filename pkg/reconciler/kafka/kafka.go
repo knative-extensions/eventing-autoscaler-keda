@@ -77,7 +77,7 @@ func GenerateScaleTriggers(src *kafkav1beta1.KafkaSource, triggerAuthentication 
 		trigger := kedav1alpha1.ScaleTriggers{
 			Type:              "kafka",
 			Metadata:          triggerMetadata,
-			AuthenticationRef: &kedav1alpha1.ScaledObjectAuthRef{},
+			AuthenticationRef: &kedav1alpha1.AuthenticationRef{},
 		}
 
 		if triggerAuthentication != nil {

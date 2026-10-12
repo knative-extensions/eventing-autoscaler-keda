@@ -106,7 +106,7 @@ func MakeDispatcherScaledObject(ctx context.Context, b *v1.Broker, t *v1.Trigger
 						"host":        brokerURLSecretKey,
 						"queueLength": queueLength,
 					},
-					AuthenticationRef: &kedav1alpha1.ScaledObjectAuthRef{
+					AuthenticationRef: &kedav1alpha1.AuthenticationRef{
 						Name: triggerAuthenticationName,
 					},
 				},
