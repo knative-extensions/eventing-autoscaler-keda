@@ -17,6 +17,10 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"fmt"
+	"reflect"
+	"strconv"
+
 	autoscalingv2 "k8s.io/api/autoscaling/v2"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
@@ -29,11 +33,12 @@ import (
 // +kubebuilder:printcolumn:name="ScaleTargetName",type="string",JSONPath=".spec.scaleTargetRef.name"
 // +kubebuilder:printcolumn:name="Min",type="integer",JSONPath=".spec.minReplicaCount"
 // +kubebuilder:printcolumn:name="Max",type="integer",JSONPath=".spec.maxReplicaCount"
-// +kubebuilder:printcolumn:name="Triggers",type="string",JSONPath=".spec.triggers[*].type"
-// +kubebuilder:printcolumn:name="Authentication",type="string",JSONPath=".spec.triggers[*].authenticationRef.name"
 // +kubebuilder:printcolumn:name="Ready",type="string",JSONPath=".status.conditions[?(@.type==\"Ready\")].status"
 // +kubebuilder:printcolumn:name="Active",type="string",JSONPath=".status.conditions[?(@.type==\"Active\")].status"
 // +kubebuilder:printcolumn:name="Fallback",type="string",JSONPath=".status.conditions[?(@.type==\"Fallback\")].status"
+// +kubebuilder:printcolumn:name="Paused",type="string",JSONPath=".status.conditions[?(@.type==\"Paused\")].status"
+// +kubebuilder:printcolumn:name="Triggers",type="string",JSONPath=".status.triggersTypes"
+// +kubebuilder:printcolumn:name="Authentications",type="string",JSONPath=".status.authenticationsTypes"
 // +kubebuilder:printcolumn:name="Age",type="date",JSONPath=".metadata.creationTimestamp"
 
 // ScaledObject is a specification for a ScaledObject resource
@@ -46,12 +51,33 @@ type ScaledObject struct {
 	Status ScaledObjectStatus `json:"status,omitempty"`
 }
 
+const ScaledObjectOwnerAnnotation = "scaledobject.keda.sh/name"
+const ScaledObjectTransferHpaOwnershipAnnotation = "scaledobject.keda.sh/transfer-hpa-ownership"
+const ScaledObjectExcludedLabelsAnnotation = "scaledobject.keda.sh/hpa-excluded-labels"
+const ValidationsHpaOwnershipAnnotation = "validations.keda.sh/hpa-ownership"
+const PausedReplicasAnnotation = "autoscaling.keda.sh/paused-replicas"
+const PausedAnnotation = "autoscaling.keda.sh/paused"
+const PausedScaleInAnnotation = "autoscaling.keda.sh/paused-scale-in"
+const PausedScaleOutAnnotation = "autoscaling.keda.sh/paused-scale-out"
+const FallbackBehaviorStatic = "static"
+const FallbackBehaviorCurrentReplicas = "currentReplicas"
+const FallbackBehaviorCurrentReplicasIfHigher = "currentReplicasIfHigher"
+const FallbackBehaviorCurrentReplicasIfLower = "currentReplicasIfLower"
+const FallbackBehaviorScalingModifiers = "scalingModifiers"
+const ForceActivationAnnotation = "autoscaling.keda.sh/force-activation"
+
 // HealthStatus is the status for a ScaledObject's health
 type HealthStatus struct {
 	// +optional
 	NumberOfFailures *int32 `json:"numberOfFailures,omitempty"`
 	// +optional
 	Status HealthStatusType `json:"status,omitempty"`
+}
+
+// TriggerActivityStatus represents the activity status of an external trigger
+type TriggerActivityStatus struct {
+	// +optional
+	IsActive bool `json:"isActive"`
 }
 
 // HealthStatusType is an indication of whether the health status is happy or failing
@@ -63,24 +89,40 @@ const (
 
 	// HealthStatusFailing means the status of the health object is failing
 	HealthStatusFailing HealthStatusType = "Failing"
+
+	// CompositeMetricName is used for scalingModifiers composite metric
+	CompositeMetricName string = "composite-metric"
+
+	defaultHPAMinReplicas int32 = 1
+	defaultHPAMaxReplicas int32 = 100
 )
 
 // ScaledObjectSpec is the spec for a ScaledObject resource
+// +kubebuilder:validation:XValidation:rule="!has(self.minReplicaCount) || self.minReplicaCount <= (has(self.maxReplicaCount) ? self.maxReplicaCount : 100)",message="minReplicaCount must be less than or equal to maxReplicaCount"
 type ScaledObjectSpec struct {
 	ScaleTargetRef *ScaleTarget `json:"scaleTargetRef"`
 	// +optional
+	// +kubebuilder:validation:Minimum=1
 	PollingInterval *int32 `json:"pollingInterval,omitempty"`
 	// +optional
+	// +kubebuilder:validation:Minimum=0
+	InitialCooldownPeriod *int32 `json:"initialCooldownPeriod,omitempty"`
+	// +optional
+	// +kubebuilder:validation:Minimum=0
 	CooldownPeriod *int32 `json:"cooldownPeriod,omitempty"`
 	// +optional
+	// +kubebuilder:validation:Minimum=0
 	IdleReplicaCount *int32 `json:"idleReplicaCount,omitempty"`
 	// +optional
+	// +kubebuilder:validation:Minimum=0
 	MinReplicaCount *int32 `json:"minReplicaCount,omitempty"`
 	// +optional
+	// +kubebuilder:validation:Minimum=1
 	MaxReplicaCount *int32 `json:"maxReplicaCount,omitempty"`
 	// +optional
 	Advanced *AdvancedConfig `json:"advanced,omitempty"`
 
+	// +kubebuilder:validation:MinItems=1
 	Triggers []ScaleTriggers `json:"triggers"`
 	// +optional
 	Fallback *Fallback `json:"fallback,omitempty"`
@@ -88,8 +130,14 @@ type ScaledObjectSpec struct {
 
 // Fallback is the spec for fallback options
 type Fallback struct {
+	// +kubebuilder:validation:Minimum=0
 	FailureThreshold int32 `json:"failureThreshold"`
-	Replicas         int32 `json:"replicas"`
+	// +kubebuilder:validation:Minimum=0
+	Replicas int32 `json:"replicas"`
+	// +optional
+	// +kubebuilder:default=static
+	// +kubebuilder:validation:Enum=static;currentReplicas;currentReplicasIfHigher;currentReplicasIfLower;scalingModifiers
+	Behavior string `json:"behavior,omitempty"`
 }
 
 // AdvancedConfig specifies advance scaling options
@@ -98,6 +146,19 @@ type AdvancedConfig struct {
 	HorizontalPodAutoscalerConfig *HorizontalPodAutoscalerConfig `json:"horizontalPodAutoscalerConfig,omitempty"`
 	// +optional
 	RestoreToOriginalReplicaCount bool `json:"restoreToOriginalReplicaCount,omitempty"`
+	// +optional
+	ScalingModifiers ScalingModifiers `json:"scalingModifiers,omitempty"`
+}
+
+// ScalingModifiers describes advanced scaling logic options like formula
+type ScalingModifiers struct {
+	Formula string `json:"formula,omitempty"`
+	Target  string `json:"target,omitempty"`
+	// +optional
+	ActivationTarget string `json:"activationTarget,omitempty"`
+	// +optional
+	// +kubebuilder:validation:Enum=AverageValue;Value
+	MetricType autoscalingv2.MetricTargetType `json:"metricType,omitempty"`
 }
 
 // HorizontalPodAutoscalerConfig specifies horizontal scale config
@@ -108,8 +169,9 @@ type HorizontalPodAutoscalerConfig struct {
 	Name string `json:"name,omitempty"`
 }
 
-// ScaleTarget holds the a reference to the scale target Object
+// ScaleTarget holds the reference to the scale target Object
 type ScaleTarget struct {
+	// +kubebuilder:validation:MinLength=1
 	Name string `json:"name"`
 	// +optional
 	APIVersion string `json:"apiVersion,omitempty"`
@@ -117,21 +179,6 @@ type ScaleTarget struct {
 	Kind string `json:"kind,omitempty"`
 	// +optional
 	EnvSourceContainerName string `json:"envSourceContainerName,omitempty"`
-}
-
-// ScaleTriggers reference the scaler that will be used
-type ScaleTriggers struct {
-	Type string `json:"type"`
-	// +optional
-	Name string `json:"name,omitempty"`
-
-	UseCachedMetrics bool `json:"useCachedMetrics,omitempty"`
-
-	Metadata map[string]string `json:"metadata"`
-	// +optional
-	AuthenticationRef *ScaledObjectAuthRef `json:"authenticationRef,omitempty"`
-	// +optional
-	MetricType autoscalingv2.MetricTargetType `json:"metricType,omitempty"`
 }
 
 // +k8s:openapi-gen=true
@@ -152,13 +199,21 @@ type ScaledObjectStatus struct {
 	// +optional
 	ResourceMetricNames []string `json:"resourceMetricNames,omitempty"`
 	// +optional
+	CompositeScalerName string `json:"compositeScalerName,omitempty"`
+	// +optional
 	Conditions Conditions `json:"conditions,omitempty"`
 	// +optional
 	Health map[string]HealthStatus `json:"health,omitempty"`
 	// +optional
+	TriggersActivity map[string]TriggerActivityStatus `json:"triggersActivity,omitempty"`
+	// +optional
 	PausedReplicaCount *int32 `json:"pausedReplicaCount,omitempty"`
 	// +optional
 	HpaName string `json:"hpaName,omitempty"`
+	// +optional
+	TriggersTypes *string `json:"triggersTypes,omitempty"`
+	// +optional
+	AuthenticationsTypes *string `json:"authenticationsTypes,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -170,20 +225,203 @@ type ScaledObjectList struct {
 	Items           []ScaledObject `json:"items"`
 }
 
-// ScaledObjectAuthRef points to the TriggerAuthentication or ClusterTriggerAuthentication object that
-// is used to authenticate the scaler with the environment
-type ScaledObjectAuthRef struct {
-	Name string `json:"name"`
-	// Kind of the resource being referred to. Defaults to TriggerAuthentication.
-	// +optional
-	Kind string `json:"kind,omitempty"`
-}
-
-func init() {
-	SchemeBuilder.Register(&ScaledObject{}, &ScaledObjectList{})
-}
-
 // GenerateIdentifier returns identifier for the object in for "kind.namespace.name"
-func (s *ScaledObject) GenerateIdentifier() string {
-	return GenerateIdentifier("ScaledObject", s.Namespace, s.Name)
+func (so *ScaledObject) GenerateIdentifier() string {
+	return GenerateIdentifier("ScaledObject", so.Namespace, so.Name)
+}
+
+// HasPausedAnnotation returns whether this ScaledObject has PausedAnnotation or PausedReplicasAnnotation
+func (so *ScaledObject) HasPausedAnnotation() bool {
+	_, pausedAnnotationFound := so.GetAnnotations()[PausedAnnotation]
+	_, pausedReplicasAnnotationFound := so.GetAnnotations()[PausedReplicasAnnotation]
+	return pausedAnnotationFound || pausedReplicasAnnotationFound
+}
+
+// NeedToBePausedByAnnotation will check whether ScaledObject needs to be paused based on PausedAnnotation or PausedReplicaCount
+func (so *ScaledObject) NeedToBePausedByAnnotation() bool {
+	_, pausedReplicasAnnotationFound := so.GetAnnotations()[PausedReplicasAnnotation]
+	if pausedReplicasAnnotationFound {
+		return true
+	}
+
+	return getBoolAnnotation(so, PausedAnnotation)
+}
+
+// NeedToPauseScaleIn checks whether Scale In actions for a ScaledObject need to be blocked based on the PausedScaleIn annotation
+func (so *ScaledObject) NeedToPauseScaleIn() bool {
+	return getBoolAnnotation(so, PausedScaleInAnnotation)
+}
+
+// NeedToForceActivation checks whether activation of a scale target needs to be forced because the ForceActivation annotation is set
+func (so *ScaledObject) NeedToForceActivation() bool {
+	return getBoolAnnotation(so, ForceActivationAnnotation)
+}
+
+// NeedToPauseScaleOut checks whether Scale Out actions for a ScaledObject need to be blocked based on the PausedScaleOut annotation
+func (so *ScaledObject) NeedToPauseScaleOut() bool {
+	return getBoolAnnotation(so, PausedScaleOutAnnotation)
+}
+
+func getBoolAnnotation(so *ScaledObject, annotation string) bool {
+	value, found := so.GetAnnotations()[annotation]
+	if !found {
+		return false
+	}
+	boolVal, err := strconv.ParseBool(value)
+	if err != nil {
+		// if annotation value is not a boolean, we assume true
+		return true
+	}
+	return boolVal
+}
+
+// GetPausedReplicaCount returns the paused replica count from the annotation, nil if not present.
+func (so *ScaledObject) GetPausedReplicaCount() (*int32, error) {
+	if so.Annotations != nil {
+		if val, ok := so.Annotations[PausedReplicasAnnotation]; ok {
+			conv, err := strconv.ParseInt(val, 10, 32)
+			if err != nil {
+				return nil, err
+			}
+			count := int32(conv)
+			return &count, nil
+		}
+	}
+	return nil, nil
+}
+
+// IsUsingModifiers determines whether scalingModifiers are defined or not
+func (so *ScaledObject) IsUsingModifiers() bool {
+	return so.Spec.Advanced != nil && !reflect.DeepEqual(so.Spec.Advanced.ScalingModifiers, ScalingModifiers{})
+}
+
+// IsPollingIntervalRelevant reports whether KEDA's own scale loop still needs to poll the triggers.
+// Polling is only relevant when the scale loop can move the workload outside the HPA-managed
+// range (scale to zero when minReplicaCount is 0, or to the idle replica count when idle mode
+// is enabled), or when a trigger relies on cached metrics that the loop must refresh for the HPA.
+// Otherwise the HPA drives all scaling and the scale loop has nothing to contribute, so pollingInterval
+// has no effect.
+func (so *ScaledObject) IsPollingIntervalRelevant() bool {
+	minReplicas := int32(0)
+	if so.Spec.MinReplicaCount != nil {
+		minReplicas = *so.Spec.MinReplicaCount
+	}
+	if minReplicas == 0 || so.Spec.IdleReplicaCount != nil {
+		return true
+	}
+	for _, trigger := range so.Spec.Triggers {
+		if trigger.UseCachedMetrics {
+			return true
+		}
+	}
+	return false
+}
+
+// UsesHPAObservations reports whether the state of the ScaledObject may be derived from the metric
+// observations of the HPA-driven metrics path instead of querying the trigger sources on KEDA's own
+// scale loop. This is only allowed when pollingInterval is not relevant (see
+// IsPollingIntervalRelevant): the HPA then drives all scaling and already queries every external
+// metric itself, so querying the trigger sources on the scale loop would only duplicate those
+// queries. ScaledObjects using scaling modifiers are excluded because trigger activity is then
+// derived from the composite formula over all metrics at once.
+func (so *ScaledObject) UsesHPAObservations() bool {
+	return !so.IsPollingIntervalRelevant() && !so.IsUsingModifiers()
+}
+
+// GetHPAMinReplicas returns MinReplicas based on definition in ScaledObject or default value if not defined
+func (so *ScaledObject) GetHPAMinReplicas() *int32 {
+	if so.Spec.MinReplicaCount != nil && *so.Spec.MinReplicaCount > 0 {
+		return so.Spec.MinReplicaCount
+	}
+	tmp := defaultHPAMinReplicas
+	return &tmp
+}
+
+// GetHPAMaxReplicas returns MaxReplicas based on definition in ScaledObject or default value if not defined
+func (so *ScaledObject) GetHPAMaxReplicas() int32 {
+	if so.Spec.MaxReplicaCount != nil {
+		return *so.Spec.MaxReplicaCount
+	}
+	return defaultHPAMaxReplicas
+}
+
+// GetStatusConditions returns a pointer to the status conditions for in-place modification.
+func (so *ScaledObject) GetStatusConditions() *Conditions { return &so.Status.Conditions }
+
+// SetStatusLastActiveTime sets the LastActiveTime in the status.
+func (so *ScaledObject) SetStatusLastActiveTime(t *metav1.Time) { so.Status.LastActiveTime = t }
+
+// SetStatusPausedReplicaCount sets the PausedReplicaCount in the status.
+func (so *ScaledObject) SetStatusPausedReplicaCount(v *int32) { so.Status.PausedReplicaCount = v }
+
+// GetStatusTriggersActivity returns the map of trigger names to their activity status for the ScaledObject status, initializing it if it is nil.
+func (so *ScaledObject) GetStatusTriggersActivity() map[string]TriggerActivityStatus {
+	if so.Status.TriggersActivity == nil {
+		so.Status.TriggersActivity = make(map[string]TriggerActivityStatus)
+	}
+	return so.Status.TriggersActivity
+}
+
+// SetStatusTriggersActivity sets the triggers activity map in the status.
+func (so *ScaledObject) SetStatusTriggersActivity(m map[string]TriggerActivityStatus) {
+	so.Status.TriggersActivity = m
+}
+
+// GetStatusExternalMetricNames returns the list of external metric names defined in the ScaledObject status
+func (so *ScaledObject) GetStatusExternalMetricNames() []string {
+	return so.Status.ExternalMetricNames
+}
+
+// FallbackScalingModifiers returns whether the fallback behavior is set to use scaling modifiers
+func (so *ScaledObject) FallbackScalingModifiers() bool {
+	return so.Spec.Fallback != nil && so.Spec.Fallback.Behavior == FallbackBehaviorScalingModifiers
+}
+
+// CheckReplicaCountBoundsAreValid checks that Idle/Min/Max ReplicaCount defined in ScaledObject are correctly specified
+// i.e. that Min is not greater than Max or Idle greater or equal to Min
+func CheckReplicaCountBoundsAreValid(scaledObject *ScaledObject) error {
+	minReplicas := int32(0)
+	if scaledObject.Spec.MinReplicaCount != nil {
+		minReplicas = *scaledObject.GetHPAMinReplicas()
+	}
+	maxReplicas := scaledObject.GetHPAMaxReplicas()
+
+	if minReplicas > maxReplicas {
+		return fmt.Errorf("MinReplicaCount=%d must be less than MaxReplicaCount=%d", minReplicas, maxReplicas)
+	}
+
+	if scaledObject.Spec.IdleReplicaCount != nil && *scaledObject.Spec.IdleReplicaCount >= minReplicas {
+		return fmt.Errorf("IdleReplicaCount=%d must be less than MinReplicaCount=%d", *scaledObject.Spec.IdleReplicaCount, minReplicas)
+	}
+
+	return nil
+}
+
+// CheckFallbackValid checks that the fallback supports scalers with an AverageValue metric target.
+// Consequently, it does not support CPU & memory scalers, or scalers targeting a Value metric type.
+func CheckFallbackValid(scaledObject *ScaledObject) error {
+	if scaledObject.Spec.Fallback == nil {
+		return nil
+	}
+
+	if scaledObject.Spec.Fallback.FailureThreshold < 0 || scaledObject.Spec.Fallback.Replicas < 0 {
+		return fmt.Errorf("FailureThreshold=%d & Replicas=%d must both be greater than or equal to 0",
+			scaledObject.Spec.Fallback.FailureThreshold, scaledObject.Spec.Fallback.Replicas)
+	}
+
+	if !scaledObject.IsUsingModifiers() {
+		fallbackValid := false
+		for _, trigger := range scaledObject.Spec.Triggers {
+			if trigger.Type == cpuString || trigger.Type == memoryString {
+				continue
+			}
+			fallbackValid = true
+			break
+		}
+
+		if !fallbackValid {
+			return fmt.Errorf("at least one trigger (that is not cpu or memory) has to have the `AverageValue` type for the fallback to be enabled")
+		}
+	}
+	return nil
 }
