@@ -11,12 +11,12 @@ require (
 	k8s.io/apimachinery v0.36.5
 	k8s.io/client-go v0.36.5
 	k8s.io/code-generator v0.36.5
-	knative.dev/eventing v0.50.1-0.20261023025033-34a23fc27997
-	knative.dev/eventing-kafka-broker v0.50.1-0.20261022145137-bb7b7b1bca0e
-	knative.dev/eventing-redis v0.50.1-0.20261022134039-f65009553722
-	knative.dev/hack v0.0.0-20261021112836-4b87852b7bf9
-	knative.dev/pkg v0.0.0-20261023092754-5823c20aa2a6
-	knative.dev/reconciler-test v0.0.0-20261023015335-00f223580f3c
+	knative.dev/eventing v0.50.1-0.20261026111529-23211b7206ad
+	knative.dev/eventing-kafka-broker v0.50.1-0.20261026123630-11d35a9910e7
+	knative.dev/eventing-redis v0.50.1-0.20261026015527-f3324ea9020d
+	knative.dev/hack v0.0.0-20261023132104-4a15c76c8f70
+	knative.dev/pkg v0.0.0-20261026113028-cfa0ac991c5a
+	knative.dev/reconciler-test v0.0.0-20261026141430-d915e180051b
 	sigs.k8s.io/controller-runtime v0.24.1
 )
 
@@ -67,9 +67,9 @@ require (
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
-	github.com/prometheus/client_golang v1.24.1 // indirect
+	github.com/prometheus/client_golang v1.25.0 // indirect
 	github.com/prometheus/client_model v0.6.3 // indirect
-	github.com/prometheus/common v0.72.0 // indirect
+	github.com/prometheus/common v0.72.1 // indirect
 	github.com/prometheus/otlptranslator v1.0.0 // indirect
 	github.com/prometheus/procfs v0.22.0 // indirect
 	github.com/rickb777/date v1.14.1 // indirect
