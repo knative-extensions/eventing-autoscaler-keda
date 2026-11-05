@@ -1,10 +1,11 @@
 # Experimental KEDA support for Knative Event Sources Autoscaling
 
-## End of life
-
-This project is being retired and this repository will be archived. It will no longer receive maintenance or new releases. Existing source code and release assets will remain available.
-
-See [knative/community#1802](https://github.com/knative/community/issues/1802) for details.
+> [!IMPORTANT]
+> **End of life**
+>
+> This project is being retired and this repository will be archived. It will no longer receive maintenance or new releases. Existing source code and release assets will remain available.
+>
+> See [knative/community#1802](https://github.com/knative/community/issues/1802) for details.
 
 **[This component is ALPHA](https://github.com/knative/community/tree/main/mechanics/MATURITY-LEVELS.md)**
 
